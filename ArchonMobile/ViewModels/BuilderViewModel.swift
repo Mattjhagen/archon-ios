@@ -177,7 +177,11 @@ final class BuilderViewModel: ObservableObject {
             if Task.isCancelled { return true }
             self.currentTask = task
             partialSuccess = true
-        } catch {}
+        } catch {
+            #if DEBUG
+            print("[BuilderViewModel] fetchTaskDetails failed: \(error.localizedDescription)")
+            #endif
+        }
 
         do {
             let fetchedEvents = try await apiClient.getTaskEvents(id: taskId)

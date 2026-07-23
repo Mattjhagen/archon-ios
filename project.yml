@@ -7,7 +7,7 @@ options:
 packages:
   Supabase:
     url: https://github.com/supabase/supabase-swift
-    from: 2.0.0
+    exact: 2.53.0
 targets:
   ArchonMobile:
     type: application

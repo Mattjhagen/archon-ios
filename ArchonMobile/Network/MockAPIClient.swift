@@ -6,103 +6,112 @@ class MockAPIClient: APIClientProtocol {
 
     // MARK: - Demo Data
 
-    private(set) var projects: [ArchonProject] = [
-        ArchonProject(
-            id: "proj-1",
-            name: "Weather Dashboard",
-            description: "A beautiful weather app with animated icons and 5-day forecast",
-            status: .active,
-            createdAt: Calendar.current.date(byAdding: .day, value: -7, to: Date())!,
-            updatedAt: Calendar.current.date(byAdding: .hour, value: -2, to: Date())!
-        ),
-        ArchonProject(
-            id: "proj-2",
-            name: "Task Manager Pro",
-            description: "Kanban-style task manager with drag-and-drop",
-            status: .active,
-            createdAt: Calendar.current.date(byAdding: .day, value: -3, to: Date())!,
-            updatedAt: Calendar.current.date(byAdding: .hour, value: -6, to: Date())!
-        ),
-        ArchonProject(
-            id: "proj-3",
-            name: "Fitness Tracker",
-            description: "Workout tracker with progress charts and goals",
-            status: .draft,
-            createdAt: Calendar.current.date(byAdding: .hour, value: -4, to: Date())!,
-            updatedAt: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!
-        ),
-        ArchonProject(
-            id: "proj-4",
-            name: "Recipe Collection",
-            description: "Personal recipe book with search and categories",
-            status: .active,
-            createdAt: Calendar.current.date(byAdding: .day, value: -14, to: Date())!,
-            updatedAt: Calendar.current.date(byAdding: .day, value: -2, to: Date())!
-        )
-    ]
+    private(set) var projects: [ArchonProject] = {
+        let now = Date()
+        return [
+            ArchonProject(
+                id: "proj-1",
+                name: "Weather Dashboard",
+                description: "A beautiful weather app with animated icons and 5-day forecast",
+                status: .active,
+                createdAt: Calendar.current.date(byAdding: .day, value: -7, to: now) ?? now,
+                updatedAt: Calendar.current.date(byAdding: .hour, value: -2, to: now) ?? now
+            ),
+            ArchonProject(
+                id: "proj-2",
+                name: "Task Manager Pro",
+                description: "Kanban-style task manager with drag-and-drop",
+                status: .active,
+                createdAt: Calendar.current.date(byAdding: .day, value: -3, to: now) ?? now,
+                updatedAt: Calendar.current.date(byAdding: .hour, value: -6, to: now) ?? now
+            ),
+            ArchonProject(
+                id: "proj-3",
+                name: "Fitness Tracker",
+                description: "Workout tracker with progress charts and goals",
+                status: .draft,
+                createdAt: Calendar.current.date(byAdding: .hour, value: -4, to: now) ?? now,
+                updatedAt: Calendar.current.date(byAdding: .hour, value: -1, to: now) ?? now
+            ),
+            ArchonProject(
+                id: "proj-4",
+                name: "Recipe Collection",
+                description: "Personal recipe book with search and categories",
+                status: .active,
+                createdAt: Calendar.current.date(byAdding: .day, value: -14, to: now) ?? now,
+                updatedAt: Calendar.current.date(byAdding: .day, value: -2, to: now) ?? now
+            )
+        ]
+    }()
 
-    private(set) var tasks: [ArchonTask] = [
-        ArchonTask(
-            id: "task-1",
-            title: "Add animated weather icons",
-            status: .completed,
-            provider: "anthropic",
-            model: "claude-sonnet-4-20250514",
-            reasoningEffort: .medium,
-            currentStep: 12,
-            maxSteps: 12,
-            creditsUsed: 180,
-            creditLimit: 500,
-            projectId: "proj-1",
-            createdAt: Calendar.current.date(byAdding: .hour, value: -5, to: Date())!,
-            updatedAt: Calendar.current.date(byAdding: .hour, value: -4, to: Date())!
-        ),
-        ArchonTask(
-            id: "task-2",
-            title: "Build drag-and-drop kanban board",
-            status: .running,
-            provider: "anthropic",
-            model: "claude-sonnet-4-20250514",
-            reasoningEffort: .high,
-            currentStep: 8,
-            maxSteps: 25,
-            creditsUsed: 240,
-            creditLimit: 500,
-            projectId: "proj-2",
-            createdAt: Calendar.current.date(byAdding: .hour, value: -1, to: Date())!,
-            updatedAt: Date()
-        ),
-        ArchonTask(
-            id: "task-3",
-            title: "Create workout logging UI",
-            status: .queued,
-            provider: "openai",
-            model: "gpt-5.6-sol",
-            reasoningEffort: .medium,
-            currentStep: 0,
-            maxSteps: 20,
-            creditsUsed: 0,
-            creditLimit: 300,
-            projectId: "proj-3",
-            createdAt: Date(),
-            updatedAt: Date()
-        ),
-        ArchonTask(
-            id: "task-4",
-            title: "Fix recipe search indexing",
-            status: .failed,
-            provider: "anthropic",
-            model: "claude-haiku-4-20250414",
-            reasoningEffort: .low,
-            currentStep: 3,
-            maxSteps: 10,
-            creditsUsed: 45,
-            creditLimit: 200,
-            projectId: "proj-4",
-            createdAt: Calendar.current.date(byAdding: .day, value: -1, to: Date())!,
-            updatedAt: Calendar.current.date(byAdding: .hour, value: -12, to: Date())!
-        )
-    ]
+    private(set) var tasks: [ArchonTask] = {
+        let now = Date()
+        func ago(_ value: Int, _ component: Calendar.Component) -> Date {
+            Calendar.current.date(byAdding: component, value: value, to: now) ?? now
+        }
+        return [
+            ArchonTask(
+                id: "task-1",
+                title: "Add animated weather icons",
+                status: .completed,
+                provider: "anthropic",
+                model: "claude-sonnet-4-20250514",
+                reasoningEffort: .medium,
+                currentStep: 12,
+                maxSteps: 12,
+                creditsUsed: 180,
+                creditLimit: 500,
+                projectId: "proj-1",
+                createdAt: ago(-5, .hour),
+                updatedAt: ago(-4, .hour)
+            ),
+            ArchonTask(
+                id: "task-2",
+                title: "Build drag-and-drop kanban board",
+                status: .running,
+                provider: "anthropic",
+                model: "claude-sonnet-4-20250514",
+                reasoningEffort: .high,
+                currentStep: 8,
+                maxSteps: 25,
+                creditsUsed: 240,
+                creditLimit: 500,
+                projectId: "proj-2",
+                createdAt: ago(-1, .hour),
+                updatedAt: now
+            ),
+            ArchonTask(
+                id: "task-3",
+                title: "Create workout logging UI",
+                status: .queued,
+                provider: "openai",
+                model: "gpt-5.6-sol",
+                reasoningEffort: .medium,
+                currentStep: 0,
+                maxSteps: 20,
+                creditsUsed: 0,
+                creditLimit: 300,
+                projectId: "proj-3",
+                createdAt: now,
+                updatedAt: now
+            ),
+            ArchonTask(
+                id: "task-4",
+                title: "Fix recipe search indexing",
+                status: .failed,
+                provider: "anthropic",
+                model: "claude-haiku-4-20250414",
+                reasoningEffort: .low,
+                currentStep: 3,
+                maxSteps: 10,
+                creditsUsed: 45,
+                creditLimit: 200,
+                projectId: "proj-4",
+                createdAt: ago(-1, .day),
+                updatedAt: ago(-12, .hour)
+            )
+        ]
+    }()
 
     private var events: [String: [TaskEvent]] = [
         "task-1": [

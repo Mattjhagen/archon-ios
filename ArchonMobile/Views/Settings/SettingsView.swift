@@ -161,6 +161,7 @@ struct SettingsView: View {
                 .foregroundStyle(DesignSystem.Colors.textMuted)
         }
         .listRowBackground(DesignSystem.Colors.elevated)
+        .accessibilityHint("Tap to view open source licenses")
     }
 
     // MARK: - Danger Zone
@@ -207,6 +208,7 @@ struct SettingsView: View {
         }
         .listRowBackground(DesignSystem.Colors.elevated)
         .accessibilityLabel("Delete your account permanently")
+        .accessibilityHint("Opens a confirmation dialog before deleting")
     }
 }
 

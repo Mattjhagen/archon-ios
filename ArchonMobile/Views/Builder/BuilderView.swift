@@ -385,6 +385,8 @@ struct BuilderView: View {
                                         }
                                     }
                                 }
+                                .accessibilityLabel("\(model.name) from \(provider.name)")
+                                .accessibilityHint(viewModel.selectedModelId == model.id ? "Currently selected" : "Double tap to select this model")
                                 .dsTouchTarget()
                             }
                         }

@@ -76,8 +76,7 @@ final class CodeBrowserViewModel: ObservableObject {
                     nodes[i].content = newContent
                     return true
                 }
-                if nodes[i].children != nil {
-                    var children = nodes[i].children!
+                if var children = nodes[i].children {
                     if update(nodes: &children) {
                         nodes[i].children = children
                         return true
