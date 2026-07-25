@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optionals — Swift Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Swift Fundamentals</div>
+      <a href="01-what-is-swift.html" class="sidebar-link lesson-link" data-lesson="swift-01">1. What is Swift?</a>
+      <a href="02-optionals.html" class="sidebar-link active" data-lesson="swift-02">2. Optionals</a>
+      <a href="03-structs-enums.html" class="sidebar-link lesson-link" data-lesson="swift-03">3. Structs & Enums</a>
+      <a href="04-closures.html" class="sidebar-link lesson-link" data-lesson="swift-04">4. Closures</a>
+      <a href="05-swiftui-basics.html" class="sidebar-link lesson-link" data-lesson="swift-05">5. SwiftUI Basics</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge swift">🐦 Swift</span>
+      <h1>Optionals</h1>
+      <div class="lesson-meta">
+        <span>Lesson 2 of 5</span>
+        <span>~5 min</span>
+      </div>
+    </div>
+
+    <p><strong>Optionals</strong> are one of Swift's most powerful features. They let you represent a value that <em>might or might not</em> exist. Instead of crashing when a value is missing, Swift forces you to handle the absence explicitly.</p>
+
+    <p>You'll see optionals everywhere in Swift code — in API responses, user input, and optional configuration values.</p>
+
+    <h2>What is an Optional?</h2>
+
+    <p>An optional type is written with a <code>?</code> after the type. It means the variable holds either a value or <code>nil</code> (nothing).</p>
+
+    <div class="live-editor" data-lang="swift">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">Swift</div>
+          <textarea class="code-input" spellcheck="false">// Optional variables
+var nickname: String? = "Ace"
+var middleName: String? = nil
+
+// if let unwrapping
+if let name = nickname {
+  print("Nickname: \(name)")
+} else {
+  print("No nickname set")
+}
+
+// Nil coalescing (??)
+let displayName = nickname ?? "Anonymous"
+print("Display name: \(displayName)")
+
+// Default value
+let safeName = middleName ?? "No middle name"
+print("Middle name: \(safeName)")</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Set <code>nickname</code> to <code>nil</code> and see how the <code>if let</code> block and nil coalescing operator handle the missing value.</p>
+    </div>
+
+    <h2>Unwrapping Optionals</h2>
+
+    <p>Swift gives you several safe ways to unwrap an optional:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// 1. if let — safe unwrapping
+if let value = optionalVar {
+  print(value) // only runs if not nil
+}
+
+// 2. guard let — early exit
+func greet(_ name: String?) {
+  guard let name = name else {
+    print("No name provided")
+    return
+  }
+  print("Hello, \(name)!")
+}
+
+// 3. ?? — nil coalescing (provide default)
+let result = optionalVar ?? "default"
+
+// 4. Optional chaining (?.)
+let count = name?.count  // nil if name is nil</code></pre>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="?? (nil coalescing)">
+      <div class="quiz-question">What operator provides a default value for an optional?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="?. (optional chaining)">?. (optional chaining)</button>
+        <button class="quiz-option" data-value="?? (nil coalescing)">?? (nil coalescing)</button>
+        <button class="quiz-option" data-value="! (force unwrap)">! (force unwrap)</button>
+        <button class="quiz-option" data-value="& (address of)">& (address of)</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Create an optional <code>String</code>, unwrap it with <code>if let</code>, and provide a default value using <code>??</code> (nil coalescing).</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="01-what-is-swift.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">What is Swift?</div>
+      </a>
+      <a href="03-structs-enums.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Structs & Enums</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a></span>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+</body>
+</html>

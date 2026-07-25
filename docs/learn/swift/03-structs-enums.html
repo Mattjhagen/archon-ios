@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Structs & Enums — Swift Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Swift Fundamentals</div>
+      <a href="01-what-is-swift.html" class="sidebar-link lesson-link" data-lesson="swift-01">1. What is Swift?</a>
+      <a href="02-optionals.html" class="sidebar-link lesson-link" data-lesson="swift-02">2. Optionals</a>
+      <a href="03-structs-enums.html" class="sidebar-link active" data-lesson="swift-03">3. Structs & Enums</a>
+      <a href="04-closures.html" class="sidebar-link lesson-link" data-lesson="swift-04">4. Closures</a>
+      <a href="05-swiftui-basics.html" class="sidebar-link lesson-link" data-lesson="swift-05">5. SwiftUI Basics</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge swift">🐦 Swift</span>
+      <h1>Structs & Enums</h1>
+      <div class="lesson-meta">
+        <span>Lesson 3 of 5</span>
+        <span>~6 min</span>
+      </div>
+    </div>
+
+    <p><strong>Structs</strong> and <strong>Enums</strong> are the building blocks of data modeling in Swift. Structs group related properties and behavior together, while enums define a group of related values.</p>
+
+    <p>Swift uses structs as its primary data type — even <code>String</code>, <code>Int</code>, and <code>Array</code> are structs under the hood.</p>
+
+    <h2>Structs</h2>
+
+    <p>A struct defines a blueprint for a custom data type with properties (data) and methods (behavior). Structs are <strong>value types</strong> — when you assign one to another variable, you get an independent copy.</p>
+
+    <div class="live-editor" data-lang="swift">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">Swift</div>
+          <textarea class="code-input" spellcheck="false">// Struct definition
+struct Recipe {
+  var name: String
+  var ingredients: [String]
+  var cookTime: Int
+
+  func describe() -> String {
+    return "\(name) — \(ingredients.count) ingredients, \(cookTime) min"
+  }
+}
+
+// Creating an instance
+let pasta = Recipe(
+  name: "Pasta Carbonara",
+  ingredients: ["spaghetti", "eggs", "pancetta", "parmesan"],
+  cookTime: 20
+)
+
+print(pasta.describe())
+print("First ingredient: \(pasta.ingredients[0])")
+
+// Value type — copy is independent
+var quickPasta = pasta
+quickPasta.cookTime = 10
+print("Original: \(pasta.cookTime) min")
+print("Copy: \(quickPasta.cookTime) min")</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Add a new property to the Recipe struct and update the <code>describe()</code> method to include it.</p>
+    </div>
+
+    <h2>Enums</h2>
+
+    <p>Enums define a type with a fixed set of related values. They can have raw values (like strings or integers) and associated values (custom data per case).</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// Basic enum
+enum Direction {
+  case north, south, east, west
+}
+
+// Enum with raw values
+enum Planet: Int {
+  case mercury = 1
+  case venus = 2
+  case earth = 3
+}
+
+// Using switch
+let direction = Direction.north
+switch direction {
+case .north: print("Going up")
+case .south: print("Going down")
+case .east:  print("Going right")
+case .west:  print("Going left")
+}
+
+// Raw value access
+let earthNumber = Planet.earth.rawValue  // 3</code></pre>
+    </div>
+
+    <h2>Value Types vs Reference Types</h2>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>Structs</strong> are <em>value types</em> — assigning copies the data. Each variable holds its own independent version.</li>
+      <li><span class="check">→</span> <strong>Classes</strong> are <em>reference types</em> — assigning shares the same instance. Changes in one affect the other.</li>
+      <li><span class="check">→</span> Swift favors structs for most data modeling because value semantics are safer and easier to reason about.</li>
+    </ul>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="Value types">
+      <div class="quiz-question">Are structs value types or reference types in Swift?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="Value types">Value types</button>
+        <button class="quiz-option" data-value="Reference types">Reference types</button>
+        <button class="quiz-option" data-value="Both, depending on usage">Both, depending on usage</button>
+        <button class="quiz-option" data-value="Neither">Neither</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Create a struct for a <code>Recipe</code> with <code>name</code> and <code>ingredients</code> properties, then create an instance and print its details.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="02-optionals.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Optionals</div>
+      </a>
+      <a href="04-closures.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Closures</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a></span>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+</body>
+</html>

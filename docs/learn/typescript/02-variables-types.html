@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables & Types — TypeScript Basics</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">TypeScript Basics</div>
+      <a href="01-what-is-ts.html" class="sidebar-link lesson-link" data-lesson="ts-01">1. What is TypeScript?</a>
+      <a href="02-variables-types.html" class="sidebar-link active" data-lesson="ts-02">2. Variables & Types</a>
+      <a href="03-functions.html" class="sidebar-link lesson-link" data-lesson="ts-03">3. Functions</a>
+      <a href="04-interfaces-classes.html" class="sidebar-link lesson-link" data-lesson="ts-04">4. Interfaces & Classes</a>
+      <a href="05-async-patterns.html" class="sidebar-link lesson-link" data-lesson="ts-05">5. Async Patterns</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge ts">TS TypeScript</span>
+      <h1>Variables & Types</h1>
+      <div class="lesson-meta">
+        <span>Lesson 2 of 5</span>
+        <span>~7 min</span>
+      </div>
+    </div>
+
+    <p>Variables are how you store data in your programs. TypeScript gives you two keywords for declaring variables and a rich system of types to describe what data they hold.</p>
+
+    <h2>let vs const</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>let count = 0;      // Can be reassigned
+count = 1;          // ✅ This works
+
+const pi = 3.14;    // Cannot be reassigned
+pi = 3;              // ❌ Error: Assignment to constant variable</code></pre>
+    </div>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> Use <strong>const</strong> by default — it signals that the value won't change.</li>
+      <li><span class="check">→</span> Use <strong>let</strong> when you need to reassign a variable later.</li>
+      <li><span class="check">→</span> Avoid <strong>var</strong> — it has confusing scoping behavior.</li>
+    </ul>
+
+    <h2>Primitive types</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>let name: string = "Alice";        // string
+let age: number = 30;              // number (integers and floats)
+let isStudent: boolean = false;    // boolean
+let nothing: null = null;          // null
+let notDefined: undefined = undefined; // undefined</code></pre>
+    </div>
+
+    <h2>Arrays & tuples</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// Array of numbers — both syntaxes work
+let scores: number[] = [95, 87, 92];
+let names: Array&lt;string&gt; = ["Alice", "Bob"];
+
+// Tuple — a fixed-length array with specific types at each position
+let person: [string, number] = ["Alice", 30];</code></pre>
+    </div>
+
+    <h2>Union types</h2>
+
+    <p>Sometimes a variable could be one of several types. A <strong>union type</strong> lets you express this:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>let value: string | number;
+value = "hello";  // ✅
+value = 42;       // ✅
+value = true;     // ❌ Error: Type 'boolean' is not assignable</code></pre>
+    </div>
+
+    <h2>any, unknown, and never</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// any — disables type checking (avoid when possible)
+let anything: any = "hello";
+anything = 42; // ✅ No error, but no safety either
+
+// unknown — safer alternative to any, requires type checking
+let input: unknown = "hello";
+if (typeof input === "string") {
+  console.log(input.toUpperCase()); // ✅ Safe after check
+}
+
+// never — represents a value that never occurs
+function throwError(msg: string): never {
+  throw new Error(msg);
+}</code></pre>
+    </div>
+
+    <h2>Type aliases</h2>
+
+    <p>You can create custom type names with the <code>type</code> keyword:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>type ID = string | number;
+type Point = [number, number];
+
+let userId: ID = "abc123";
+let coordinates: Point = [10, 20];</code></pre>
+    </div>
+
+    <div class="live-editor" data-lang="js">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">TypeScript</div>
+          <textarea class="code-input" spellcheck="false">// Primitive variables
+let username: string = "Alice";
+let age: number = 28;
+let isActive: boolean = true;
+
+// Arrays
+let colors: string[] = ["red", "green", "blue"];
+
+// Union type
+let id: string | number = "ABC-123";
+console.log("Name:", username);
+console.log("Age:", age);
+console.log("Colors:", colors);
+console.log("ID:", id);</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Console</div>
+          <pre class="output-frame"></pre>
+        </div>
+      </div>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-lesson="ts-02" data-answer="const">
+      <div class="quiz-question">Which keyword should you use for a variable that won't be reassigned?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="let">let</button>
+        <button class="quiz-option" data-value="var">var</button>
+        <button class="quiz-option" data-value="const">const</button>
+        <button class="quiz-option" data-value="define">define</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Create a union type called <code>Status</code> that accepts <code>string</code> or <code>number</code>. Declare a variable of that type and assign it different values to see how it works.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="01-what-is-ts.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">What is TypeScript?</div>
+      </a>
+      <a href="03-functions.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Functions</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a></span>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Archon Docs — Cloudflare Pages redirects
+# docs.relayapp.pro
+
+# Clean URLs (optional, for future use)
+# /getting-started          /getting-started/install.html
+# /features                 /features/ai-builder.html
+
+# Subdomain redirects for future use
+# docs.relayapp.pro/*       (serves directly)
+# learn.relayapp.pro/*      → docs.relayapp.pro/learn/*
+# dev.relayapp.pro/*        → docs.relayapp.pro/dev-docs/*
+
+# Legacy / canonical redirects
+/docs/                       /                              301
+/index.html                  /                              200

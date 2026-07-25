@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftUI Basics — Swift Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Swift Fundamentals</div>
+      <a href="01-what-is-swift.html" class="sidebar-link lesson-link" data-lesson="swift-01">1. What is Swift?</a>
+      <a href="02-optionals.html" class="sidebar-link lesson-link" data-lesson="swift-02">2. Optionals</a>
+      <a href="03-structs-enums.html" class="sidebar-link lesson-link" data-lesson="swift-03">3. Structs & Enums</a>
+      <a href="04-closures.html" class="sidebar-link lesson-link" data-lesson="swift-04">4. Closures</a>
+      <a href="05-swiftui-basics.html" class="sidebar-link active" data-lesson="swift-05">5. SwiftUI Basics</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge swift">🐦 Swift</span>
+      <h1>SwiftUI Basics</h1>
+      <div class="lesson-meta">
+        <span>Lesson 5 of 5</span>
+        <span>~6 min</span>
+      </div>
+    </div>
+
+    <p><strong>SwiftUI</strong> is Apple's declarative framework for building user interfaces. Instead of writing UI code imperatively, you describe <em>what</em> the UI should look like and SwiftUI handles the rest. This is the same framework Archon uses to render its interface.</p>
+
+    <h2>What is a View?</h2>
+
+    <p>In SwiftUI, everything you see on screen is a <strong>View</strong>. A View is a struct that conforms to the <code>View</code> protocol and has a single required property: <code>body</code>.</p>
+
+    <div class="live-editor" data-lang="swift">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">Swift</div>
+          <textarea class="code-input" spellcheck="false">import SwiftUI
+
+struct ContentView: View {
+  var body: some View {
+    VStack(spacing: 16) {
+      Text("Welcome to Archon")
+        .font(.title)
+        .fontWeight(.bold)
+
+      Text("Learn Swift with interactive lessons")
+        .font(.subheadline)
+        .foregroundColor(.secondary)
+
+      HStack(spacing: 12) {
+        Text("📄")
+        Text("HTML")
+        Text("🎨")
+        Text("CSS")
+        Text("⚡")
+        Text("Swift")
+      }
+      .padding()
+      .background(Color.blue.opacity(0.1))
+      .cornerRadius(12)
+    }
+    .padding()
+  }
+}</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Change <code>.font(.title)</code> to <code>.font(.largeTitle)</code> and add a <code>.foregroundColor(.blue)</code> modifier to the first Text view.</p>
+    </div>
+
+    <h2>Layout Containers</h2>
+
+    <p>SwiftUI uses layout containers to arrange views:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// VStack — vertical stack (top to bottom)
+VStack {
+  Text("First")
+  Text("Second")
+}
+
+// HStack — horizontal stack (left to right)
+HStack {
+  Image(systemName: "star")
+  Text("Favorite")
+}
+
+// ZStack — overlapping layers (front to back)
+ZStack {
+  Color.blue
+  Text("On top")
+}</code></pre>
+    </div>
+
+    <h2>Modifiers</h2>
+
+    <p>Modifiers change how a view looks or behaves. They're chained onto views and return a new, modified view.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>Text("Styled Text")
+  .font(.headline)           // Change font
+  .foregroundColor(.white)    // Text color
+  .padding()                  // Add padding
+  .background(Color.blue)    // Background color
+  .cornerRadius(10)           // Rounded corners
+  .shadow(radius: 5)          // Drop shadow
+
+// Common modifiers:
+// .font(), .foregroundColor(), .padding()
+// .background(), .cornerRadius(), .frame()
+// .opacity(), .offset(), .rotationEffect()</code></pre>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="body">
+      <div class="quiz-question">What property does every SwiftUI View need?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="render">render</button>
+        <button class="quiz-option" data-value="body">body</button>
+        <button class="quiz-option" data-value="view">view</button>
+        <button class="quiz-option" data-value="content">content</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Create a <code>VStack</code> with 3 <code>Text</code> views and different font sizes using the <code>.font()</code> modifier.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="04-closures.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Closures</div>
+      </a>
+      <a href="../../index.html" class="lesson-nav-link next">
+        <div class="label">Back to Docs →</div>
+        <div class="title"></div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a></span>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+</body>
+</html>

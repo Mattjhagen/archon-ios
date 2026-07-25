@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Preview — Archon Docs</title>
+  <meta name="description" content="See your AI-built app running in real time with the Archon Live Preview powered by WKWebView.">
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/ascii-header.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../index.html" class="active">User Guide</a>
+    <a href="../dev-docs/architecture/overview.html">Developer</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Getting Started</div>
+      <a href="../getting-started/install.html" class="sidebar-link">Install Archon</a>
+      <a href="../getting-started/create-account.html" class="sidebar-link">Create Your Account</a>
+      <a href="../getting-started/first-project.html" class="sidebar-link">Build Your First App</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Features</div>
+      <a href="ai-builder.html" class="sidebar-link">AI Builder</a>
+      <a href="code-browser.html" class="sidebar-link">Code Browser</a>
+      <a href="live-preview.html" class="sidebar-link active">Live Preview</a>
+      <a href="projects.html" class="sidebar-link">Projects</a>
+      <a href="settings.html" class="sidebar-link">Settings</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Learn</div>
+      <a href="../learn/index.html" class="sidebar-link">Overview</a>
+      <a href="../learn/html/01-what-is-html.html" class="sidebar-link lesson-link" data-lesson="html-01">HTML Fundamentals</a>
+      <a href="../learn/css/01-what-is-css.html" class="sidebar-link lesson-link" data-lesson="css-01">CSS Fundamentals</a>
+      <a href="../learn/typescript/01-what-is-ts.html" class="sidebar-link lesson-link" data-lesson="ts-01">TypeScript Basics</a>
+      <a href="../learn/python/01-what-is-python.html" class="sidebar-link lesson-link" data-lesson="py-01">Python Basics</a>
+      <a href="../learn/swift/01-what-is-swift.html" class="sidebar-link lesson-link" data-lesson="swift-01">Swift for iOS</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Help</div>
+      <a href="../faq.html" class="sidebar-link">FAQ</a>
+      <a href="../privacy.html" class="sidebar-link">Privacy Policy</a>
+      <a href="../changelog.html" class="sidebar-link">Changelog</a>
+      <a href="../support.html" class="sidebar-link">Support</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="ascii-header-wrapper">
+      <div class="ascii-stars"></div>
+      <div class="ascii-scanline"></div>
+      <span class="ascii-satellite">✦</span>
+      <div class="ascii-scene">
+        <div class="ascii-title-row">
+          <div class="ascii-art-left">  ┌──────────────────┐
+  │  ┌──────────────┐ │
+  │  │              │ │
+  │  │   Preview    │ │
+  │  │              │ │
+  │  └──────────────┘ │
+  │   ○  ○  ○         │
+  └──────────────────┘</div>
+          <div class="ascii-center-title">
+            <h1>Live Preview</h1>
+            <p class="subtitle">See your app running — right inside Archon.</p>
+          </div>
+          <div class="ascii-art-right">     ▶
+   ─────
+   │   │
+   ─────</div>
+        </div>
+        <div class="ascii-status-bar">
+          <span><span class="status-dot green"></span>Preview active</span>
+          <span>WKWebView · Full screen · Auto-refresh</span>
+          <span><span class="status-dot purple"></span>Rendering</span>
+        </div>
+      </div>
+      <div class="ascii-arc"></div>
+    </div>
+
+    <div class="mobile-hero">
+      <div class="hero">
+        <h1>Live Preview</h1>
+        <p class="subtitle">See your app running in a WKWebView. Go full screen to test the experience before you share it.</p>
+      </div>
+    </div>
+
+    <h2>WKWebView rendering</h2>
+    <p>The Live Preview uses Apple's WKWebView to render your app's HTML, CSS, and JavaScript output. This is the same rendering engine used by Safari, so what you see in the preview is accurate to how it would look in a browser.</p>
+    <ul>
+      <li><strong>Full CSS support</strong> — flexbox, grid, animations, custom properties</li>
+      <li><strong>JavaScript execution</strong> — event handlers, fetch requests, DOM manipulation</li>
+      <li><strong>Responsive layouts</strong> — previews scale to match device dimensions</li>
+      <li><strong>Local assets</strong> — images and fonts bundled with the project are available</li>
+    </ul>
+
+    <h2>Full-screen mode</h2>
+    <p>Tap the full-screen button to expand the preview to fill the entire screen. This is useful for testing how your app looks and feels without the surrounding chrome of the Archon interface.</p>
+    <ul>
+      <li><strong>Portrait and landscape</strong> — rotate the device to test responsive behavior</li>
+      <li><strong>Safe area awareness</strong> — the preview respects notch and home indicator insets</li>
+      <li><strong>Status bar styling</strong> — matches the <code>theme-color</code> meta tag if set</li>
+    </ul>
+
+    <h2>How preview updates after builds</h2>
+    <p>When the AI Builder completes a build, the Live Preview automatically refreshes. The flow is:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">1. Build completes</div>
+        <div class="step-content">The AI finishes generating all files for the current request. The task timeline shows all tasks as completed.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">2. Files are assembled</div>
+        <div class="step-content">Generated HTML, CSS, and JavaScript files are assembled into a loadable bundle. If it's a Swift project, a web-compatible preview is generated.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">3. Preview reloads</div>
+        <div class="step-content">WKWebView navigates to the assembled output. The preview updates instantly — no manual refresh needed.</div>
+      </div>
+    </div>
+
+    <p>For iterative builds (adding a feature, fixing a bug), only the changed files are updated and the preview does a targeted reload rather than a full page refresh.</p>
+
+    <h2>Limitations</h2>
+    <p>The Live Preview is a development tool, not a production environment. Some things to be aware of:</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon orange">⚠️</div>
+        <div class="card-title">No native APIs</div>
+        <div class="card-desc">WKWebView cannot access iOS-native APIs like Camera, HealthKit, or CoreML. These require a real device build.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">⚠️</div>
+        <div class="card-title">Limited storage</div>
+        <div class="card-desc">localStorage and cookies work, but data does not persist between preview sessions. No Keychain or Core Data access.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">⚠️</div>
+        <div class="card-title">Network restrictions</div>
+        <div class="card-desc">External API calls work, but CORS policies apply. Some third-party scripts may be blocked by WKWebView's content policy.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">⚠️</div>
+        <div class="card-title">Swift → Web only</div>
+        <div class="card-desc">For SwiftUI projects, the preview renders a web approximation. It may not match native UIKit behavior exactly.</div>
+      </div>
+    </div>
+
+    <p>For full native testing, export your project and open it in Xcode.</p>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="../support.html">Support</a></span>
+</footer>
+
+<script src="../js/docs.js"></script>
+<script src="../js/learn.js"></script>
+<script src="../js/ascii-header.js"></script>
+</body>
+</html>

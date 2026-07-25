@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions — Archon</title>
+  <meta name="description" content="Answers to common questions about Archon — the AI-powered iOS app builder.">
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/docs.css">
+  <link rel="stylesheet" href="css/ascii-header.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="index.html" class="active">User Guide</a>
+    <a href="dev-docs/architecture/overview.html">Developer</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Getting Started</div>
+      <a href="getting-started/install.html" class="sidebar-link">Install Archon</a>
+      <a href="getting-started/create-account.html" class="sidebar-link">Create Your Account</a>
+      <a href="getting-started/first-project.html" class="sidebar-link">Build Your First App</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Features</div>
+      <a href="features/ai-builder.html" class="sidebar-link">AI Builder</a>
+      <a href="features/code-browser.html" class="sidebar-link">Code Browser</a>
+      <a href="features/live-preview.html" class="sidebar-link">Live Preview</a>
+      <a href="features/projects.html" class="sidebar-link">Projects</a>
+      <a href="features/settings.html" class="sidebar-link">Settings</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Learn</div>
+      <a href="learn/index.html" class="sidebar-link">Overview</a>
+      <a href="learn/html/01-what-is-html.html" class="sidebar-link lesson-link" data-lesson="html-01">HTML Fundamentals</a>
+      <a href="learn/css/01-what-is-css.html" class="sidebar-link lesson-link" data-lesson="css-01">CSS Fundamentals</a>
+      <a href="learn/typescript/01-what-is-ts.html" class="sidebar-link lesson-link" data-lesson="ts-01">TypeScript Basics</a>
+      <a href="learn/python/01-what-is-python.html" class="sidebar-link lesson-link" data-lesson="py-01">Python Basics</a>
+      <a href="learn/swift/01-what-is-swift.html" class="sidebar-link lesson-link" data-lesson="swift-01">Swift for iOS</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Help</div>
+      <a href="faq.html" class="sidebar-link active">FAQ</a>
+      <a href="privacy.html" class="sidebar-link">Privacy Policy</a>
+      <a href="changelog.html" class="sidebar-link">Changelog</a>
+      <a href="support.html" class="sidebar-link">Support</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="ascii-header-wrapper">
+      <div class="ascii-stars"></div>
+      <div class="ascii-scanline"></div>
+      <span class="ascii-satellite">✦</span>
+      <div class="ascii-scene">
+        <div class="ascii-title-row">
+          <div class="ascii-art-left">    .--.
+   / ?  \
+  |  ?   |
+  |  ?   |
+   \ ?  /
+    '--'</div>
+          <div class="ascii-center-title">
+            <h1>Frequently Asked Questions</h1>
+            <p class="subtitle">Everything you need to know about Archon.</p>
+          </div>
+          <div class="ascii-art-right">  .-""""-.
+ /  HELLO  \
+|   .---.   |
+|   | O |   |
+ \  '---'  /
+  '-------'</div>
+        </div>
+        <div class="ascii-status-bar">
+          <span><span class="status-dot green"></span>FAQ loaded</span>
+          <span>4 categories · 21 questions</span>
+          <span><span class="status-dot purple"></span>Updated today</span>
+        </div>
+      </div>
+      <div class="ascii-arc"></div>
+    </div>
+
+    <div class="mobile-hero">
+      <div class="hero">
+        <h1>Frequently Asked Questions</h1>
+        <p class="subtitle">Answers to common questions about Archon — the AI-powered iOS app builder.</p>
+      </div>
+    </div>
+
+    <div class="faq-tabs" role="tablist">
+      <button class="faq-tab active" role="tab" data-tab="general">General</button>
+      <button class="faq-tab" role="tab" data-tab="features">Features</button>
+      <button class="faq-tab" role="tab" data-tab="troubleshooting">Troubleshooting</button>
+      <button class="faq-tab" role="tab" data-tab="billing">Billing &amp; Privacy</button>
+    </div>
+
+    <div class="faq-panel active" id="tab-general" role="tabpanel">
+      <div class="accordion-group">
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>What is Archon?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Archon is an iOS app that lets you build real applications by describing them in a chat interface. You type what you want, the AI builds it, and you can browse the generated code, preview the result live, and share it. It supports multiple AI providers and models, and generates code in Swift, JavaScript, TypeScript, HTML, CSS, and more.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Is Archon free?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Archon is free to download and use. You will need your own API key from an AI provider (such as OpenAI, Anthropic, or Google Gemini) to power the AI building features. Some providers offer free tiers, while others charge per request. Archon itself does not add any additional fees.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Which devices are supported?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Archon requires iOS 17 or later. It is optimized for iPhone and works on iPad as well. The app uses SwiftUI, so it adapts to different screen sizes, though it is primarily designed for a phone-first experience.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Do I need to create an account?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Yes, you need an account to use Archon. You can sign in with your email address or use Apple Sign In. Your authentication session is stored securely in the iOS Keychain. An account lets Archon sync your projects and conversations across sessions.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>What AI models are available?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Archon supports OpenAI (GPT-4o, GPT-4.1), Anthropic (Claude Sonnet 4, Claude 3.5 Haiku), Google Gemini (Gemini 2.5 Flash, Gemini 2.5 Pro), and any OpenCode-compatible server you configure. You can switch between models and providers at any time from the builder or settings screen.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Can I use Archon offline?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Archon stores recent conversations and preferences locally on your device for fast session restoration. However, building apps and streaming AI responses requires an internet connection since the processing happens on remote AI provider servers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-panel" id="tab-features" role="tabpanel">
+      <div class="accordion-group">
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>How does the AI building process work?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>You describe your app in the Builder chat. Archon sends your description along with relevant conversation context to the AI provider you selected. The AI generates source files, which Archon streams back in real time. You see a task event timeline showing each step as it happens — file creation, code generation, and build completion.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Can I edit the generated code?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Yes. The Code Browser lets you navigate the full file tree and read every generated file with syntax highlighting. You can reference the code while iterating — ask the AI to make changes, restructure files, or add new features. All code is fully readable and exportable.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>What programming languages does Archon support?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Archon's code browser supports syntax highlighting for Swift, JavaScript, TypeScript, HTML, CSS, and JSON. The AI can generate projects in any of these languages. For iOS-specific apps it can produce Swift and SwiftUI code; for web apps it typically generates HTML, CSS, and JavaScript or TypeScript.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Can I export my project?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Yes. Every project you create in Archon generates real source files. You can browse the full file tree in the Code Browser and reference the code. Projects are stored in your account and can be accessed at any time. You can copy code or use it as a starting point for a larger project in Xcode or any code editor.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>How does the live preview work?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>After the AI generates your project, Archon renders it in a WKWebView. This gives you a live, interactive preview of your app right inside Archon. You can go full screen to test the experience, and preview updates as the AI makes changes to the code.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Can I retry or cancel a build?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Yes. During a build you can cancel it at any time using the cancel button in the task timeline. If a build fails or produces unexpected results, you can retry it or refine your prompt and start a new build from the conversation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-panel" id="tab-troubleshooting" role="tabpanel">
+      <div class="accordion-group">
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>The AI build failed. What should I do?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>First, check your internet connection and make sure your API key is valid in Settings. If the build failed due to a provider error, try switching to a different model (e.g. from GPT-4o to Claude Sonnet 4). You can also simplify your prompt — very complex requests may hit token limits. Retry the build or start a new conversation with a refined description.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>My app preview is crashing or blank.</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>This can happen if the generated code has a runtime error. Try rebuilding the project — the AI may fix the issue on a second attempt. You can also ask the AI to fix a specific error in the conversation. If the preview shows a blank screen, the HTML or JavaScript may have a syntax error that the code browser can help you identify.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>I can't sign in to my account.</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Make sure you are using the correct email address. If you signed in with Apple previously, use Apple Sign In again — email sign-in and Apple Sign-In create separate accounts. Check that you have a stable internet connection. If the problem persists, try force-closing Archon and reopening it, or sign out and sign back in.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Builds are taking a long time.</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Build time depends on the AI model you select and the complexity of your request. Smaller models like Claude 3.5 Haiku or Gemini 2.5 Flash are faster but may produce simpler results. Larger models like GPT-4o or Claude Sonnet 4 are more capable but slower. Network latency and provider load can also affect speed.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>I can't delete a project.</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Swipe left on a project in the dashboard list to reveal the delete option, or tap into the project and use the delete button from the project options. Make sure you are not in the middle of an active build — cancel any running task first before deleting. If you are still having trouble, try pulling down to refresh the project list.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-panel" id="tab-billing" role="tabpanel">
+      <div class="accordion-group">
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Is my data safe?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Archon uses encrypted network connections for all production services. Your authentication sessions are stored in the iOS Keychain, which is hardware-backed and encrypted. Archon does not sell personal information, serve advertising, or track you across other apps or websites. See the <a href="privacy.html">Privacy Policy</a> for full details.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Can I delete my account?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Yes. Go to Settings → Account &amp; Privacy → Delete Account. This removes your authentication account, all cloud projects, files, conversations, build records, and local account data from your device. This action is permanent and cannot be undone.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>What data does Archon collect?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Archon handles your email address, account identifier, and optional display name for authentication. It stores your project names, source files, prompts, AI responses, conversation history, and build activity. An optional profile photo may be stored on your device. Archon does not collect analytics, tracking data, or any information beyond what is needed to provide the service.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Who can see my projects?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Only you can see your projects. They are stored in your personal account on Supabase and are not shared with other users, indexed publicly, or visible to anyone else. The AI providers you use receive your prompts and conversation context to generate responses, but they do not have access to your full project history.</p>
+          </div>
+        </div>
+        <div class="accordion">
+          <button class="accordion-header" aria-expanded="false">
+            <span>Does Archon charge for API usage?</span>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <p>Archon itself is free. You pay your AI provider directly for API usage based on their pricing. Most providers offer free tiers or credits to get started. You control your own API keys and can monitor your usage and spending on the provider's dashboard.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a></span>
+</footer>
+
+<script src="js/docs.js"></script>
+<script src="js/learn.js"></script>
+<script src="js/ascii-header.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Functions — TypeScript Basics</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">TypeScript Basics</div>
+      <a href="01-what-is-ts.html" class="sidebar-link lesson-link" data-lesson="ts-01">1. What is TypeScript?</a>
+      <a href="02-variables-types.html" class="sidebar-link lesson-link" data-lesson="ts-02">2. Variables & Types</a>
+      <a href="03-functions.html" class="sidebar-link active" data-lesson="ts-03">3. Functions</a>
+      <a href="04-interfaces-classes.html" class="sidebar-link lesson-link" data-lesson="ts-04">4. Interfaces & Classes</a>
+      <a href="05-async-patterns.html" class="sidebar-link lesson-link" data-lesson="ts-05">5. Async Patterns</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge ts">TS TypeScript</span>
+      <h1>Functions</h1>
+      <div class="lesson-meta">
+        <span>Lesson 3 of 5</span>
+        <span>~7 min</span>
+      </div>
+    </div>
+
+    <p>Functions are reusable blocks of code. In TypeScript, you can add types to function parameters and return values, making your functions self-documenting and safer to use.</p>
+
+    <h2>Basic function syntax</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// Type annotations on parameters AND return value
+function add(a: number, b: number): number {
+  return a + b;
+}
+
+// TypeScript can also infer the return type
+function greet(name: string) {
+  return `Hello, ${name}!`; // return type inferred as string
+}</code></pre>
+    </div>
+
+    <h2>Arrow functions</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// Arrow function with types
+const multiply = (a: number, b: number): number => a * b;
+
+// Single-parameter arrow functions
+const double = (x: number) => x * 2;</code></pre>
+    </div>
+
+    <h2>Optional & default parameters</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// Optional parameter — marked with ?
+function greet(name: string, greeting?: string) {
+  return `${greeting || "Hello"}, ${name}!`;
+}
+
+// Default parameter — uses = to set a default
+function greet2(name: string, greeting: string = "Hello") {
+  return `${greeting}, ${name}!`;
+}
+
+greet("Alice");           // "Hello, Alice!"
+greet("Alice", "Hi");     // "Hi, Alice!"</code></pre>
+    </div>
+
+    <h2>Return types</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// Explicit return type
+function divide(a: number, b: number): number {
+  return a / b;
+}
+
+// Void — function doesn't return anything
+function logMessage(msg: string): void {
+  console.log(msg);
+}
+
+// Never — function never returns (throws or loops forever)
+function throwError(msg: string): never {
+  throw new Error(msg);
+}</code></pre>
+    </div>
+
+    <div class="live-editor" data-lang="js">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">TypeScript</div>
+          <textarea class="code-input" spellcheck="false">function add(a: number, b: number): number {
+  return a + b;
+}
+
+function greet(name: string, greeting: string = "Hello") {
+  return `${greeting}, ${name}!`;
+}
+
+const multiply = (a: number, b: number): number => a * b;
+
+console.log("2 + 3 =", add(2, 3));
+console.log(greet("Alice"));
+console.log(greet("Bob", "Hi"));
+console.log("4 × 5 =", multiply(4, 5));</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Console</div>
+          <pre class="output-frame"></pre>
+        </div>
+      </div>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-lesson="ts-03" data-answer="After the closing parenthesis: function name(): type">
+      <div class="quiz-question">How do you define a function's return type in TypeScript?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="Before the function keyword: type function name()">Before the function keyword: type function name()</button>
+        <button class="quiz-option" data-value="After the closing parenthesis: function name(): type">After the closing parenthesis: function name(): type</button>
+        <button class="quiz-option" data-value="Inside the function body: return type">Inside the function body: return type</button>
+        <button class="quiz-option" data-value="In a separate type file">In a separate type file</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Write a function called <code>sum</code> that takes two numbers and returns their sum. Add a return type annotation. Then write an arrow function version of the same function.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="02-variables-types.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Variables & Types</div>
+      </a>
+      <a href="04-interfaces-classes.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Interfaces & Classes</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a></span>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+</body>
+</html>

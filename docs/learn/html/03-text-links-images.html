@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text, Links & Images — HTML Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">HTML Fundamentals</div>
+      <a href="01-what-is-html.html" class="sidebar-link" data-lesson="html-01">1. What is HTML?</a>
+      <a href="02-tags-elements.html" class="sidebar-link" data-lesson="html-02">2. Tags & Elements</a>
+      <a href="03-text-links-images.html" class="sidebar-link active" data-lesson="html-03">3. Text, Links & Images</a>
+      <a href="04-forms-inputs.html" class="sidebar-link lesson-link" data-lesson="html-04">4. Forms & Inputs</a>
+      <a href="05-semantic-html.html" class="sidebar-link lesson-link" data-lesson="html-05">5. Semantic HTML</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge html">🌐 HTML</span>
+      <h1>Text, Links & Images</h1>
+      <div class="lesson-meta">
+        <span>Lesson 3 of 5</span>
+        <span>~7 min</span>
+      </div>
+    </div>
+
+    <p>Now that you understand tags and elements, it's time to add real content to your pages. This lesson covers the most common content elements: text formatting, lists, links, and images.</p>
+
+    <h2>Headings</h2>
+
+    <p>HTML provides six levels of headings, from <code>&lt;h1&gt;</code> (most important) to <code>&lt;h6&gt;</code> (least important). Use them to create a logical document hierarchy:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h2&gt;Section Heading&lt;/h2&gt;
+&lt;h3&gt;Subsection Heading&lt;/h3&gt;
+&lt;h4&gt;Minor Heading&lt;/h4&gt;</code></pre>
+    </div>
+
+    <h2>Paragraphs and text formatting</h2>
+
+    <p>Wrap body text in <code>&lt;p&gt;</code> tags. Use inline elements to emphasize text:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;p&gt;This is &lt;strong&gt;bold&lt;/strong&gt; and this is &lt;em&gt;italic&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;This is &lt;mark&gt;highlighted&lt;/mark&gt; and &lt;code&gt;monospace&lt;/code&gt;.&lt;/p&gt;</code></pre>
+    </div>
+
+    <h2>Lists</h2>
+
+    <p>Use <code>&lt;ul&gt;</code> for unordered (bulleted) lists and <code>&lt;ol&gt;</code> for ordered (numbered) lists. Each item is wrapped in <code>&lt;li&gt;</code>:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;ul&gt;
+  &lt;li&gt;Apples&lt;/li&gt;
+  &lt;li&gt;Bananas&lt;/li&gt;
+  &lt;li&gt;Cherries&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;First step&lt;/li&gt;
+  &lt;li&gt;Second step&lt;/li&gt;
+  &lt;li&gt;Third step&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+    </div>
+
+    <h2>Links</h2>
+
+    <p>Links are created with the <code>&lt;a&gt;</code> (anchor) tag. The <code>href</code> attribute specifies the destination URL:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;a href="https://example.com"&gt;Visit Example&lt;/a&gt;
+&lt;a href="mailto:hello@example.com"&gt;Send Email&lt;/a&gt;
+&lt;a href="#section-id"&gt;Jump to section&lt;/a&gt;</code></pre>
+    </div>
+
+    <h2>Images</h2>
+
+    <p>Images are self-closing and require the <code>src</code> (source) attribute. The <code>alt</code> attribute provides alternative text for screen readers and broken images:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;img src="photo.jpg" alt="A sunset over the ocean"&gt;
+&lt;img src="https://via.placeholder.com/200" alt="Placeholder image"&gt;</code></pre>
+    </div>
+
+    <h2>Putting it all together</h2>
+
+    <div class="live-editor" data-lang="html">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">HTML</div>
+          <textarea class="code-input" spellcheck="false">&lt;h1&gt;My Mini Page&lt;/h1&gt;
+&lt;p&gt;Welcome to my page about <strong>coding</strong>.&lt;/p&gt;
+
+&lt;h2&gt;My Favorite Languages&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;a href="https://developer.mozilla.org"&gt;Learn more at MDN&lt;/a&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img src="https://via.placeholder.com/200x100" alt="A placeholder image"&gt;</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="src">
+      <div class="quiz-question">What attribute does an &lt;img&gt; tag need to display an image?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="href">href</button>
+        <button class="quiz-option" data-value="src">src</button>
+        <button class="quiz-option" data-value="link">link</button>
+        <button class="quiz-option" data-value="url">url</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Create a page with an <strong>ordered list</strong> of your 3 favorite foods. Each list item should be wrapped in a link (<code>&lt;a&gt;</code>) that points to a Google search URL for that food (e.g., <code>https://www.google.com/search?q=pizza</code>).</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="02-tags-elements.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Tags & Elements</div>
+      </a>
+      <a href="04-forms-inputs.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Forms & Inputs</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a></span>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+</body>
+</html>

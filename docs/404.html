@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Archon Docs</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/docs.css">
+  <link rel="stylesheet" href="css/ascii-header.css">
+  <style>
+    .error-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .error-code {
+      font-size: 120px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--red) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .error-ascii {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: pre;
+      margin-bottom: 32px;
+      opacity: 0.6;
+    }
+    .error-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="index.html">User Guide</a>
+    <a href="dev-docs/architecture/overview.html">Developer</a>
+    <a href="learn/index.html">Learn</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Navigation</div>
+      <a href="index.html" class="sidebar-link">Home</a>
+      <a href="getting-started/install.html" class="sidebar-link">Getting Started</a>
+      <a href="features/ai-builder.html" class="sidebar-link">Features</a>
+      <a href="learn/index.html" class="sidebar-link">Learn</a>
+      <a href="dev-docs/architecture/overview.html" class="sidebar-link">Developer Docs</a>
+      <a href="faq.html" class="sidebar-link">FAQ</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="error-page">
+      <div class="error-code">404</div>
+      <div class="error-ascii">
+    .:oOo:.
+  .oOOOOOOOo.
+ oOOO  ??? OOo
+ oOO  LOST  OOo
+ oOOO      OOo
+  `oOOOOOOo'
+    `:oOo:'
+      </div>
+      <p style="font-size:18px;color:var(--text-secondary);margin-bottom:32px;">
+        This page drifted off course. Let's get you back on track.
+      </p>
+      <div class="error-actions">
+        <a href="index.html" class="btn btn-primary">Go home →</a>
+        <a href="javascript:history.back()" class="btn btn-secondary">Go back</a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a></span>
+</footer>
+
+<script src="js/docs.js"></script>
+<script src="js/learn.js"></script>
+</body>
+</html>

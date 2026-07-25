@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Box Model — CSS Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">CSS Fundamentals</div>
+      <a href="01-what-is-css.html" class="sidebar-link" data-lesson="css-01">1. What is CSS?</a>
+      <a href="02-selectors.html" class="sidebar-link" data-lesson="css-02">2. Selectors</a>
+      <a href="03-box-model.html" class="sidebar-link active" data-lesson="css-03">3. The Box Model</a>
+      <a href="04-flexbox-grid.html" class="sidebar-link lesson-link" data-lesson="css-04">4. Flexbox & Grid</a>
+      <a href="05-responsive-design.html" class="sidebar-link lesson-link" data-lesson="css-05">5. Responsive Design</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <a href="../html/01-what-is-html.html" class="sidebar-link">← HTML Fundamentals</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge css">🎨 CSS</span>
+      <h1>The Box Model</h1>
+      <div class="lesson-meta">
+        <span>Lesson 3 of 5</span>
+        <span>~6 min</span>
+      </div>
+    </div>
+
+    <p>Every HTML element is treated as a rectangular <strong>box</strong>. The CSS box model describes how that box is sized and spaced — from the innermost content outward through padding, border, and margin.</p>
+
+    <h2>The four layers</h2>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>Content</strong> — the actual text, image, or child elements inside the box.</li>
+      <li><span class="check">→</span> <strong>Padding</strong> — space between the content and the border.</li>
+      <li><span class="check">→</span> <strong>Border</strong> — a visible (or invisible) line surrounding the padding.</li>
+      <li><span class="check">→</span> <strong>Margin</strong> — space outside the border, pushing other elements away.</li>
+    </ul>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>.box {
+  padding: 20px;
+  border: 2px solid black;
+  margin: 16px;
+  width: 200px;
+}</code></pre>
+    </div>
+
+    <h2>box-sizing</h2>
+
+    <p>By default, CSS uses <code>content-box</code> sizing — the <code>width</code> only applies to the content, and padding and border are added on top. Setting <code>box-sizing: border-box</code> includes padding and border in the element's total width, making layout calculations much simpler.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>* {
+  box-sizing: border-box;
+}
+
+.box {
+  width: 200px;
+  padding: 20px;
+  border: 2px solid black;
+  /* Total width is still 200px */
+}</code></pre>
+    </div>
+
+    <h2>Try it yourself</h2>
+
+    <div class="live-editor" data-lang="css">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">CSS</div>
+          <textarea class="code-input" spellcheck="false">.box {
+  box-sizing: border-box;
+  width: 250px;
+  padding: 20px;
+  border: 2px solid #7c5cfc;
+  margin: 16px;
+  background: #1a1a2e;
+  color: white;
+  border-radius: 8px;
+}</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Change the padding, border, and margin values to see how each layer affects the overall box size and spacing.</p>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="Includes padding and border in the element's total width">
+      <div class="quiz-question">What does box-sizing: border-box do?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="Removes all spacing from an element">Removes all spacing from an element</button>
+        <button class="quiz-option" data-value="Includes padding and border in the element's total width">Includes padding and border in the element's total width</button>
+        <button class="quiz-option" data-value="Adds a border around the element">Adds a border around the element</button>
+        <button class="quiz-option" data-value="Centers the element on the page">Centers the element on the page</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>In the editor above, create a box with 20px padding, a 2px border, and 16px margin. Observe how all three layers work together.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="02-selectors.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Selectors</div>
+      </a>
+      <a href="04-flexbox-grid.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Flexbox & Grid</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a></span>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+</body>
+</html>

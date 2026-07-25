@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer FAQ — Archon Developer Docs</title>
+  <meta name="description" content="Frequently asked questions for Archon developers — setup, architecture, API, testing, and contributing.">
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/ascii-header.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../index.html">User Guide</a>
+    <a href="architecture/overview.html" class="active">Developer</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Architecture</div>
+      <a href="architecture/overview.html" class="sidebar-link">Overview</a>
+      <a href="architecture/navigation.html" class="sidebar-link">Navigation</a>
+      <a href="architecture/design-system.html" class="sidebar-link">Design System</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">API Reference</div>
+      <a href="api/overview.html" class="sidebar-link">Overview</a>
+      <a href="api/projects.html" class="sidebar-link">Projects</a>
+      <a href="api/ai-chat.html" class="sidebar-link">AI Chat</a>
+      <a href="api/tasks.html" class="sidebar-link">Tasks</a>
+      <a href="api/models.html" class="sidebar-link">Models</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Guides</div>
+      <a href="guides/setup.html" class="sidebar-link">Setup</a>
+      <a href="guides/testing.html" class="sidebar-link">Testing</a>
+      <a href="guides/adding-features.html" class="sidebar-link">Adding Features</a>
+      <a href="guides/testflight.html" class="sidebar-link">TestFlight</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Reference</div>
+      <a href="faq.html" class="sidebar-link active">FAQ</a>
+      <a href="contributing.html" class="sidebar-link">Contributing</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="ascii-header-wrapper">
+      <div class="ascii-stars"></div>
+      <div class="ascii-scanline"></div>
+      <span class="ascii-satellite">✦</span>
+      <div class="ascii-scene">
+        <div class="ascii-title-row">
+          <div class="ascii-art-left">  ╔═══════════════╗
+  ║  ❓  FAQ      ║
+  ╠═══════════════╣
+  ║ Setup         ║
+  ║ Architecture  ║
+  ║ API           ║
+  ║ Testing       ║
+  ║ Contributing  ║
+  ╚═══════════════╝</div>
+          <div class="ascii-center-title">
+            <h1>Developer FAQ</h1>
+            <p class="subtitle">Common questions from Archon developers.</p>
+          </div>
+          <div class="ascii-art-right">  Q: How do I…?
+  ─────────────
+  A: Read the
+  docs, check
+  the code!</div>
+        </div>
+        <div class="ascii-status-bar">
+          <span><span class="status-dot green"></span>Developer Docs</span>
+          <span>Archon iOS · Swift · SwiftUI</span>
+          <span><span class="status-dot purple"></span>API v1</span>
+        </div>
+      </div>
+      <div class="ascii-arc"></div>
+    </div>
+
+    <div class="mobile-hero">
+      <div class="hero">
+        <h1>Developer FAQ</h1>
+        <p class="subtitle">Common questions from Archon developers.</p>
+      </div>
+    </div>
+
+    <h2>FAQ Tabs</h2>
+
+    <div class="faq-tabs">
+      <div class="faq-tab-buttons">
+        <button class="faq-tab active" data-tab="setup">Setup</button>
+        <button class="faq-tab" data-tab="architecture">Architecture</button>
+        <button class="faq-tab" data-tab="api">API</button>
+        <button class="faq-tab" data-tab="testing">Testing</button>
+        <button class="faq-tab" data-tab="contributing">Contributing</button>
+      </div>
+
+      <!-- Setup Tab -->
+      <div class="faq-panel active" data-panel="setup">
+        <h3>Setup</h3>
+
+        <details class="faq-item">
+          <summary>How do I get the Supabase credentials?</summary>
+          <div class="faq-answer">
+            <p>Create a free project at <a href="https://supabase.com" target="_blank">supabase.com</a>. Go to Settings → API to find your project ref and anon key. The project ref is the first part of your Supabase URL.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why do I need XcodeGen?</summary>
+          <div class="faq-answer">
+            <p>XcodeGen generates the <code>.xcodeproj</code> from <code>project.yml</code>. This keeps the project file out of version control (it changes constantly and causes merge conflicts) and makes it easy to add targets, dependencies, and build settings declaratively.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>The build fails with "Missing Local.xcconfig" — what now?</summary>
+          <div class="faq-answer">
+            <p>Copy the template: <code>cp Config/Local.xcconfig.template Config/Local.xcconfig</code>. Then fill in your Supabase project ref and anon key. See the <a href="guides/setup.html">Setup guide</a> for details.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I use Xcode instead of the command line?</summary>
+          <div class="faq-answer">
+            <p>Yes. After running <code>xcodegen generate</code>, open <code>Archon.xcodeproj</code> in Xcode and build/run normally. You only need the command line for the initial project generation and for CI/CD.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do I need a physical device to develop?</summary>
+          <div class="faq-answer">
+            <p>No. The iOS Simulator works for most development. You only need a physical device for testing Keychain persistence, push notifications, and device-specific behaviors.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Architecture Tab -->
+      <div class="faq-panel" data-panel="architecture">
+        <h3>Architecture</h3>
+
+        <details class="faq-item">
+          <summary>Why MVVM instead of MVC or TCA?</summary>
+          <div class="faq-answer">
+            <p>MVVM with SwiftUI is Apple's recommended pattern. It keeps views declarative, ViewModels testable, and avoids the complexity of third-party frameworks. For Archon's scope, MVVM provides the right balance of structure and simplicity.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why use APIClientProtocol instead of a concrete class?</summary>
+          <div class="faq-answer">
+            <p>Protocol-oriented design enables mock injection for unit tests and SwiftUI previews. ViewModels don't know or care whether they're talking to a real server or a mock — they just use the protocol. This makes every ViewModel fully testable without network calls.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How does the app handle offline states?</summary>
+          <div class="faq-answer">
+            <p>Currently, Archon requires a network connection for core features (AI chat, project sync). Failed network requests show error states with retry options. A future version may add offline caching for project files using local persistence.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why is everything @MainActor?</summary>
+          <div class="faq-answer">
+            <p>Swift 6 strict concurrency requires explicit actor isolation. ViewModels update <code>@Published</code> properties that drive UI, so they must run on the main actor. This prevents data races and ensures UI updates happen on the main thread.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I add a new tab to the main interface?</summary>
+          <div class="faq-answer">
+            <p>Add a new <code>TabItem</code> in <code>MainTabView.swift</code>, create the ViewModel and View following conventions, and wire the API client. See <a href="guides/adding-features.html">Adding Features</a> for the full walkthrough.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- API Tab -->
+      <div class="faq-panel" data-panel="api">
+        <h3>API</h3>
+
+        <details class="faq-item">
+          <summary>How do I add a new API endpoint?</summary>
+          <div class="faq-answer">
+            <p>Add a method to <code>APIClient</code> and <code>MockAPIClient</code> that calls <code>request()</code> with the appropriate method, path, and body. If it's a new resource, add the Codable model to <code>Models/</code> first.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What happens when the API returns an error?</summary>
+          <div class="faq-answer">
+            <p>The <code>APIClient</code> maps HTTP status codes to <code>APIError</code> cases. ViewModels catch these and set <code>@Published errorMessage</code> properties, which views display as alert banners or inline errors.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How does token refresh work?</summary>
+          <div class="faq-answer">
+            <p>When a request returns 401, the client attempts a silent token refresh using the stored refresh token. If refresh succeeds, the original request is retried. If refresh fails, the user is redirected to the sign-in screen.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why snake_case in the API but camelCase in Swift?</summary>
+          <div class="faq-answer">
+            <p>Supabase (PostgreSQL) uses snake_case for column names. Swift conventions use camelCase. The shared <code>JSONDecoder</code> with <code>.convertFromSnakeCase</code> handles the mapping automatically — you never need to use <code>CodingKeys</code> for standard properties.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I test streaming (SSE) responses?</summary>
+          <div class="faq-answer">
+            <p>Use <code>MockAPIClient</code>'s <code>requestStream()</code> method. Configure it with an array of Data chunks that simulate the SSE event stream. The ViewModel processes these the same way as real server events.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Testing Tab -->
+      <div class="faq-panel" data-panel="testing">
+        <h3>Testing</h3>
+
+        <details class="faq-item">
+          <summary>How do I run the tests?</summary>
+          <div class="faq-answer">
+            <p>In Xcode: <code>Cmd + U</code>. From the terminal: <code>xcodebuild test -project Archon.xcodeproj -scheme Archon -destination 'platform=iOS Simulator,name=iPhone 16'</code>. See <a href="guides/testing.html">Testing guide</a>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What should I test when adding a new feature?</summary>
+          <div class="faq-answer">
+            <p>Test the ViewModel (happy path, error path, edge cases), model decoding (against fixture JSON), and the API client method (correct request construction). UI tests are optional but welcome for critical flows.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I add a new mock response?</summary>
+          <div class="faq-answer">
+            <p>Add a property to <code>MockAPIClient</code> (e.g., <code>widgetsToReturn</code>) and handle the corresponding path in the <code>request()</code> method. Then set the property in your test's <code>setUp()</code> or test method.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I test SwiftUI views?</summary>
+          <div class="faq-answer">
+            <p>Yes, using <code>ViewInspector</code> or Xcode's built-in UI testing. For most cases, testing the ViewModel is sufficient since views are thin and declarative. Focus view tests on complex layout logic or accessibility.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Do tests run in CI?</summary>
+          <div class="faq-answer">
+            <p>The GitHub Actions workflow runs all tests on every PR. See <code>.github/workflows/test.yml</code> for the configuration. Tests must pass before merging.</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- Contributing Tab -->
+      <div class="faq-panel" data-panel="contributing">
+        <h3>Contributing</h3>
+
+        <details class="faq-item">
+          <summary>How do I contribute to Archon?</summary>
+          <div class="faq-answer">
+            <p>Fork the repo, create a feature branch, make your changes, and open a PR. See <a href="contributing.html">Contributing guide</a> for the full process, code style rules, and PR template.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What's the branch naming convention?</summary>
+          <div class="faq-answer">
+            <p>Use <code>feature/short-description</code>, <code>fix/short-description</code>, or <code>docs/short-description</code>. Keep it lowercase with hyphens. Example: <code>feature/add-widget-screen</code>.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I work on issues marked "good first issue"?</summary>
+          <div class="faq-answer">
+            <p>Absolutely. Those are specifically scoped for new contributors. Comment on the issue to let others know you're working on it, then submit a PR when ready.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What code style does Archon use?</summary>
+          <div class="faq-answer">
+            <p>Standard Swift style enforced by SwiftLint. No force unwraps in production code. Meaningful variable names. Keep functions under 40 lines. See <a href="contributing.html">Contributing guide</a> for the full style guide.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How long do PR reviews take?</summary>
+          <div class="faq-answer">
+            <p>Typically 1-3 business days for initial review. Simple fixes may be reviewed same-day. For larger features, expect iterative feedback over a few days.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <style>
+      .faq-tabs { margin-top: 1rem; }
+      .faq-tab-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+      .faq-tab { padding: 0.5rem 1rem; border: 1px solid var(--border, #333); border-radius: 8px; background: transparent; color: var(--text-secondary, #999); cursor: pointer; font-size: 0.9rem; font-family: inherit; }
+      .faq-tab.active { background: var(--primary, #7c5cfc); color: #fff; border-color: var(--primary, #7c5cfc); }
+      .faq-panel { display: none; }
+      .faq-panel.active { display: block; }
+      .faq-item { border: 1px solid var(--border, #333); border-radius: 8px; margin-bottom: 0.75rem; overflow: hidden; }
+      .faq-item summary { padding: 1rem 1.25rem; cursor: pointer; font-weight: 600; font-size: 0.95rem; background: var(--card-bg, #111); }
+      .faq-item summary:hover { background: var(--card-hover, #1a1a2e); }
+      .faq-answer { padding: 0 1.25rem 1rem; font-size: 0.9rem; line-height: 1.7; color: var(--text-secondary, #aaa); }
+      .faq-answer p { margin: 0.5rem 0 0; }
+    </style>
+
+    <script>
+      document.querySelectorAll('.faq-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.faq-panel').forEach(p => p.classList.remove('active'));
+          tab.classList.add('active');
+          document.querySelector(`[data-panel="${tab.dataset.tab}"]`).classList.add('active');
+        });
+      });
+    </script>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a></span>
+</footer>
+
+<script src="../js/docs.js"></script>
+<script src="../js/learn.js"></script>
+<script src="../js/ascii-header.js"></script>
+</body>
+</html>
