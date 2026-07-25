@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Learn — Archon Docs</title>
-  <meta name="description" content="Learn HTML, CSS, TypeScript, Python, and Swift with interactive lessons and live code editors.">
+  <meta name="description" content="Learn HTML, CSS, TypeScript, Python, Swift, and Java with interactive lessons, quizzes, and rewards.">
   <meta name="theme-color" content="#06060a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/learn-gamification.css">
 </head>
 <body>
 
@@ -54,6 +55,7 @@
       <a href="typescript/01-what-is-ts.html" class="sidebar-link lesson-link" data-lesson="ts-01">TypeScript Basics</a>
       <a href="python/01-what-is-python.html" class="sidebar-link lesson-link" data-lesson="py-01">Python Basics</a>
       <a href="swift/01-what-is-swift.html" class="sidebar-link lesson-link" data-lesson="swift-01">Swift for iOS</a>
+      <a href="java/01-what-is-java.html" class="sidebar-link lesson-link" data-lesson="java-01">Java Fundamentals</a>
     </div>
     <div class="sidebar-divider"></div>
     <div class="sidebar-group">
@@ -66,9 +68,13 @@
   </aside>
 
   <main class="main">
+    <div class="learn-hero-bg"></div>
+
+    <div id="learn-stats"></div>
+
     <div class="hero">
       <h1>Learn to code</h1>
-      <p class="subtitle">Interactive lessons with live code editors. Write code, see results instantly, and build real skills you can use inside Archon and beyond.</p>
+      <p class="subtitle">Interactive lessons with live code editors, quizzes, and rewards. Write code, see results instantly, and build real skills.</p>
     </div>
 
     <h2>Choose a language</h2>
@@ -118,6 +124,15 @@
       <div class="path-count">5 lessons</div>
     </a>
 
+    <a href="java/01-what-is-java.html" class="path-card">
+      <div class="path-icon" style="background:var(--orange-muted);color:var(--orange);">☕</div>
+      <div class="path-info">
+        <div class="path-title">Java</div>
+        <div class="path-desc">Enterprise-grade and Android's language. OOP, collections, streams, lambdas, and the JVM ecosystem.</div>
+      </div>
+      <div class="path-count">5 lessons</div>
+    </a>
+
     <hr>
 
     <h2>How it works</h2>
@@ -126,12 +141,12 @@
       <p>Every lesson includes a live code editor with a real-time output preview. Edit the code on the left, see the result on the right instantly. No setup required.</p>
     </div>
     <div class="concept-box">
-      <h4>Quizzes after every lesson</h4>
-      <p>Test your understanding with quick multiple-choice quizzes. Get instant feedback and learn from your mistakes.</p>
+      <h4>Quizzes & rewards</h4>
+      <p>Test your understanding with multiple-choice quizzes. Earn XP for correct answers, build streaks for bonus points, and unlock achievement badges as you progress.</p>
     </div>
     <div class="concept-box">
       <h4>Progress tracking</h4>
-      <p>Your completed lessons are saved locally. Pick up exactly where you left off.</p>
+      <p>Your completed lessons, XP, and achievements are saved locally. Pick up exactly where you left off and watch your skills grow.</p>
     </div>
   </main>
 </div>
@@ -143,5 +158,6 @@
 
 <script src="../js/docs.js"></script>
 <script src="../js/learn.js"></script>
+<script src="../js/learn-gamification.js"></script>
 </body>
 </html>

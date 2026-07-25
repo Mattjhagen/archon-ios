@@ -33,6 +33,10 @@ function initLiveEditors() {
         doc.open();
         doc.write('<html><head><style>body{font-family:monospace;background:#0c0c14;color:#e8e8f0;padding:16px;font-size:14px;white-space:pre-wrap;} .output{color:#34d399;} .error{color:#f87171;}</style></head><body><div class="output">' + simulateSwift(code) + '</div></body></html>');
         doc.close();
+      } else if (lang === 'java') {
+        doc.open();
+        doc.write('<html><head><style>body{font-family:monospace;background:#0c0c14;color:#e8e8f0;padding:16px;font-size:14px;white-space:pre-wrap;} .output{color:#34d399;} .error{color:#f87171;}</style></head><body><div class="output">' + simulateJava(code) + '</div></body></html>');
+        doc.close();
       }
     }
 
@@ -191,6 +195,54 @@ function initCopyButtons() {
       });
     });
   });
+}
+
+// Basic Java simulator for demos
+function simulateJava(code) {
+  var lines = code.split('\n');
+  var output = [];
+  var vars = {};
+  lines.forEach(function(line) {
+    line = line.trim();
+    if (line.startsWith('//') || line === '' || line.startsWith('public ') || line.startsWith('class ') || line.startsWith('import ') || line.startsWith('package ') || line.startsWith('private ') || line.startsWith('protected ') || line.startsWith('static ') || line.startsWith('void ') || line.startsWith('static') || line === '}' || line === '{') return;
+    var printMatch = line.match(/^System\.out\.println\((.+)\);$/);
+    if (printMatch) {
+      var arg = printMatch[1].trim();
+      if (arg.startsWith('"') && arg.endsWith('"')) {
+        var inner = arg.slice(1, -1);
+        inner = inner.replace(/\+"/g, '').replace(/"\+/g, '').replace(/\+"/g, '');
+        Object.keys(vars).forEach(function(k) {
+          inner = inner.replace(new RegExp('\\+' + k + '\\+|\\+ ' + k + ' |\\+' + k, 'g'), String(vars[k]));
+        });
+        output.push(inner);
+      } else if (vars[arg] !== undefined) {
+        output.push(String(vars[arg]));
+      } else {
+        output.push(arg.replace(/["']/g, ''));
+      }
+    }
+    var assignMatch = line.match(/^(?:int|double|boolean|char|String|float|long|var)\s+(\w+)\s*=\s*(.+);$/);
+    if (assignMatch) {
+      var val = assignMatch[2].trim();
+      if (val.startsWith('"') && val.endsWith('"')) {
+        vars[assignMatch[1]] = val.slice(1, -1);
+      } else if (!isNaN(val)) {
+        vars[assignMatch[1]] = Number(val);
+      } else {
+        vars[assignMatch[1]] = val;
+      }
+    }
+    var simpleAssign = line.match(/^(\w+)\s*=\s*(.+);$/);
+    if (simpleAssign && !line.startsWith('System') && !line.startsWith('int') && !line.startsWith('String') && !line.startsWith('double') && !line.startsWith('boolean') && vars[simpleAssign[1]] !== undefined) {
+      var val2 = simpleAssign[2].trim();
+      if (val2.startsWith('"') && val2.endsWith('"')) {
+        vars[simpleAssign[1]] = val2.slice(1, -1);
+      } else if (!isNaN(val2)) {
+        vars[simpleAssign[1]] = Number(val2);
+      }
+    }
+  });
+  return output.length ? output.join('\n') : '<span style="color:#686880">// Output appears here</span>';
 }
 
 // Init everything

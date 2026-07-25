@@ -1004,6 +1004,7 @@ hr {
 .lang-badge.ts { background: var(--accent-muted); color: var(--accent); }
 .lang-badge.py { background: var(--green-muted); color: var(--green); }
 .lang-badge.swift { background: var(--red-muted); color: var(--red); }
+.lang-badge.java { background: var(--orange-muted); color: var(--orange); }
 
 /* Concept boxes */
 .concept-box {

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streams & Lambdas — Java Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    <a href="https://docs.relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Java Fundamentals</div>
+      <a href="01-what-is-java.html" class="sidebar-link lesson-link" data-lesson="java-01">1. What is Java?</a>
+      <a href="02-variables-types.html" class="sidebar-link lesson-link" data-lesson="java-02">2. Variables & Types</a>
+      <a href="03-oop-basics.html" class="sidebar-link lesson-link" data-lesson="java-03">3. OOP Basics</a>
+      <a href="04-collections.html" class="sidebar-link lesson-link" data-lesson="java-04">4. Collections</a>
+      <a href="05-streams-lambdas.html" class="sidebar-link active" data-lesson="java-05">5. Streams & Lambdas</a>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge java">☕ Java</span>
+      <h1>Streams & Lambdas</h1>
+      <div class="lesson-meta">
+        <span>Lesson 5 of 5</span>
+        <span>~5 min</span>
+      </div>
+    </div>
+
+    <p><strong>Lambdas</strong> and the <strong>Stream API</strong> (introduced in Java 8) bring functional programming to Java. Lambda expressions let you write concise anonymous functions, and the Stream API provides a declarative way to process collections — filtering, transforming, and aggregating data with elegant, readable code.</p>
+
+    <p>Together, lambdas and streams replace verbose loops with a pipeline of operations that describe <em>what</em> you want to do with your data, rather than <em>how</em> to do it step by step.</p>
+
+    <h2>What are lambdas?</h2>
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>Lambda</strong> — An anonymous function that can be passed as a value.</li>
+      <li><span class="check">→</span> <strong>Syntax</strong> — <code>(parameters) -&gt; expression</code> or <code>(parameters) -&gt; { statements; }</code></li>
+      <li><span class="check">→</span> <strong>Functional interface</strong> — An interface with a single abstract method that a lambda can implement.</li>
+      <li><span class="check">→</span> <strong>Concise</strong> — Lambdas eliminate the boilerplate of anonymous inner classes.</li>
+    </ul>
+
+    <h2>Lambda expressions</h2>
+
+    <p>Lambdas work with <strong>functional interfaces</strong> — interfaces with exactly one abstract method. Java provides many built-in functional interfaces like <code>Predicate&lt;T&gt;</code>, <code>Function&lt;T,R&gt;</code>, and <code>Consumer&lt;T&gt;</code>. You can also use <code>@FunctionalInterface</code> to define your own.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List&lt;String&gt; names = Arrays.asList("Alice", "Bob", "Charlie", "Diana");
+
+        // Lambda with forEach
+        names.forEach(name -&gt; System.out.println(name));
+
+        // Lambda with Predicate (filtering)
+        names.stream()
+             .filter(name -&gt; name.length() &gt; 4)
+             .forEach(name -&gt; System.out.println("Long name: " + name));
+
+        // Multiple lines in a lambda
+        names.forEach(name -&gt; {
+            int len = name.length();
+            System.out.println(name + " has " + len + " characters");
+        });
+    }
+}</code></pre>
+    </div>
+
+    <h2>Stream API basics</h2>
+
+    <p>The Stream API lets you process collections with a chain of operations. You create a stream from a collection, apply intermediate operations (like <code>filter</code> and <code>map</code>), and finish with a terminal operation (like <code>forEach</code> or <code>collect</code>).</p>
+
+    <div class="live-editor" data-lang="java">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">Java</div>
+          <textarea class="code-input" spellcheck="false">import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Main {
+    public static void main(String[] args) {
+        List&lt;Integer&gt; numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        // Filter even numbers
+        List&lt;Integer&gt; evens = numbers.stream()
+            .filter(n -&gt; n % 2 == 0)
+            .collect(Collectors.toList());
+        System.out.println("Even numbers: " + evens);
+
+        // Map: double each number
+        List&lt;Integer&gt; doubled = numbers.stream()
+            .map(n -&gt; n * 2)
+            .collect(Collectors.toList());
+        System.out.println("Doubled: " + doubled);
+
+        // Filter + Map combined
+        List&lt;Integer&gt; doubledEvens = numbers.stream()
+            .filter(n -&gt; n % 2 == 0)
+            .map(n -&gt; n * 2)
+            .collect(Collectors.toList());
+        System.out.println("Doubled evens: " + doubledEvens);
+    }
+}</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Modify the filter to keep only numbers greater than 5, or change the map operation to square each number (<code>n * n</code>).</p>
+    </div>
+
+    <h2>Stream operations</h2>
+
+    <p>Streams support two types of operations: <strong>intermediate</strong> (lazy, return a new stream) and <strong>terminal</strong> (trigger processing, produce a result). The pipeline only executes when a terminal operation is called.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+List&lt;String&gt; words = Arrays.asList("hello", "world", "java", "stream", "lambda");
+
+// filter — keep elements matching a condition
+// map — transform each element
+// sorted — sort elements
+// count — count elements
+// collect — gather results into a collection
+
+long result = words.stream()
+    .filter(w -&gt; w.length() &gt; 4)
+    .map(String::toUpperCase)
+    .sorted()
+    .count();
+System.out.println("Words &gt; 4 chars (uppercase, sorted): " + result);
+
+List&lt;String&gt; filtered = words.stream()
+    .filter(w -&gt; w.startsWith("s"))
+    .map(String::toUpperCase)
+    .collect(Collectors.toList());
+System.out.println("Words starting with S: " + filtered);</code></pre>
+    </div>
+
+    <h2>Method references</h2>
+
+    <p>When a lambda simply calls an existing method, you can use a <strong>method reference</strong> for even more concise code. There are four forms: static methods, instance methods, arbitrary object methods, and constructor references.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>import java.util.Arrays;
+import java.util.List;
+
+List&lt;String&gt; names = Arrays.asList("Alice", "Bob", "Charlie");
+
+// Lambda equivalent:
+names.forEach(name -&gt; System.out.println(name));
+
+// Method reference (shorter):
+names.forEach(System.out::println);
+
+// Map with method reference
+names.stream()
+     .map(String::toUpperCase)
+     .forEach(System.out::println);</code></pre>
+    </div>
+
+    <h2>Key concepts</h2>
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>filter()</strong> — Keeps elements that match a predicate.</li>
+      <li><span class="check">→</span> <strong>map()</strong> — Transforms each element into something new.</li>
+      <li><span class="check">→</span> <strong>forEach()</strong> — Performs an action on each element.</li>
+      <li><span class="check">→</span> <strong>collect()</strong> — Gathers stream results into a collection.</li>
+      <li><span class="check">→</span> <strong>sorted()</strong> — Sorts elements in natural order.</li>
+      <li><span class="check">→</span> <strong>count()</strong> — Returns the number of elements.</li>
+    </ul>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="map()">
+      <div class="quiz-question">Which Stream method transforms each element?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="filter()">filter()</button>
+        <button class="quiz-option" data-value="map()">map()</button>
+        <button class="quiz-option" data-value="forEach()">forEach()</button>
+        <button class="quiz-option" data-value="collect()">collect()</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Create a list of integers from 1 to 20. Use streams to: (1) filter only even numbers, (2) map each to its square, (3) collect the results into a list and print it.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="04-collections.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Collections</div>
+      </a>
+      <a href="../index.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Learn Overview</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Matt Hagen · MIT License</span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a></span>
+</footer>
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+</body>
+</html>
