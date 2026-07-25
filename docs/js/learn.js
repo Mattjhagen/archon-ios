@@ -202,43 +202,79 @@ function simulateJava(code) {
   var lines = code.split('\n');
   var output = [];
   var vars = {};
+
+  function resolveValue(raw) {
+    raw = raw.trim();
+    if (raw.startsWith('"') && raw.endsWith('"')) return raw.slice(1, -1);
+    if (raw.startsWith("'") && raw.endsWith("'")) return raw.slice(1, -1);
+    if (vars[raw] !== undefined) return String(vars[raw]);
+    if (!isNaN(raw) && raw !== '') return String(Number(raw));
+    return raw;
+  }
+
+  function resolvePrintArg(arg) {
+    arg = arg.trim();
+    if (arg.startsWith('"')) {
+      var parts = arg.split('+').map(function(p) { return p.trim(); });
+      var result = '';
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        if (p.startsWith('"') && p.endsWith('"')) {
+          result += p.slice(1, -1);
+        } else if (vars[p] !== undefined) {
+          result += String(vars[p]);
+        } else {
+          result += p.replace(/["']/g, '');
+        }
+      }
+      return result;
+    }
+    if (vars[arg] !== undefined) return String(vars[arg]);
+    return arg.replace(/["']/g, '');
+  }
+
   lines.forEach(function(line) {
     line = line.trim();
-    if (line.startsWith('//') || line === '' || line.startsWith('public ') || line.startsWith('class ') || line.startsWith('import ') || line.startsWith('package ') || line.startsWith('private ') || line.startsWith('protected ') || line.startsWith('static ') || line.startsWith('void ') || line.startsWith('static') || line === '}' || line === '{') return;
+    if (line.startsWith('//') || line === '' || line === '{' || line === '}' ||
+        line.startsWith('public ') || line.startsWith('class ') ||
+        line.startsWith('import ') || line.startsWith('package ') ||
+        line.startsWith('private ') || line.startsWith('protected ') ||
+        line.startsWith('void ') || line.startsWith('static ') ||
+        line.startsWith('return ') || line.startsWith('if ') ||
+        line.startsWith('for ') || line.startsWith('while ') ||
+        line.startsWith('else') || line.startsWith('try') ||
+        line.startsWith('catch') || line.startsWith('finally')) return;
+
     var printMatch = line.match(/^System\.out\.println\((.+)\);$/);
     if (printMatch) {
-      var arg = printMatch[1].trim();
-      if (arg.startsWith('"') && arg.endsWith('"')) {
-        var inner = arg.slice(1, -1);
-        inner = inner.replace(/\+"/g, '').replace(/"\+/g, '').replace(/\+"/g, '');
-        Object.keys(vars).forEach(function(k) {
-          inner = inner.replace(new RegExp('\\+' + k + '\\+|\\+ ' + k + ' |\\+' + k, 'g'), String(vars[k]));
-        });
-        output.push(inner);
-      } else if (vars[arg] !== undefined) {
-        output.push(String(vars[arg]));
-      } else {
-        output.push(arg.replace(/["']/g, ''));
-      }
+      output.push(resolvePrintArg(printMatch[1]));
+      return;
     }
-    var assignMatch = line.match(/^(?:int|double|boolean|char|String|float|long|var)\s+(\w+)\s*=\s*(.+);$/);
+
+    var assignMatch = line.match(/^(?:final\s+)?(?:int|double|boolean|char|String|float|long|var|Integer|Double|Boolean|Float|Long)\s+(\w+)\s*=\s*(.+);$/);
     if (assignMatch) {
       var val = assignMatch[2].trim();
       if (val.startsWith('"') && val.endsWith('"')) {
         vars[assignMatch[1]] = val.slice(1, -1);
-      } else if (!isNaN(val)) {
+      } else if (val.startsWith("'") && val.endsWith("'")) {
+        vars[assignMatch[1]] = val.slice(1, -1);
+      } else if (!isNaN(val) && val !== '') {
         vars[assignMatch[1]] = Number(val);
       } else {
         vars[assignMatch[1]] = val;
       }
+      return;
     }
+
     var simpleAssign = line.match(/^(\w+)\s*=\s*(.+);$/);
-    if (simpleAssign && !line.startsWith('System') && !line.startsWith('int') && !line.startsWith('String') && !line.startsWith('double') && !line.startsWith('boolean') && vars[simpleAssign[1]] !== undefined) {
+    if (simpleAssign && vars[simpleAssign[1]] !== undefined) {
       var val2 = simpleAssign[2].trim();
       if (val2.startsWith('"') && val2.endsWith('"')) {
         vars[simpleAssign[1]] = val2.slice(1, -1);
-      } else if (!isNaN(val2)) {
+      } else if (!isNaN(val2) && val2 !== '') {
         vars[simpleAssign[1]] = Number(val2);
+      } else if (vars[val2] !== undefined) {
+        vars[simpleAssign[1]] = vars[val2];
       }
     }
   });

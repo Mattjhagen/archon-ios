@@ -141,16 +141,44 @@ a:hover { color: var(--accent-hover); }
 .sidebar::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 4px; }
 
 .sidebar-group {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .sidebar-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 8px 20px;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+
+.sidebar-group-title:hover {
+  color: var(--text-primary);
+}
+
+.sidebar-group-title .chevron {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+  opacity: 0.5;
+}
+
+.sidebar-group.collapsed .sidebar-group-title .chevron {
+  transform: rotate(-90deg);
+}
+
+.sidebar-group.collapsed .sidebar-group-items {
+  display: none;
+}
+
+.sidebar-group-items {
+  overflow: hidden;
 }
 
 .sidebar-link {
@@ -186,6 +214,8 @@ a:hover { color: var(--accent-hover); }
   flex: 1;
   padding: 48px 60px 80px;
   max-width: 860px;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Typography */
