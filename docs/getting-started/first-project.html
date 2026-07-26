@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your First App — Getting Started</title>
+  <meta name="description" content="Build your first app with Archon in under 5 minutes. Describe what you want, watch AI build it.">
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../css/chat-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="../index.html" class="active">User Guide</a>
+    <a href="../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../ide.html">IDE</a>
+            <a href="../index.html">Learn</a>
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Getting Started</div>
+      <div class="sidebar-group-items">
+        <a href="install.html" class="sidebar-link">Install Archon</a>
+        <a href="create-account.html" class="sidebar-link">Create Your Account</a>
+        <a href="first-project.html" class="sidebar-link active">Build Your First App</a>
+      </div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Features</div>
+      <div class="sidebar-group-items">
+        <a href="../features/ai-builder.html" class="sidebar-link">AI Builder</a>
+        <a href="../features/code-browser.html" class="sidebar-link">Code Browser</a>
+        <a href="../features/live-preview.html" class="sidebar-link">Live Preview</a>
+        <a href="../features/projects.html" class="sidebar-link">Projects</a>
+        <a href="../features/settings.html" class="sidebar-link">Settings</a>
+      </div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Learn</div>
+      <div class="sidebar-group-items">
+        <a href="../index.html" class="sidebar-link">Overview</a>
+        <a href="../learn/html/01-what-is-html.html" class="sidebar-link lesson-link" data-lesson="html-01">HTML</a>
+        <a href="../learn/css/01-what-is-css.html" class="sidebar-link lesson-link" data-lesson="css-01">CSS</a>
+        <a href="../learn/typescript/01-what-is-ts.html" class="sidebar-link lesson-link" data-lesson="ts-01">TypeScript</a>
+        <a href="../learn/python/01-what-is-python.html" class="sidebar-link lesson-link" data-lesson="py-01">Python</a>
+        <a href="../learn/swift/01-what-is-swift.html" class="sidebar-link lesson-link" data-lesson="swift-01">Swift</a>
+        <a href="../learn/java/01-what-is-java.html" class="sidebar-link lesson-link" data-lesson="java-01">Java</a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge" style="background:rgba(52,211,153,0.15);color:#34d399;">✓ Step 3</span>
+      <h1>Build Your First App</h1>
+      <div class="lesson-meta">
+        <span>Getting Started</span>
+        <span>~5 min</span>
+      </div>
+    </div>
+
+    <p>You're signed in and ready to go. Let's build your first app in under 5 minutes.</p>
+
+    <h2>Step 1: Open the AI Builder</h2>
+
+    <div class="concept-box">
+      <h4>Tap the chat icon</h4>
+      <p>From the Dashboard, tap the <strong>AI Builder</strong> tab at the bottom, or tap the <strong>New Project</strong> button. You'll see the chat interface.</p>
+    </div>
+
+    <h2>Step 2: Describe your app</h2>
+
+    <p>Type what you want in plain English. Be as specific or as general as you like.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>Try one of these:
+
+  "Build a to-do app with categories and due dates"
+
+  "Create a weather app that shows current conditions"
+
+  "Make a habit tracker with streaks and stats"
+
+  "Build a recipe book app with search and favorites"</code></pre>
+    </div>
+
+    <div class="concept-box">
+      <h4>Tip: Be specific for better results</h4>
+      <p>Instead of "make an app", try "Build a note-taking app with folders, search, and a rich text editor". The more detail you give, the closer the result matches your vision.</p>
+    </div>
+
+    <h2>Step 3: Watch it build</h2>
+
+    <p>The AI agent breaks your request into tasks and generates code for each one. You'll see:</p>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>Task timeline</strong> — each step appears as it's completed</li>
+      <li><span class="check">→</span> <strong>Streaming code</strong> — watch SwiftUI views generate in real-time</li>
+      <li><span class="check">→</span> <strong>Progress indicator</strong> — see how far along the build is</li>
+    </ul>
+
+    <div class="code-block">
+      <pre><code>AI Agent:
+  ✓ Planning project structure
+  ✓ Generating TodoListView.swift
+  ✓ Generating TodoViewModel.swift
+  ✓ Generating Category model
+  ✓ Setting up navigation
+  → Preview ready — tap to see your app</code></pre>
+    </div>
+
+    <h2>Step 4: Preview your app</h2>
+
+    <p>Once the AI finishes, tap <strong>Preview</strong> to see your app running live. It renders in a real WebView — what you see is what you'd get on a real device.</p>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> Scroll through screens, tap buttons, test the UI</li>
+      <li><span class="check">→</span> Go back and ask the AI to change things ("make the header blue")</li>
+      <li><span class="check">→</span> Switch to the Code Browser to see all generated files</li>
+    </ul>
+
+    <h2>Step 5: Iterate</h2>
+
+    <p>Not quite right? Just tell the AI what to change:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>"Add a dark mode toggle to settings"
+
+"Change the accent color to purple"
+
+"Add a search bar to the top of the list"
+
+"Make the cards rounder with more padding"</code></pre>
+    </div>
+
+    <p>The AI updates your project and you can preview again instantly.</p>
+
+    <h2>That's it!</h2>
+
+    <p>You've built your first app. From here you can:</p>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>Export the code</strong> — open in Xcode and run on a real device</li>
+      <li><span class="check">→</span> <strong>Keep building</strong> — add more features with follow-up prompts</li>
+      <li><span class="check">→</span> <strong>Learn coding</strong> — check out the <a href="../index.html">Learning Center</a> to understand what the AI generated</li>
+      <li><span class="check">→</span> <strong>Ask the AI</strong> — use the <a href="../ai.html">AI Assistant</a> for coding help</li>
+    </ul>
+
+    <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+      <a href="create-account.html" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#1a1a2e;color:#c8c8d8;text-decoration:none;border-radius:10px;font-size:13px;transition:background 0.15s;" onmouseover="this.style.background='#252540'" onmouseout="this.style.background='#1a1a2e'">
+        ← Create Account
+      </a>
+      <a href="../index.html" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:#7c5cfc;color:#fff;text-decoration:none;border-radius:10px;font-weight:600;font-size:14px;transition:background 0.15s;" onmouseover="this.style.background='#6a4ae0'" onmouseout="this.style.background='#7c5cfc'">
+        Start Learning →
+      </a>
+    </div>
+
+  </main>
+</div>
+
+<script src="../js/sidebar.js"></script>
+<script src="../js/pwa.js"></script>
+<script src="../js/chat-widget.js"></script>
+
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

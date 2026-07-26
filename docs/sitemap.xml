@@ -5,31 +5,49 @@
 
   <!-- ==================== MAIN PAGES ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/</loc>
+    <loc>https://relayapp.pro/</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/changelog</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://docs.relayapp.pro/faq</loc>
+    <loc>https://relayapp.pro/getting-started/install.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://relayapp.pro/getting-started/create-account.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://relayapp.pro/getting-started/first-project.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://relayapp.pro/changelog.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/privacy</loc>
+    <loc>https://relayapp.pro/faq.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://relayapp.pro/privacy.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/support</loc>
+    <loc>https://relayapp.pro/support.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -37,31 +55,31 @@
 
   <!-- ==================== FEATURES ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/features/ai-builder</loc>
+    <loc>https://relayapp.pro/features/ai-builder.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/features/code-browser</loc>
+    <loc>https://relayapp.pro/features/code-browser.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/features/live-preview</loc>
+    <loc>https://relayapp.pro/features/live-preview.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/features/projects</loc>
+    <loc>https://relayapp.pro/features/projects.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/features/settings</loc>
+    <loc>https://relayapp.pro/features/settings.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -69,7 +87,7 @@
 
   <!-- ==================== LEARN HUB ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/learn/</loc>
+    <loc>https://relayapp.pro/learn/index.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -77,31 +95,31 @@
 
   <!-- ==================== HTML FUNDAMENTALS ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/learn/html/01-what-is-html</loc>
+    <loc>https://relayapp.pro/learn/html/01-what-is-html.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/html/02-tags-elements</loc>
+    <loc>https://relayapp.pro/learn/html/02-tags-elements.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/html/03-text-links-images</loc>
+    <loc>https://relayapp.pro/learn/html/03-text-links-images.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/html/04-forms-inputs</loc>
+    <loc>https://relayapp.pro/learn/html/04-forms-inputs.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/html/05-semantic-html</loc>
+    <loc>https://relayapp.pro/learn/html/05-semantic-html.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -109,31 +127,31 @@
 
   <!-- ==================== CSS FUNDAMENTALS ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/learn/css/01-what-is-css</loc>
+    <loc>https://relayapp.pro/learn/css/01-what-is-css.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/css/02-selectors</loc>
+    <loc>https://relayapp.pro/learn/css/02-selectors.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/css/03-box-model</loc>
+    <loc>https://relayapp.pro/learn/css/03-box-model.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/css/04-flexbox-grid</loc>
+    <loc>https://relayapp.pro/learn/css/04-flexbox-grid.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/css/05-responsive-design</loc>
+    <loc>https://relayapp.pro/learn/css/05-responsive-design.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -141,31 +159,31 @@
 
   <!-- ==================== TYPESCRIPT BASICS ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/learn/typescript/01-what-is-ts</loc>
+    <loc>https://relayapp.pro/learn/typescript/01-what-is-ts.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/typescript/02-variables-types</loc>
+    <loc>https://relayapp.pro/learn/typescript/02-variables-types.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/typescript/03-functions</loc>
+    <loc>https://relayapp.pro/learn/typescript/03-functions.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/typescript/04-interfaces-classes</loc>
+    <loc>https://relayapp.pro/learn/typescript/04-interfaces-classes.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/typescript/05-async-patterns</loc>
+    <loc>https://relayapp.pro/learn/typescript/05-async-patterns.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -173,31 +191,31 @@
 
   <!-- ==================== PYTHON BASICS ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/learn/python/01-what-is-python</loc>
+    <loc>https://relayapp.pro/learn/python/01-what-is-python.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/python/02-variables-datatypes</loc>
+    <loc>https://relayapp.pro/learn/python/02-variables-datatypes.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/python/03-control-flow</loc>
+    <loc>https://relayapp.pro/learn/python/03-control-flow.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/python/04-functions</loc>
+    <loc>https://relayapp.pro/learn/python/04-functions.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/python/05-data-structures</loc>
+    <loc>https://relayapp.pro/learn/python/05-data-structures.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -205,31 +223,31 @@
 
   <!-- ==================== SWIFT FUNDAMENTALS ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/learn/swift/01-what-is-swift</loc>
+    <loc>https://relayapp.pro/learn/swift/01-what-is-swift.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/swift/02-optionals</loc>
+    <loc>https://relayapp.pro/learn/swift/02-optionals.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/swift/03-structs-enums</loc>
+    <loc>https://relayapp.pro/learn/swift/03-structs-enums.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/swift/04-closures</loc>
+    <loc>https://relayapp.pro/learn/swift/04-closures.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/swift/05-swiftui-basics</loc>
+    <loc>https://relayapp.pro/learn/swift/05-swiftui-basics.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -237,31 +255,31 @@
 
   <!-- ==================== JAVA FUNDAMENTALS ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/learn/java/01-what-is-java</loc>
+    <loc>https://relayapp.pro/learn/java/01-what-is-java.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/java/02-variables-types</loc>
+    <loc>https://relayapp.pro/learn/java/02-variables-types.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/java/03-oop-basics</loc>
+    <loc>https://relayapp.pro/learn/java/03-oop-basics.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/java/04-collections</loc>
+    <loc>https://relayapp.pro/learn/java/04-collections.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/learn/java/05-streams-lambdas</loc>
+    <loc>https://relayapp.pro/learn/java/05-streams-lambdas.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -269,88 +287,116 @@
 
   <!-- ==================== DEVELOPER DOCS ==================== -->
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/architecture/overview</loc>
+    <loc>https://relayapp.pro/dev-docs/architecture/overview.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/architecture/navigation</loc>
+    <loc>https://relayapp.pro/dev-docs/architecture/navigation.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/architecture/design-system</loc>
+    <loc>https://relayapp.pro/dev-docs/architecture/design-system.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/api/overview</loc>
+    <loc>https://relayapp.pro/dev-docs/api/overview.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/api/projects</loc>
+    <loc>https://relayapp.pro/dev-docs/api/projects.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/api/ai-chat</loc>
+    <loc>https://relayapp.pro/dev-docs/api/ai-chat.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/api/tasks</loc>
+    <loc>https://relayapp.pro/dev-docs/api/tasks.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/api/models</loc>
+    <loc>https://relayapp.pro/dev-docs/api/models.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/guides/setup</loc>
+    <loc>https://relayapp.pro/dev-docs/guides/setup.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/guides/testing</loc>
+    <loc>https://relayapp.pro/dev-docs/guides/testing.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/guides/adding-features</loc>
+    <loc>https://relayapp.pro/dev-docs/guides/adding-features.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/guides/testflight</loc>
+    <loc>https://relayapp.pro/dev-docs/guides/testflight.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/contributing</loc>
+    <loc>https://relayapp.pro/dev-docs/contributing.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://docs.relayapp.pro/dev-docs/faq</loc>
+    <loc>https://relayapp.pro/dev-docs/faq.html</loc>
     <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+
+  <!-- ==================== AI PAGES ==================== -->
+  <url>
+    <loc>https://relayapp.pro/ai.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://relayapp.pro/ai-models.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://relayapp.pro/ai-credits.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ==================== STATUS ==================== -->
+  <url>
+    <loc>https://relayapp.pro/status.html</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
 
 </urlset>

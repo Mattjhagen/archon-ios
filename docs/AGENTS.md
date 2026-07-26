@@ -17,8 +17,8 @@
 - All sidebar links wrapped in `.sidebar-group-items` divs across 56 HTML files
 
 #### Cloudflare Pages Deployment
-- Project: `archon-docs` at https://archon-docs.pages.dev
-- Custom domain: `docs.relayapp.pro` (set up via dashboard)
+- Project: `archon-docs` at https://relayapp.pro
+- Custom domain: `relayapp.pro` (set up via dashboard)
 - Deploy: `CLOUDFLARE_API_TOKEN=... npx wrangler pages deploy docs --project-name=archon-docs --commit-dirty=true`
 - Build output dir: `docs` (no build step, pure static)
 - `_headers` and `_redirects` files configured for caching and security
@@ -121,4 +121,4 @@ docs/
 
 **Total lesson count**: 35 lessons across 7 languages (5 per language)
 **Total page count**: ~56 HTML pages
-**Deployment**: Cloudflare Pages at `docs.relayapp.pro` (project: `archon-docs`)
+**Deployment**: Cloudflare Pages at `relayapp.pro` (project: `archon-docs`)

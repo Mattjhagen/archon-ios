@@ -54,8 +54,8 @@ Languages covered: HTML (5 lessons), CSS (5), TypeScript (5), Python (5), Swift 
 Dark-mode-first with automatic light mode. Colors: #06060a (void), #0c0c14 (secondary), #7c5cfc (accent purple). Typography: Inter for body, JetBrains Mono for code. 44pt minimum touch targets. Dynamic Type support. VoiceOver labels on all interactive elements.
 
 ## Links
-- Home: https://docs.relayapp.pro/
-- Learn: https://docs.relayapp.pro/learn/
-- Developer: https://docs.relayapp.pro/dev-docs/architecture/overview
+- Home: https://relayapp.pro/
+- Learn: https://relayapp.pro/learn/
+- Developer: https://relayapp.pro/dev-docs/architecture/overview
 - GitHub: https://github.com/Mattjhagen/archon-ios
 - App Store: Search "Archon" on the iOS App Store

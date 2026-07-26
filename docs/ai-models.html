@@ -10,20 +10,31 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/docs.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="stylesheet" href="css/chat-widget.css">
 </head>
 <body>
 
 <header class="header">
   <button class="mobile-toggle" aria-label="Menu">☰</button>
-  <a href="../index.html" class="header-logo">
+  <a href="index.html" class="header-logo">
     <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
     Archon Docs
   </a>
   <nav class="header-nav">
-    <a href="../index.html">User Guide</a>
-    <a href="../dev-docs/architecture/overview.html">Developer</a>
-    <a href="../learn/index.html">Learn</a>
-    <a href="https://docs.relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="index.html">User Guide</a>
+    <a href="dev-docs/architecture/overview.html">Developer</a>
+    <a href="ide.html">IDE</a>
+            <a href="index.html">Learn</a>
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
     <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
   </nav>
 </header>
@@ -121,7 +132,11 @@ OpenRouter        Various             varies   varies   varies</code></pre>
   </main>
 </div>
 
-<script src="../js/sidebar.js"></script>
+<script src="js/sidebar.js"></script>
 
+
+<script src="js/pwa.js"></script>
+<script src="js/chat-widget.js"></script>
+<div id="chat-bubble-mount"></div>
 </body>
 </html>

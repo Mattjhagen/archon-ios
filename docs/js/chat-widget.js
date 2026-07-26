@@ -62,7 +62,7 @@
     } else if (msg.includes('credit') || msg.includes('pricing') || msg.includes('cost')) {
       reply = "Credits are consumed per AI request based on the model. GPT-4o costs ~10 credits, Claude ~8, Gemini ~5, and Ollama is free. You can monitor usage in Settings → Usage. If credits run out, Archon auto-switches to available models.";
     } else if (msg.includes('learn') || msg.includes('tutorial') || msg.includes('teach')) {
-      reply = "Check out the Learning Center! We have interactive lessons for HTML, CSS, TypeScript, Python, Swift, and Java — each with live code editors, quizzes, and progress tracking. Go to docs.relayapp.pro/learn/";
+      reply = "Check out the Learning Center! We have interactive lessons for HTML, CSS, TypeScript, Python, Swift, and Java — each with live code editors, quizzes, and progress tracking. Go to relayapp.pro/learn/";
     } else if (msg.includes('swift') || msg.includes('ios')) {
       reply = "Swift is the primary language for iOS development. Archon generates SwiftUI views, Combine pipelines, and async/await code. Check out the Swift lessons in the Learning Center to get started!";
     } else if (msg.includes('help')) {

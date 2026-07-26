@@ -12,6 +12,15 @@
   <link rel="stylesheet" href="css/docs.css">
   <link rel="stylesheet" href="css/ascii-header.css">
   <link rel="stylesheet" href="css/chat-widget.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 </head>
 <body>
 
@@ -27,7 +36,7 @@
     <a href="index.html" class="active">User Guide</a>
     <a href="dev-docs/architecture/overview.html">Developer</a>
     <a href="learn/index.html">Learn</a>
-    <a href="https://docs.relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="ide.html" class="btn btn-primary" style="padding:6px 16px;font-size:13px;">Open IDE</a>
     <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
   
   </nav>
@@ -114,7 +123,8 @@
         <h1>Build apps with AI</h1>
         <p class="subtitle">Describe what you want in chat. Watch Archon build it step by step. Browse the code, preview it live, and ship.</p>
         <div class="hero-actions">
-          <a href="getting-started/first-project.html" class="btn btn-primary">Get started →</a>
+          <a href="ide.html" class="btn btn-primary" style="background:linear-gradient(135deg,#7c5cfc,#a78bfa);box-shadow:0 0 30px rgba(124,92,252,0.4);font-size:16px;padding:14px 32px;">⟁ Launch IDE →</a>
+          <a href="getting-started/first-project.html" class="btn btn-secondary">Get started</a>
           <a href="dev-docs/architecture/overview.html" class="btn btn-secondary">Developer docs</a>
         </div>
       </div>
@@ -122,6 +132,11 @@
 
     <h2>What Archon does</h2>
     <div class="card-grid">
+      <a href="ide.html" class="card" style="border-color:rgba(124,92,252,0.3);background:linear-gradient(135deg,rgba(124,92,252,0.08),rgba(167,139,250,0.04));">
+        <div class="card-icon purple">⟁</div>
+        <div class="card-title">Web IDE</div>
+        <div class="card-desc">Full-featured browser IDE with AI agent, file explorer, live preview, and terminal. Build apps without installing anything.</div>
+      </a>
       <a href="features/ai-builder.html" class="card">
         <div class="card-icon purple">✨</div>
         <div class="card-title">AI Builder</div>
@@ -136,11 +151,6 @@
         <div class="card-icon orange">▶</div>
         <div class="card-title">Live Preview</div>
         <div class="card-desc">See your app running in a WKWebView. Go full screen to test the experience before you share it.</div>
-      </a>
-      <a href="features/projects.html" class="card">
-        <div class="card-icon cyan">📁</div>
-        <div class="card-title">Projects</div>
-        <div class="card-desc">Create, search, and organize projects from your dashboard. Pick up where you left off with full history.</div>
       </a>
     </div>
 
@@ -199,5 +209,7 @@
 <script src="js/chat-widget.js"></script>
 <script src="js/ascii-header.js"></script>
   <script src="js/sidebar.js"></script>
+
+<script src="js/pwa.js"></script>
 </body>
 </html>

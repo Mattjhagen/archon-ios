@@ -11,21 +11,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/docs.css">
   <link rel="stylesheet" href="../../css/ascii-header.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/chat-widget.css">
 </head>
 <body>
 
 <header class="header">
   <button class="mobile-toggle" aria-label="Menu">☰</button>
-  <a href="../index.html" class="header-logo">
+  <a href="../../index.html" class="header-logo">
     <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
     Archon Docs
   </a>
   
 
   <nav class="header-nav">
-<a href="../index.html">User Guide</a>
+<a href="../../index.html">User Guide</a>
     <a href="overview.html" class="active">Developer</a>
-    <a href="https://docs.relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
     <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
   </nav>
 
@@ -63,7 +73,7 @@
     <div class="sidebar-divider"></div>
     <div class="sidebar-group">
       <div class="sidebar-group-title">Reference</div>
-      <div class="sidebar-group-items"><a href="../faq.html" class="sidebar-link">FAQ</a>
+      <div class="sidebar-group-items"><a href="../../faq.html" class="sidebar-link">FAQ</a>
       <a href="../contributing.html" class="sidebar-link">Contributing</a>
     </div>
     </div>
@@ -261,12 +271,16 @@ Archon/
 
 <footer class="footer">
   <span>© 2026 Matt Hagen · MIT License</span>
-  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="../support.html">Support</a></span>
+  <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="../../support.html">Support</a></span>
 </footer>
 
 <script src="../../js/docs.js"></script>
 <script src="../../js/learn.js"></script>
 <script src="../../js/ascii-header.js"></script>
-  <script src="../js/sidebar.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/chat-widget.js"></script>
+<div id="chat-bubble-mount"></div>
 </body>
 </html>

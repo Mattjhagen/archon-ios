@@ -11,6 +11,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/docs.css">
   <link rel="stylesheet" href="../css/ascii-header.css">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+  <link rel="manifest" href="../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../icon-512.png">
+  <link rel="stylesheet" href="../css/chat-widget.css">
 </head>
 <body>
 
@@ -25,8 +35,9 @@
   <nav class="header-nav">
     <a href="../index.html" class="active">User Guide</a>
     <a href="../dev-docs/architecture/overview.html">Developer</a>
-    <a href="learn/index.html">Learn</a>
-    <a href="https://docs.relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="../ide.html">IDE</a>
+            <a href="../index.html">Learn</a>
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
     <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
   
   </nav>
@@ -54,7 +65,7 @@
     <div class="sidebar-divider"></div>
     <div class="sidebar-group">
       <div class="sidebar-group-title">Learn</div>
-      <div class="sidebar-group-items"><a href="../learn/index.html" class="sidebar-link">Overview</a>
+      <div class="sidebar-group-items"><a href="../index.html" class="sidebar-link">Overview</a>
       <a href="../learn/html/01-what-is-html.html" class="sidebar-link lesson-link" data-lesson="html-01">HTML Fundamentals</a>
       <a href="../learn/css/01-what-is-css.html" class="sidebar-link lesson-link" data-lesson="css-01">CSS Fundamentals</a>
       <a href="../learn/typescript/01-what-is-ts.html" class="sidebar-link lesson-link" data-lesson="ts-01">TypeScript Basics</a>
@@ -205,6 +216,10 @@ struct Project {
 <script src="../js/docs.js"></script>
 <script src="../js/learn.js"></script>
 <script src="../js/ascii-header.js"></script>
-  <script src="js/sidebar.js"></script>
+  <script src="../js/sidebar.js"></script>
+
+<script src="../js/pwa.js"></script>
+<script src="../js/chat-widget.js"></script>
+<div id="chat-bubble-mount"></div>
 </body>
 </html>

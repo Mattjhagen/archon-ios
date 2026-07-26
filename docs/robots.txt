@@ -1,5 +1,5 @@
-# robots.txt — docs.relayapp.pro
-# https://docs.relayapp.pro/robots.txt
+# robots.txt — relayapp.pro
+# https://relayapp.pro/robots.txt
 
 User-agent: *
 Allow: /
@@ -9,63 +9,63 @@ Disallow: /dev-docs/faq
 # AI Crawlers — full access
 User-agent: GPTBot
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: ChatGPT-User
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: CCBot
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: anthropic-ai
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: ClaudeBot
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: Google-Extended
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: Bytespider
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: PerplexityBot
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: YouBot
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 # Search Engines
 User-agent: Googlebot
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: Bingbot
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: bingbot
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: Yandex
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 User-agent: DuckDuckBot
 Allow: /
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 # Sitemap
-Sitemap: https://docs.relayapp.pro/sitemap.xml
+Sitemap: https://relayapp.pro/sitemap.xml
 
 # Crawl-delay (optional, respected by Bing/Yandex)
 Crawl-delay: 1
