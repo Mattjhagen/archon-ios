@@ -1,0 +1,46 @@
+# Archon Docs — llms.txt
+
+> Archon is an iOS app that lets you build apps by describing them in chat. AI builds it, you browse the code, preview live, and ship.
+
+## What is Archon?
+- AI-powered iOS app builder
+- Describe your app in chat, AI generates working code
+- Browse and edit generated source code with syntax highlighting
+- Live preview with WKWebView
+- Manage projects, settings, and API configuration
+
+## Key Pages
+- [Home](https://docs.relayapp.pro/) — Overview and introduction
+- [Features: AI Builder](https://docs.relayapp.pro/features/ai-builder) — Streaming chat with task timeline, model selection, retry/cancel
+- [Features: Code Browser](https://docs.relayapp.pro/features/code-browser) — File tree + syntax-highlighted editor
+- [Features: Live Preview](https://docs.relayapp.pro/features/live-preview) — WKWebView rendering for HTML apps
+- [Features: Projects](https://docs.relayapp.pro/features/projects) — Create, search, organize projects
+- [Features: Settings](https://docs.relayapp.pro/features/settings) — Appearance, API keys, account
+
+## Learning Center
+Interactive coding lessons with live editors, quizzes, and gamified progress (XP, badges, streaks).
+- [Learn Hub](https://docs.relayapp.pro/learn/) — All languages and progress dashboard
+- [HTML Fundamentals](https://docs.relayapp.pro/learn/html/01-what-is-html) — 5 lessons: tags, elements, forms, semantic markup
+- [CSS Fundamentals](https://docs.relayapp.pro/learn/css/01-what-is-css) — 5 lessons: selectors, box model, flexbox, grid, responsive
+- [TypeScript Basics](https://docs.relayapp.pro/learn/typescript/01-what-is-ts) — 5 lessons: variables, functions, interfaces, async
+- [Python Basics](https://docs.relayapp.pro/learn/python/01-what-is-python) — 5 lessons: variables, control flow, functions, data structures
+- [Swift for iOS](https://docs.relayapp.pro/learn/swift/01-what-is-swift) — 5 lessons: optionals, structs, closures, SwiftUI
+- [Java Fundamentals](https://docs.relayapp.pro/learn/java/01-what-is-java) — 5 lessons: variables, OOP, collections, streams
+
+## Developer Docs
+Architecture, API reference, and guides for contributing to Archon.
+- [Architecture Overview](https://docs.relayapp.pro/dev-docs/architecture/overview) — MVVM, SwiftUI, async/await, Supabase
+- [API Overview](https://docs.relayapp.pro/dev-docs/api/overview) — APIClientProtocol, auth, error handling
+- [Setup Guide](https://docs.relayapp.pro/dev-docs/guides/setup) — Clone, configure, build with XcodeGen
+
+## Tech Stack
+- SwiftUI with iOS 17+ deployment target
+- async/await for all async operations
+- Supabase Swift SDK for auth and backend
+- XcodeGen for project generation
+- Keychain for secure session storage
+
+## Contact
+- [Support](https://docs.relayapp.pro/support)
+- [FAQ](https://docs.relayapp.pro/faq)
+- [GitHub](https://github.com/Mattjhagen/archon-ios)

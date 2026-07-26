@@ -1,0 +1,61 @@
+# Archon Docs — llms-full.txt
+# Full content summary for AI crawlers
+
+## About Archon
+Archon is an iOS app (SwiftUI, iOS 17+) that lets users build apps by describing them in natural language. An AI agent generates working code in real-time, which users can browse, edit, and preview live. Built with Supabase for backend, async/await for concurrency, and Keychain for secure session storage.
+
+## Screens and Features
+
+### Onboarding
+4-page polished onboarding flow introducing the app. Uses brand colors (#7c5cfc purple accent) with animated page transitions.
+
+### Authentication
+Email + Apple Sign In. Sessions backed by iOS Keychain. Supabase Auth integration with token refresh.
+
+### Dashboard
+Project list/grid view with search, create, delete, pull-to-refresh, and empty states. Shows project name, description, creation date, and preview thumbnail.
+
+### AI Builder
+Streaming chat interface. User describes what they want, AI generates code step by step. Features: task timeline showing progress, retry/cancel, model selection (multiple LLM providers), credit system, conversation history.
+
+### Code Browser
+File tree sidebar + syntax-highlighted code editor. Supports Swift, JavaScript, TypeScript, HTML, CSS, JSON. Based on UIKit UITextView with custom syntax highlighting.
+
+### Live Preview
+WKWebView rendering of generated HTML/CSS/JS apps. Real-time updates as code changes. Supports HTML5, CSS3, and vanilla JavaScript.
+
+### Settings
+Account management, appearance (light/dark/system), API key configuration, about page, open-source licenses.
+
+## Architecture
+MVVM pattern. Views are SwiftUI. ViewModels are ObservableObject with @Published properties. Network layer uses APIClientProtocol with MockAPIClient for development and AuthenticatedAPIClient for production. Supabase handles auth and data persistence.
+
+## Learning Center
+Interactive coding lessons organized by language. Each lesson has:
+- Explanatory content with code examples
+- Live code editor with real-time output
+- Multiple-choice quiz at the end
+- Progress tracking (XP, streaks, badges)
+- Gamification: 9 achievement badges, streak tracking, confetti animations
+
+Languages covered: HTML (5 lessons), CSS (5), TypeScript (5), Python (5), Swift (5), Java (5). Total: 30 interactive lessons.
+
+## Developer Documentation
+- Architecture overview with MVVM diagrams
+- API reference for all Codable models
+- Navigation flow documentation
+- Design system tokens and guidelines
+- Setup guide with XcodeGen
+- Testing with MockAPIClient
+- TestFlight deployment guide
+- Contributing guidelines
+
+## Design System
+Dark-mode-first with automatic light mode. Colors: #06060a (void), #0c0c14 (secondary), #7c5cfc (accent purple). Typography: Inter for body, JetBrains Mono for code. 44pt minimum touch targets. Dynamic Type support. VoiceOver labels on all interactive elements.
+
+## Links
+- Home: https://docs.relayapp.pro/
+- Learn: https://docs.relayapp.pro/learn/
+- Developer: https://docs.relayapp.pro/dev-docs/architecture/overview
+- GitHub: https://github.com/Mattjhagen/archon-ios
+- App Store: Search "Archon" on the iOS App Store

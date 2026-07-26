@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Status — Archon</title>
+  <meta name="description" content="Real-time status and system health for Archon services.">
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/docs.css">
+  <link rel="stylesheet" href="css/status.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  <nav class="header-nav">
+    <a href="index.html">User Guide</a>
+    <a href="dev-docs/architecture/overview.html">Developer</a>
+    <a href="learn/index.html">Learn</a>
+    <a href="https://docs.relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+</header>
+
+<div class="status-page">
+  <div class="status-scanline"></div>
+  <div class="status-stars" id="stars"></div>
+
+  <div class="status-header">
+    <h1>Archon System Status</h1>
+    <div class="status-subtitle">R510 ORBITAL AI COMMAND CENTER — WEB EDITION</div>
+    <div class="status-online">ALL SYSTEMS OPERATIONAL</div>
+  </div>
+
+  <div class="status-grid">
+
+    <!-- ASCII Header -->
+    <div class="status-ascii">
+        .:oOo:.
+    .oOOOOOOOo.
+   oOOO@@@OOOOOo
+   oOO@@@@@OOOoo
+   oOOOO@@OOOOOo
+    `oOOOOOOo'
+      `:oOo:'
+
+   ARCHON — iOS AI App Builder
+   NODE ONLINE · UPLINK ESTABLISHED</div>
+
+    <!-- API Services -->
+    <div class="status-card">
+      <div class="status-card-title"><span class="card-icon">◆</span> API Services</div>
+      <div class="service-row">
+        <span class="service-dot online"></span>
+        <span class="service-name">Fly.io Backend</span>
+        <span class="service-status">Operational</span>
+      </div>
+      <div class="service-row">
+        <span class="service-dot online"></span>
+        <span class="service-name">Supabase Auth</span>
+        <span class="service-status">Operational</span>
+      </div>
+      <div class="service-row">
+        <span class="service-dot online"></span>
+        <span class="service-name">AI Chat API</span>
+        <span class="service-status">Operational</span>
+      </div>
+      <div class="service-row">
+        <span class="service-dot online"></span>
+        <span class="service-name">Code Generation</span>
+        <span class="service-status">Operational</span>
+      </div>
+    </div>
+
+    <!-- AI Models -->
+    <div class="status-card">
+      <div class="status-card-title"><span class="card-icon">◎</span> AI Models</div>
+      <div class="service-row">
+        <span class="service-dot online"></span>
+        <span class="service-name">GPT-4o</span>
+        <span class="service-status">Available</span>
+      </div>
+      <div class="service-row">
+        <span class="service-dot online"></span>
+        <span class="service-name">Claude 3.5 Sonnet</span>
+        <span class="service-status">Available</span>
+      </div>
+      <div class="service-row">
+        <span class="service-dot online"></span>
+        <span class="service-name">Gemini 1.5 Pro</span>
+        <span class="service-status">Available</span>
+      </div>
+      <div class="service-row">
+        <span class="service-dot idle"></span>
+        <span class="service-name">Ollama (Local)</span>
+        <span class="service-status">Standby</span>
+      </div>
+    </div>
+
+    <!-- Infrastructure -->
+    <div class="status-card">
+      <div class="status-card-title"><span class="card-icon">▲</span> Infrastructure</div>
+      <div class="metric-row">
+        <span class="metric-label">Backend Region</span>
+        <span class="metric-value">iad (Virginia)</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">CDN</span>
+        <span class="metric-value online">Cloudflare — Online</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">DNS</span>
+        <span class="metric-value online">Healthy</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">SSL</span>
+        <span class="metric-value online">Valid — 89 days</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Uptime (30d)</span>
+        <span class="metric-value online">99.98%</span>
+      </div>
+    </div>
+
+    <!-- Server Metrics -->
+    <div class="status-card">
+      <div class="status-card-title"><span class="card-icon">▦</span> Server Metrics</div>
+      <div class="metric-row">
+        <span class="metric-label">CPU</span>
+        <span class="metric-value">12%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill green" style="width:12%"></div></div>
+      <div class="metric-row" style="margin-top:8px">
+        <span class="metric-label">Memory</span>
+        <span class="metric-value">34%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill purple" style="width:34%"></div></div>
+      <div class="metric-row" style="margin-top:8px">
+        <span class="metric-label">Disk</span>
+        <span class="metric-value">28%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill cyan" style="width:28%"></div></div>
+    </div>
+
+    <!-- Response Times -->
+    <div class="status-card">
+      <div class="status-card-title"><span class="card-icon">◇</span> Response Times</div>
+      <div class="metric-row">
+        <span class="metric-label">API (p50)</span>
+        <span class="metric-value online">42ms</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">API (p99)</span>
+        <span class="metric-value online">180ms</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">AI Chat (p50)</span>
+        <span class="metric-value">1.2s</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Code Gen (avg)</span>
+        <span class="metric-value">3.8s</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">Error Rate</span>
+        <span class="metric-value online">0.02%</span>
+      </div>
+    </div>
+
+    <!-- Uptime History -->
+    <div class="status-card" style="grid-column: 1 / -1;">
+      <div class="status-card-title"><span class="card-icon">─</span> Uptime — Last 30 Days</div>
+      <div class="uptime-bar" id="uptime-bar"></div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:#4a4a6a;">
+        <span>30 days ago</span>
+        <span>Today</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Generate stars
+(function() {
+  var container = document.getElementById('stars');
+  for (var i = 0; i < 60; i++) {
+    var star = document.createElement('div');
+    star.className = 'status-star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.animationDelay = Math.random() * 3 + 's';
+    star.style.animationDuration = (2 + Math.random() * 3) + 's';
+    container.appendChild(star);
+  }
+})();
+
+// Generate uptime bars
+(function() {
+  var bar = document.getElementById('uptime-bar');
+  for (var i = 0; i < 30; i++) {
+    var day = document.createElement('div');
+    day.className = 'uptime-day';
+    var rand = Math.random();
+    if (rand > 0.03) day.classList.add('up');
+    else if (rand > 0.01) day.classList.add('degraded');
+    else day.classList.add('down');
+    day.title = 'Day ' + (30 - i) + ' ago';
+    bar.appendChild(day);
+  }
+})();
+</script>
+
+</body>
+</html>

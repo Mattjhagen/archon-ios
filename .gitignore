@@ -52,3 +52,4 @@ playground.xcworkspace
 
 # CocoaPods
 Pods/
+.wrangler/
