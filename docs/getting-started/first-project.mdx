@@ -1,0 +1,96 @@
+---
+title: "Build Your First App"
+description: "Describe an app idea, watch Archon build it, preview it live, and browse the generated code."
+---
+
+*Estimated time: 5 minutes*
+
+By the end of this guide, you will have a working app built by Archon's AI agent, previewed it in the live viewer, and browsed the generated source code.
+
+<Frame>
+  <img src="/images/first-project-hero.png" alt="Archon Builder tab — chat input on the left, task timeline on the right" width="1200" height="800" />
+</Frame>
+
+## What you'll build
+
+You will ask Archon to build a simple app and walk through the full loop:
+
+1. Describe what you want in the Builder chat
+2. Watch the AI agent build it step by step
+3. Preview the result in a live WKWebView
+4. Browse and edit the generated code
+
+## Before you start
+
+You need:
+- Archon installed on your iPhone ([Install guide](/getting-started/install))
+- A signed-in account ([Create an account](/getting-started/create-account))
+
+## Build the first version
+
+<Steps>
+  <Step title="Open the Builder tab">
+    Tap the **Builder** tab in the bottom navigation. This is where all AI builds happen.
+  </Step>
+  <Step title="Choose a model">
+    Archon auto-selects a model from your configured providers. You can change it by tapping the model selector at the top of the chat. Supported providers include OpenAI, Anthropic, Google Gemini, and OpenRouter.
+  </Step>
+  <Step title="Describe what you want">
+    Type a clear description of the app you want to build. Be specific about what it should do and how it should look.
+
+    **Good prompts:**
+    - "Build a habit tracker with a weekly view, streaks, and a dark theme"
+    - "Create a simple recipe app where I can add ingredients and see steps"
+    - "Build a landing page for a coffee shop with a menu and contact form"
+
+    **Less effective:**
+    - "Make an app" (too vague)
+    - "Copy Instagram" (too broad for a first build)
+  </Step>
+  <Step title="Watch the agent build">
+    Archon sends your request to the AI provider and creates a task. You'll see:
+    - A **task timeline** showing each step the agent takes
+    - A **streaming response** as the agent generates code
+    - A **stop button** if you want to cancel mid-build
+
+    If you send another message while a build is running, it queues and runs next.
+  </Step>
+  <Step title="Preview the result">
+    Once the build finishes, tap **Preview** to see your app in a live WKWebView. Swipe up for full-screen mode.
+
+    If something isn't right, describe the change in chat and Archon will iterate.
+  </Step>
+  <Step title="Browse the code">
+    Switch to the **Code** tab to explore the generated files. The file tree shows every file the agent created. Tap a file to see its syntax-highlighted source code.
+
+    Supported languages: Swift, JavaScript, TypeScript, HTML, CSS, JSON.
+  </Step>
+</Steps>
+
+## What just happened
+
+Behind the scenes, Archon:
+
+1. Sent your prompt and conversation history to the AI provider
+2. Created a persistent job that survives if the app goes to the background
+3. Received the generated files and saved them to your project
+4. Stored your conversation in Supabase so you can return to it later
+
+If the AI provider fails or runs out of credits, Archon automatically hands off to another configured model and continues the build.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Learn about the AI Builder" icon="wand-magic-sparkles" href="/features/ai-builder">
+    Model selection, streaming, task timeline, and follow-up suggestions.
+  </Card>
+  <Card title="Explore the Code Browser" icon="code" href="/features/code-browser">
+    Navigate the file tree, read syntax-highlighted source, and edit files.
+  </Card>
+  <Card title="Try Live Preview" icon="play" href="/features/live-preview">
+    See your app running in a WKWebView and go full screen.
+  </Card>
+  <Card title="Manage your projects" icon="folder-open" href="/features/projects">
+    Create, search, and organize projects from the Dashboard.
+  </Card>
+</CardGroup>

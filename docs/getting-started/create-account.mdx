@@ -1,0 +1,61 @@
+---
+title: "Create Your Account"
+description: "Sign in with email or Apple Sign In to get started."
+---
+
+Archon uses Supabase for authentication. Your session is stored securely in the iOS Keychain, so you stay signed in across app launches.
+
+## Sign up with email
+
+<Steps>
+  <Step title="Tap Sign Up">
+    On the login screen, tap **Sign Up** to create a new account.
+  </Step>
+  <Step title="Enter your email and password">
+    Provide a valid email address and choose a secure password.
+  </Step>
+  <Step title="Verify your email">
+    Check your inbox for a verification email from Supabase. Tap the link to confirm your account.
+  </Step>
+  <Step title="You're in">
+    Archon will take you to the onboarding flow, then to your project dashboard.
+  </Step>
+</Steps>
+
+## Sign in with Apple
+
+<Steps>
+  <Step title="Tap Sign in with Apple">
+    On the login screen, tap the **Sign in with Apple** button.
+  </Step>
+  <Step title="Confirm with Face ID or Touch ID">
+    Authenticate using your device's biometric or passcode.
+  </Step>
+  <Step title="Choose your email visibility">
+    Apple will ask whether to share your real email or use a private relay address. Either works with Archon.
+  </Step>
+  <Step title="You're in">
+    Archon completes authentication and takes you to your dashboard.
+  </Step>
+</Steps>
+
+<Note>
+Sign in with Apple is the recommended option. It requires no password management and uses Apple's secure authentication flow.
+</Note>
+
+## Session management
+
+- Sessions are stored in the **iOS Keychain** and persist across app launches.
+- If your session expires, Archon will prompt you to sign in again.
+- You can sign out from **Settings → Account → Sign Out**.
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Build your first app" icon="wand-magic-sparkles" href="/getting-started/first-project">
+    Describe what you want and watch Archon build it.
+  </Card>
+  <Card title="Learn about the Dashboard" icon="layout-dashboard" href="/features/projects">
+    Create, search, and manage your projects.
+  </Card>
+</CardGroup>

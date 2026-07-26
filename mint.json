@@ -1,0 +1,154 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Archon",
+  "logo": {
+    "dark": "/images/logo-dark.svg",
+    "light": "/images/logo-light.svg"
+  },
+  "favicon": "/images/favicon.ico",
+  "colors": {
+    "primary": "#6C5CE7",
+    "light": "#A29BFE",
+    "dark": "#5A4BD1",
+    "anchors": {
+      "from": "#6C5CE7",
+      "to": "#00CEC9"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/Mattjhagen/archon-ios"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Download on the App Store",
+    "url": "https://apps.apple.com/app/archon/id000000000"
+  },
+  "tabs": [
+    {
+      "name": "User Guide",
+      "url": "/"
+    },
+    {
+      "name": "Developer Docs",
+      "url": "/dev-docs"
+    }
+  ],
+  "sidebar": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "getting-started/install",
+        "getting-started/create-account",
+        "getting-started/first-project"
+      ]
+    },
+    {
+      "group": "Features",
+      "pages": [
+        "features/ai-builder",
+        "features/code-browser",
+        "features/live-preview",
+        "features/projects",
+        "features/settings"
+      ]
+    },
+    {
+      "group": "Help",
+      "pages": [
+        "faq",
+        "privacy",
+        "changelog",
+        "support"
+      ]
+    }
+  ],
+  "tabs": [
+    {
+      "name": "User Guide",
+      "url": "/",
+      "icon": "book-open",
+      "pages": [
+        {
+          "group": "Getting Started",
+          "pages": [
+            "getting-started/install",
+            "getting-started/create-account",
+            "getting-started/first-project"
+          ]
+        },
+        {
+          "group": "Features",
+          "pages": [
+            "features/ai-builder",
+            "features/code-browser",
+            "features/live-preview",
+            "features/projects",
+            "features/settings"
+          ]
+        },
+        {
+          "group": "Help",
+          "pages": [
+            "faq",
+            "privacy",
+            "changelog",
+            "support"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Developer Docs",
+      "url": "/dev-docs",
+      "icon": "code",
+      "pages": [
+        {
+          "group": "Architecture",
+          "pages": [
+            "dev-docs/architecture/overview",
+            "dev-docs/architecture/navigation",
+            "dev-docs/architecture/design-system"
+          ]
+        },
+        {
+          "group": "API Reference",
+          "pages": [
+            "dev-docs/api/overview",
+            "dev-docs/api/projects",
+            "dev-docs/api/ai-chat",
+            "dev-docs/api/tasks",
+            "dev-docs/api/models"
+          ]
+        },
+        {
+          "group": "Guides",
+          "pages": [
+            "dev-docs/guides/setup",
+            "dev-docs/guides/testing",
+            "dev-docs/guides/adding-features",
+            "dev-docs/guides/testflight"
+          ]
+        },
+        {
+          "group": "Reference",
+          "pages": [
+            "dev-docs/faq",
+            "dev-docs/contributing"
+          ]
+        }
+      ]
+    }
+  ],
+  "footerSocials": {
+    "github": "https://github.com/Mattjhagen/archon-ios",
+    "twitter": "https://twitter.com/archon_app"
+  },
+  "analytics": {
+    "mixpanel": {
+      "project": "YOUR_MIXPANEL_TOKEN"
+    }
+  },
+  "modeSwitch": true
+}

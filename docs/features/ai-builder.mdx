@@ -1,0 +1,86 @@
+---
+title: "AI Builder"
+description: "The chat interface where you describe apps and watch Archon build them in real time."
+---
+
+The AI Builder is the core of Archon. You describe what you want in plain language, and an AI agent builds it step by step with visible progress.
+
+<Frame>
+  <img src="/images/ai-builder.png" alt="AI Builder — chat messages, task timeline, model selector" width="1200" height="800" />
+</Frame>
+
+## How it works
+
+<Steps>
+  <Step title="Pick a provider and model">
+    Tap the model selector at the top of the Builder tab. Archon shows only configured providers and their available models. Your selection persists across sessions.
+
+    Supported providers: **OpenAI**, **Anthropic**, **Google Gemini**, **OpenRouter**
+  </Step>
+  <Step title="Type your prompt">
+    Describe the app you want in the chat input. Be as specific as you like about functionality, design, and behavior.
+
+    Archon sends your message along with conversation history and a system prompt that tells the AI about Archon's capabilities.
+  </Step>
+  <Step title="Watch the build unfold">
+    The AI responds with a streaming message. A **task timeline** shows each step the agent takes. You can:
+    - **Cancel** the current build at any time
+    - **Retry** if the result isn't what you expected
+    - **Queue messages** while a build is running
+  </Step>
+  <Step title="Iterate with follow-up prompts">
+    After a build completes, Archon suggests follow-up prompts based on what was just built. Tap one to continue refining, or type your own.
+  </Step>
+</Steps>
+
+## Streaming and background builds
+
+Archon uses **persistent jobs** for AI builds. This means:
+
+- Builds continue even if you switch apps or lock your phone
+- When you return, Archon reconnects to the job and shows the result
+- If the job fails, Archon retries with a different model (credit-aware handoff)
+
+## Model fallback
+
+If the selected model fails due to quota, rate limits, or server errors, Archon automatically tries the next available model. You'll see a system message in chat when a handoff occurs.
+
+The fallback order prioritizes models from the same provider, then tries other configured providers.
+
+## Message queue
+
+While a build is running, any new messages you send are queued. They execute in order after the current build completes. You can cancel queued messages before they run.
+
+## Follow-up suggestions
+
+After each build, Archon generates three context-aware suggestions based on what was just built. These rotate from a pool of common refinements:
+
+- Design changes (colors, typography, layout)
+- Feature additions (new pages, forms, navigation)
+- Content improvements (copy, tone, structure)
+
+## Conversation memory
+
+Archon stores your conversation history in Supabase and uses **cross-session memory**. When you start a new conversation, Archon includes a bounded summary of your recent conversations so the AI maintains context about your projects and preferences.
+
+## Keyboard shortcuts
+
+- **Return** — Send message
+- **Shift + Return** — New line in message
+
+## Related pages
+
+<CardGroup cols={2}>
+  <Card title="Code Browser" icon="code" href="/features/code-browser">
+    Browse and edit the generated source code.
+  </Card>
+  <Card title="Live Preview" icon="play" href="/features/live-preview">
+    See your app running in a live preview.
+  </Card>
+  <Card title="Projects" icon="folder-open" href="/features/projects">
+    Manage your project list.
+  </Card>
+  <Card title="Developer: API reference" icon="wrench" href="/dev-docs/api/ai-chat">
+    Technical details on the AI chat API and persistent jobs.
+  </Card>
+</CardGroup>
