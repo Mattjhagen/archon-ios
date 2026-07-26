@@ -164,6 +164,28 @@
       <button class="ai-suggestion" data-prompt="Create a habit tracker with streaks and analytics">Habit Tracker</button>
       <button class="ai-suggestion" data-prompt="Build a recipe app with favorites and categories">Recipe App</button>
     </div>
+    <!-- CONNECTORS -->
+    <div class="ide-connectors" id="connectors">
+      <div class="ide-connectors-title">Integrations</div>
+      <div class="ide-connector-list">
+        <button class="connector-btn" data-connector="github" data-tooltip="Connect GitHub — clone repos, commit, push, open PRs">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </button>
+        <button class="connector-btn" data-connector="netlify" data-tooltip="Connect Netlify — deploy sites, manage domains, forms">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16.934 8.519a1.044 1.044 0 01.303.202l2.381-1.119-2.38-3.784a1.04 1.04 0 01-.354.062c-.563 0-1.02.466-1.02 1.04 0 .15.034.293.093.42l1.977 3.181zm-4.437-4.5L9.07 8.353a1.04 1.04 0 01.134.26l-2.076 3.334-3.596-1.68a1.04 1.04 0 01.134-.104l3.56-5.688a1.04 1.04 0 011.078-.414zm-4.53 7.963l-1.066 1.71a1.04 1.04 0 01-.057.302l2.38 3.784-2.38 1.12a1.04 1.04 0 01-.304-.203L5.36 14.85c-.06-.127-.093-.27-.093-.42 0-.574.457-1.04 1.02-1.04.102 0 .2.015.293.043l2.22 1.04zm1.68 1.37l-1.98-3.18a1.04 1.04 0 01-.092-.42c0-.574.457-1.04 1.02-1.04.128 0 .25.024.364.068l2.38 3.784-2.38 1.119a1.04 1.04 0 01-.314-.33zm5.09 5.16l2.38-1.12-2.38-3.784a1.04 1.04 0 01-.304.203l-3.56 5.688a1.04 1.04 0 01-1.078.414l-3.56-5.688a1.04 1.04 0 01-.134.104l3.596 1.68 2.076-3.334a1.04 1.04 0 01.057-.302l2.38 3.784z"/></svg>
+          Netlify
+        </button>
+        <button class="connector-btn" data-connector="supabase" data-tooltip="Connect Supabase — database, auth, edge functions, storage">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.7 21.8c-.5.6-1.5.1-1.5-.6V13h8.7c.9 0 1.4 1 .8 1.7l-8 7.1zM10.3 2.2c.5-.6 1.5-.1 1.5.6V11H3.1c-.9 0-1.4-1-.8-1.7l8-7.1z"/></svg>
+          Supabase
+        </button>
+        <button class="connector-btn" data-connector="vercel" data-tooltip="Connect Vercel — deploy Next.js, static sites, serverless">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 1L24 22H0L12 1z"/></svg>
+          Vercel
+        </button>
+      </div>
+    </div>
     <div class="ide-ai-messages" id="ai-messages"></div>
     <div class="ide-ai-input-area">
       <textarea class="ide-ai-input" id="ai-input" placeholder="Describe what you want to build..." rows="1"></textarea>

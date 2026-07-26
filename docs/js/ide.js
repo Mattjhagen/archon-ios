@@ -446,6 +446,129 @@
     setTimeout(function() {
       appendAiMsg('system', 'AI Agent connected. Ask me to build something!');
     }, 500);
+
+    // ===== CONNECTORS =====
+    var connectors = {
+      github: { name: 'GitHub', connected: false, token: '' },
+      netlify: { name: 'Netlify', connected: false, token: '' },
+      supabase: { name: 'Supabase', connected: false, url: '', key: '' },
+      vercel: { name: 'Vercel', connected: false, token: '' }
+    };
+
+    var connectorBtns = document.querySelectorAll('.connector-btn');
+    connectorBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = btn.dataset.connector;
+        showConnectorModal(id);
+      });
+    });
+
+    function showConnectorModal(connectorId) {
+      var c = connectors[connectorId];
+      var overlay = document.getElementById('modal-overlay');
+      var title = document.getElementById('modal-title');
+      var body = document.getElementById('modal-body');
+      var footer = document.getElementById('modal-footer');
+
+      title.textContent = 'Connect ' + c.name;
+      body.className = 'connector-modal-body';
+
+      var fields = '';
+      if (connectorId === 'github') {
+        fields = '<div class="connector-field"><label>Personal Access Token</label><input type="password" id="connector-token" placeholder="ghp_xxxxxxxxxxxx" value="' + (c.token || '') + '"><div class="hint">Generate at github.com → Settings → Developer settings → Personal access tokens</div></div>';
+      } else if (connectorId === 'netlify') {
+        fields = '<div class="connector-field"><label>Personal Access Token</label><input type="password" id="connector-token" placeholder="nfp_xxxxxxxxxxxx" value="' + (c.token || '') + '"><div class="hint">Generate at app.netlify.com → User settings → Applications → Personal access tokens</div></div>';
+      } else if (connectorId === 'supabase') {
+        fields = '<div class="connector-field"><label>Project URL</label><input type="text" id="connector-url" placeholder="https://xxxxx.supabase.co" value="' + (c.url || '') + '"></div><div class="connector-field"><label>Anon Key</label><input type="password" id="connector-key" placeholder="eyJhbGciOi..." value="' + (c.key || '') + '"><div class="hint">Find in Supabase dashboard → Project → Settings → API</div></div>';
+      } else if (connectorId === 'vercel') {
+        fields = '<div class="connector-field"><label>Access Token</label><input type="password" id="connector-token" placeholder="xxxxxxxxxxxxxxxx" value="' + (c.token || '') + '"><div class="hint">Generate at vercel.com/account/tokens</div></div>';
+      }
+
+      var statusHtml = c.connected ? '<div class="connector-status">✓ Connected to ' + c.name + '</div>' : '';
+
+      body.innerHTML = '<div class="connector-modal">' + fields + statusHtml + '</div>';
+
+      footer.innerHTML = '<button class="btn-cancel" id="modal-cancel">Cancel</button>' +
+        (c.connected ? '<button class="btn-confirm" id="connector-disconnect" style="background:var(--ide-red);border-color:var(--ide-red);">Disconnect</button>' : '') +
+        '<button class="btn-confirm" id="connector-save">' + (c.connected ? 'Update' : 'Connect') + '</button>';
+
+      overlay.style.display = 'flex';
+
+      document.getElementById('modal-cancel').onclick = function() { overlay.style.display = 'none'; };
+      document.getElementById('modal-close').onclick = function() { overlay.style.display = 'none'; };
+
+      var saveBtn = document.getElementById('connector-save');
+      if (saveBtn) {
+        saveBtn.onclick = function() {
+          if (connectorId === 'supabase') {
+            c.url = (document.getElementById('connector-url') || {}).value || '';
+            c.key = (document.getElementById('connector-key') || {}).value || '';
+            c.connected = !!(c.url && c.key);
+          } else {
+            c.token = (document.getElementById('connector-token') || {}).value || '';
+            c.connected = !!c.token;
+          }
+
+          var btn = document.querySelector('.connector-btn[data-connector="' + connectorId + '"]');
+          if (btn) {
+            if (c.connected) btn.classList.add('connected');
+            else btn.classList.remove('connected');
+          }
+
+          overlay.style.display = 'none';
+          appendTerminal('success', c.name + (c.connected ? ' connected' : ' disconnected'));
+
+          if (connectorId === 'github' && c.connected) {
+            appendTerminal('output', '  Repository access: clone, commit, push, pull requests');
+          } else if (connectorId === 'netlify' && c.connected) {
+            appendTerminal('output', '  Deploy sites, manage domains, view build logs');
+          } else if (connectorId === 'supabase' && c.connected) {
+            appendTerminal('output', '  Database, auth, edge functions, storage');
+          } else if (connectorId === 'vercel' && c.connected) {
+            appendTerminal('output', '  Deploy Next.js, static sites, serverless functions');
+          }
+        };
+      }
+
+      var disconnectBtn = document.getElementById('connector-disconnect');
+      if (disconnectBtn) {
+        disconnectBtn.onclick = function() {
+          c.connected = false;
+          c.token = '';
+          c.url = '';
+          c.key = '';
+          var btn = document.querySelector('.connector-btn[data-connector="' + connectorId + '"]');
+          if (btn) btn.classList.remove('connected');
+          overlay.style.display = 'none';
+          appendTerminal('output', c.name + ' disconnected');
+        };
+      }
+    }
+
+    // Load saved connectors from localStorage
+    try {
+      var saved = localStorage.getItem('archon-connectors');
+      if (saved) {
+        var parsed = JSON.parse(saved);
+        Object.keys(parsed).forEach(function(k) {
+          if (connectors[k]) {
+            connectors[k].connected = parsed[k].connected || false;
+            connectors[k].token = parsed[k].token || '';
+            connectors[k].url = parsed[k].url || '';
+            connectors[k].key = parsed[k].key || '';
+            if (connectors[k].connected) {
+              var btn = document.querySelector('.connector-btn[data-connector="' + k + '"]');
+              if (btn) btn.classList.add('connected');
+            }
+          }
+        });
+      }
+    } catch(e) {}
+
+    // Save connectors on change
+    window.addEventListener('beforeunload', function() {
+      try { localStorage.setItem('archon-connectors', JSON.stringify(connectors)); } catch(e) {}
+    });
   });
 
 })();

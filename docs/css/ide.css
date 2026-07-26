@@ -892,6 +892,118 @@ html, body {
   background: rgba(124, 92, 252, 0.06);
 }
 
+/* ========= CONNECTORS ========= */
+.ide-connectors {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ide-border);
+}
+.ide-connectors-title {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ide-text-muted);
+  margin-bottom: 8px;
+}
+.ide-connector-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.connector-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--ide-font);
+  color: var(--ide-text-dim);
+  background: var(--ide-sidebar);
+  border: 1px solid var(--ide-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.connector-btn:hover {
+  border-color: var(--ide-accent);
+  color: var(--ide-text);
+  background: rgba(124, 92, 252, 0.08);
+}
+.connector-btn.connected {
+  border-color: var(--ide-green);
+  color: var(--ide-green);
+  background: rgba(52, 211, 153, 0.08);
+}
+.connector-btn.connected::after {
+  content: '✓';
+  font-size: 10px;
+  margin-left: 2px;
+}
+.connector-btn svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.connector-btn:hover svg {
+  opacity: 1;
+}
+
+/* ========= CONNECTOR MODAL ========= */
+.connector-modal {
+  padding: 0;
+}
+.connector-modal-body {
+  padding: 20px;
+}
+.connector-field {
+  margin-bottom: 14px;
+}
+.connector-field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ide-text-dim);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.connector-field input, .connector-field select {
+  width: 100%;
+  background: var(--ide-sidebar);
+  border: 1px solid var(--ide-border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-family: var(--ide-mono);
+  color: var(--ide-text);
+  outline: none;
+}
+.connector-field input:focus, .connector-field select:focus {
+  border-color: var(--ide-accent);
+}
+.connector-field .hint {
+  font-size: 10px;
+  color: var(--ide-text-muted);
+  margin-top: 4px;
+}
+.connector-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background: rgba(52, 211, 153, 0.06);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--ide-green);
+  margin-top: 12px;
+}
+.connector-status.error {
+  background: rgba(248, 113, 113, 0.06);
+  border-color: rgba(248, 113, 113, 0.2);
+  color: var(--ide-red);
+}
+
 /* ========= MOBILE ========= */
 @media (max-width: 900px) {
   .ide-explorer { display: none; }
