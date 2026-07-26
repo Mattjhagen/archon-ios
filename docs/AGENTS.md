@@ -2,6 +2,27 @@
 
 ## Recent Changes
 
+### v2.2 — Collapsible Submenus, Bug Fixes, Cloudflare Pages (July 2026)
+
+#### Bug Fixes
+- **Gamification JS rewrite**: Added Java to LANGUAGES/LESSON_IDS, removed broken `export` keyword, fixed quiz XP race condition (dataset.answered check vs delegated handler), added try/catch around all localStorage/JSON.parse, fixed toast stacking overlap, reset sessionLessons per page load
+- **Java simulator rewrite**: Handles string concatenation (`"text" + var`), `final` keyword, `char` literals, variable replacement in expressions
+- **Sidebar links**: Added `lesson-link` class to all 31 active sidebar links so progress saves correctly
+- **Hero background**: Added `position: relative` to `.main` so `.learn-hero-bg` renders properly
+- **Nav links**: Added `Learn` link to header nav on all pages, removed 31 duplicate Learn links
+
+#### Collapsible Sidebar Submenus
+- New `js/sidebar.js` — Toggle groups open/closed with ▾ chevron, state saved to localStorage
+- CSS: `.sidebar-group.collapsed .sidebar-group-items { display: none }` with smooth transitions
+- All sidebar links wrapped in `.sidebar-group-items` divs across 56 HTML files
+
+#### Cloudflare Pages Deployment
+- Project: `archon-docs` at https://archon-docs.pages.dev
+- Custom domain: `docs.relayapp.pro` (set up via dashboard)
+- Deploy: `CLOUDFLARE_API_TOKEN=... npx wrangler pages deploy docs --project-name=archon-docs --commit-dirty=true`
+- Build output dir: `docs` (no build step, pure static)
+- `_headers` and `_redirects` files configured for caching and security
+
 ### v2.0 — Gamified Learning Platform (July 2026)
 
 #### New: Java Fundamentals Module
@@ -83,6 +104,7 @@ docs/
 │   ├── docs.js                     # Core interactions (accordion, tabs, sidebar)
 │   ├── learn.js                    # Live editors, quizzes, progress
 │   ├── learn-gamification.js       # XP, badges, streaks, confetti
+│   ├── sidebar.js                  # Collapsible submenu toggles
 │   └── ascii-header.js             # ASCII header animation engine
 ├── learn/
 │   ├── index.html                  # Learn hub with stats + language cards
@@ -97,6 +119,6 @@ docs/
 └── [root pages] (6 pages)
 ```
 
-**Total lesson count**: 30 lessons across 6 languages (5 per language)
-**Total page count**: ~55 HTML pages
-**Deployment**: Served via Cloudflare Pages at `docs.relayapp.pro`
+**Total lesson count**: 35 lessons across 7 languages (5 per language)
+**Total page count**: ~56 HTML pages
+**Deployment**: Cloudflare Pages at `docs.relayapp.pro` (project: `archon-docs`)
