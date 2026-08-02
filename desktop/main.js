@@ -1,20 +1,48 @@
 const { app, BrowserWindow, shell, Menu, nativeTheme } = require('electron');
+const fs = require('fs');
 const path = require('path');
 
-const IDE_URL = 'https://ide.relayapp.pro';
+const IDE_URL = 'https://app.relayapp.pro';
 const HOME_URL = 'https://relayapp.pro';
+const DEFAULT_WINDOW_BOUNDS = { width: 1440, height: 920 };
 
 let mainWindow;
 
+function windowStatePath() {
+  return path.join(app.getPath('userData'), 'window-state.json');
+}
+
+function loadWindowState() {
+  try {
+    const saved = JSON.parse(fs.readFileSync(windowStatePath(), 'utf8'));
+    if (Number.isInteger(saved.width) && Number.isInteger(saved.height)) return saved;
+  } catch {
+    // A first launch, or an interrupted write, should simply use the default workspace size.
+  }
+  return DEFAULT_WINDOW_BOUNDS;
+}
+
+function saveWindowState() {
+  if (!mainWindow) return;
+  const bounds = mainWindow.getBounds();
+  try {
+    fs.writeFileSync(windowStatePath(), JSON.stringify({ ...bounds, isMaximized: mainWindow.isMaximized() }));
+  } catch {
+    // Closing the app should not be blocked if the user-data directory is unavailable.
+  }
+}
+
 function createWindow() {
+  const state = loadWindowState();
+  const { isMaximized, ...windowBounds } = state;
   mainWindow = new BrowserWindow({
-    width: 1400,
-    height: 900,
+    ...windowBounds,
     minWidth: 900,
     minHeight: 600,
     title: 'Archon IDE',
-    backgroundColor: '#0a0a12',
-    titleBarStyle: 'hiddenInset',
+    backgroundColor: '#06060a',
+    titleBarStyle: process.platform === 'darwin' ? 'hiddenInset' : 'hidden',
+    ...(process.platform === 'darwin' ? {} : { titleBarOverlay: { color: '#06060a', symbolColor: '#d7d5df', height: 36 } }),
     trafficLightPosition: { x: 16, y: 16 },
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -29,6 +57,7 @@ function createWindow() {
   mainWindow.loadURL(IDE_URL);
 
   mainWindow.once('ready-to-show', () => {
+    if (isMaximized) mainWindow.maximize();
     mainWindow.show();
   });
 
@@ -37,6 +66,7 @@ function createWindow() {
     return { action: 'deny' };
   });
 
+  mainWindow.on('close', saveWindowState);
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -64,6 +94,15 @@ function buildMenu() {
       ]
     },
     {
+      label: 'Workspace',
+      submenu: [
+        { label: 'Archon Home', accelerator: 'CmdOrCtrl+Shift+H', click: () => mainWindow?.loadURL(IDE_URL) },
+        { type: 'separator' },
+        { role: 'reload', label: 'Reload Workspace' },
+        { role: 'forceReload', label: 'Reload Without Cache' }
+      ]
+    },
+    {
       label: 'Edit',
       submenu: [
         { role: 'undo', label: 'Undo' },
@@ -78,8 +117,6 @@ function buildMenu() {
     {
       label: 'View',
       submenu: [
-        { role: 'reload', label: 'Reload' },
-        { role: 'forceReload', label: 'Force Reload' },
         { role: 'toggleDevTools', label: 'Toggle Developer Tools' },
         { type: 'separator' },
         { role: 'resetZoom', label: 'Reset Zoom' },
