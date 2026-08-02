@@ -7,6 +7,9 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self'
 
+# The /ide route is served by the Pages Function, which replaces this policy
+# with the authenticated IDE policy that permits its Supabase connection.
+
 # Cache static assets aggressively
 /css/*
   Cache-Control: public, max-age=31536000, immutable
@@ -18,7 +21,7 @@
   Cache-Control: public, max-age=31536000, immutable
 
 # HTML pages — short cache
-*.html
+/*.html
   Cache-Control: public, max-age=3600, must-revalidate
 
 # Root
