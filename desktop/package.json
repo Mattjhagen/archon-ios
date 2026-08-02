@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Archon IDE — AI-powered coding desktop app for macOS, Windows, and Linux",
   "main": "main.js",
-  "author": "Matt Hagen",
+  "author": {
+    "name": "Matt Hagen",
+    "email": "Mattjhagen@users.noreply.github.com"
+  },
   "license": "MIT",
   "homepage": "https://ide.relayapp.pro",
   "scripts": {
