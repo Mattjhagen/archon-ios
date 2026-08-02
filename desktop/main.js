@@ -1,7 +1,7 @@
 const { app, BrowserWindow, shell, Menu, nativeTheme } = require('electron');
 const path = require('path');
 
-const IDE_URL = 'https://docs.relayapp.pro/ide.html';
+const IDE_URL = 'https://ide.relayapp.pro';
 const HOME_URL = 'https://relayapp.pro';
 
 let mainWindow;
