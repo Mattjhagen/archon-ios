@@ -1,12 +1,128 @@
-const { app, BrowserWindow, shell, Menu, nativeTheme } = require('electron');
+const { app, BrowserWindow, shell, Menu, ipcMain, dialog } = require('electron');
 const fs = require('fs');
+const fsp = require('fs/promises');
 const path = require('path');
+const { spawn } = require('child_process');
 
 const IDE_URL = 'https://docs.relayapp.pro/ide';
 const HOME_URL = 'https://relayapp.pro';
 const DEFAULT_WINDOW_BOUNDS = { width: 1440, height: 920 };
 
 let mainWindow;
+let workspaceRoot = null;
+
+function assertTrustedSender(event) {
+  if (new URL(event.senderFrame.url).origin !== new URL(IDE_URL).origin) {
+    throw new Error('Local workspace access is only available to Relay Docs.');
+  }
+}
+
+function isInsideWorkspace(candidate) {
+  const relative = path.relative(workspaceRoot, candidate);
+  return relative === '' || (!relative.startsWith(`..${path.sep}`) && relative !== '..' && !path.isAbsolute(relative));
+}
+
+async function resolveWorkspacePath(relativePath, { allowMissing = false } = {}) {
+  if (!workspaceRoot) throw new Error('Open a local folder first.');
+  if (typeof relativePath !== 'string' || path.isAbsolute(relativePath)) throw new Error('Only relative workspace paths are allowed.');
+
+  const target = path.resolve(workspaceRoot, relativePath);
+  if (!isInsideWorkspace(target)) throw new Error('That path is outside the selected folder.');
+
+  if (allowMissing) {
+    const parent = await fsp.realpath(path.dirname(target));
+    if (!isInsideWorkspace(parent)) throw new Error('That path resolves outside the selected folder.');
+    return target;
+  }
+
+  const realTarget = await fsp.realpath(target);
+  if (!isInsideWorkspace(realTarget)) throw new Error('That path resolves outside the selected folder.');
+  return realTarget;
+}
+
+async function workspaceTree(directory = workspaceRoot, relativePath = '', depth = 0) {
+  if (depth > 5) return [];
+  const ignored = new Set(['.git', 'node_modules', '.DS_Store']);
+  const entries = await fsp.readdir(directory, { withFileTypes: true });
+  const nodes = [];
+  for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
+    if (ignored.has(entry.name)) continue;
+    const childPath = path.join(relativePath, entry.name);
+    const absolutePath = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      nodes.push({ name: entry.name, path: childPath, type: 'directory', children: await workspaceTree(absolutePath, childPath, depth + 1) });
+    } else if (entry.isFile()) {
+      nodes.push({ name: entry.name, path: childPath, type: 'file' });
+    }
+  }
+  return nodes.slice(0, 500);
+}
+
+async function chooseWorkspace() {
+  const result = await dialog.showOpenDialog(mainWindow, {
+    title: 'Open local project folder',
+    properties: ['openDirectory', 'createDirectory']
+  });
+  if (result.canceled || !result.filePaths[0]) return { canceled: true };
+  workspaceRoot = await fsp.realpath(result.filePaths[0]);
+  return { canceled: false, name: path.basename(workspaceRoot), tree: await workspaceTree() };
+}
+
+function registerLocalWorkspaceHandlers() {
+  ipcMain.handle('workspace:choose', async (event) => { assertTrustedSender(event); return chooseWorkspace(); });
+  ipcMain.handle('workspace:tree', async (event) => { assertTrustedSender(event); return { name: workspaceRoot ? path.basename(workspaceRoot) : null, tree: workspaceRoot ? await workspaceTree() : [] }; });
+  ipcMain.handle('workspace:read', async (event, relativePath) => {
+    assertTrustedSender(event);
+    const target = await resolveWorkspacePath(relativePath);
+    const stat = await fsp.stat(target);
+    if (!stat.isFile()) throw new Error('That is not a file.');
+    if (stat.size > 2 * 1024 * 1024) throw new Error('Files larger than 2 MB cannot be opened in the editor.');
+    return fsp.readFile(target, 'utf8');
+  });
+  ipcMain.handle('workspace:write', async (event, relativePath, content) => {
+    assertTrustedSender(event);
+    if (typeof content !== 'string' || Buffer.byteLength(content, 'utf8') > 2 * 1024 * 1024) throw new Error('The file content is too large.');
+    const target = await resolveWorkspacePath(relativePath, { allowMissing: true });
+    await fsp.writeFile(target, content, 'utf8');
+    return { path: relativePath };
+  });
+  ipcMain.handle('workspace:mkdir', async (event, relativePath) => {
+    assertTrustedSender(event);
+    const target = await resolveWorkspacePath(relativePath, { allowMissing: true });
+    await fsp.mkdir(target);
+    return { path: relativePath };
+  });
+  ipcMain.handle('terminal:run', async (event, command) => {
+    assertTrustedSender(event);
+    if (!workspaceRoot) throw new Error('Open a local folder first.');
+    if (typeof command !== 'string' || !command.trim()) throw new Error('Enter a command first.');
+    if (command.length > 4000) throw new Error('Command is too long.');
+    const approval = await dialog.showMessageBox(mainWindow, {
+      type: 'warning',
+      buttons: ['Run command', 'Cancel'],
+      defaultId: 1,
+      cancelId: 1,
+      title: 'Run local command?',
+      message: command,
+      detail: `Archon IDE will run this in ${workspaceRoot}. Review the command carefully; shell commands can affect files and services outside this folder.`
+    });
+    if (approval.response !== 0) return { canceled: true, output: 'Command cancelled.' };
+    return new Promise((resolve) => {
+      const child = spawn(command, {
+        cwd: workspaceRoot,
+        shell: process.platform === 'win32' ? process.env.ComSpec : '/bin/zsh',
+        env: process.env
+      });
+      let output = '';
+      const append = (chunk) => { output = `${output}${chunk}`.slice(-65536); };
+      child.stdout.on('data', append);
+      child.stderr.on('data', append);
+      const timer = setTimeout(() => child.kill(), 120000);
+      child.on('error', (error) => { clearTimeout(timer); resolve({ output: `${output}${error.message}`, exitCode: 1 }); });
+      child.on('close', (exitCode) => { clearTimeout(timer); resolve({ output, exitCode }); });
+    });
+  });
+}
 
 function windowStatePath() {
   return path.join(app.getPath('userData'), 'window-state.json');
@@ -66,6 +182,12 @@ function createWindow() {
     return { action: 'deny' };
   });
 
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    if (new URL(url).origin === new URL(IDE_URL).origin) return;
+    event.preventDefault();
+    shell.openExternal(url);
+  });
+
   mainWindow.on('close', saveWindowState);
   mainWindow.on('closed', () => {
     mainWindow = null;
@@ -96,6 +218,7 @@ function buildMenu() {
     {
       label: 'Workspace',
       submenu: [
+        { label: 'Open Local Folder...', accelerator: 'CmdOrCtrl+O', click: () => chooseWorkspace().then((workspace) => mainWindow?.webContents.send('workspace:selected', workspace)) },
         { label: 'Archon Home', accelerator: 'CmdOrCtrl+Shift+H', click: () => mainWindow?.loadURL(IDE_URL) },
         { type: 'separator' },
         { role: 'reload', label: 'Reload Workspace' },
@@ -157,7 +280,10 @@ function buildMenu() {
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  registerLocalWorkspaceHandlers();
+  createWindow();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();

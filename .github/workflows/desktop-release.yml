@@ -6,6 +6,8 @@ on:
       - Docs
     paths:
       - desktop/**
+      - docs/ide.html
+      - docs/js/local-workspace.js
       - .github/workflows/desktop-release.yml
   workflow_dispatch:
     inputs:
