@@ -2,7 +2,7 @@ const { app, BrowserWindow, shell, Menu, nativeTheme } = require('electron');
 const fs = require('fs');
 const path = require('path');
 
-const IDE_URL = 'https://app.relayapp.pro';
+const IDE_URL = 'https://docs.relayapp.pro/ide';
 const HOME_URL = 'https://relayapp.pro';
 const DEFAULT_WINDOW_BOUNDS = { width: 1440, height: 920 };
 
