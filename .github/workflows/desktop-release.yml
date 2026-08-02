@@ -25,7 +25,7 @@ jobs:
       - name: Create the release when it does not exist
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ inputs.tag }}
+          TAG: ${{ inputs.tag || 'desktop' }}
         run: gh release view "$TAG" --repo "$GITHUB_REPOSITORY" || gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --title "Archon IDE desktop" --generate-notes
 
   build-and-upload:
@@ -62,7 +62,7 @@ jobs:
       - name: Upload installers to the release
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ inputs.tag }}
+          TAG: ${{ inputs.tag || 'desktop' }}
           FILES: ${{ matrix.files }}
         shell: bash
         run: gh release upload "$TAG" $FILES --clobber --repo "$GITHUB_REPOSITORY"
