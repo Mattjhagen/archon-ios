@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { Platform } from 'react-native'
 import { ExpoSpeechRecognitionModule, useSpeechRecognitionEvent } from 'expo-speech-recognition'
-import * as Speech from 'expo-speech'
 import { Audio } from 'expo-av'
 import * as FileSystem from 'expo-file-system'
+import * as base64 from 'base64-js'
 import { getElevenlabsKey, getElevenlabsVoice } from '../api/shaggoth'
 
 export default function useVoice() {
@@ -78,7 +78,6 @@ export default function useVoice() {
   }, [])
 
   const stopSpeaking = useCallback(async () => {
-    Speech.stop()
     if (soundRef.current) {
       try {
         await soundRef.current.stopAsync()
@@ -98,44 +97,31 @@ export default function useVoice() {
     const elevenlabsKey = getElevenlabsKey()
     const elevenlabsVoice = getElevenlabsVoice()
 
-    const playNative = () => {
-      Speech.speak(text, {
-        language: 'en-US',
-        pitch: 0.95,
-        rate: Platform.OS === 'ios' ? 0.52 : 0.9,
-        onDone: () => {
-          setSpeaking(false)
-          if (onDoneCallback) onDoneCallback()
-        },
-        onStopped: () => setSpeaking(false),
-        onError: () => setSpeaking(false),
-      })
-    }
-
     if (elevenlabsKey && elevenlabsVoice) {
       try {
         const uri = FileSystem.cacheDirectory + 'speech_temp.mp3'
         
-        // Use FileSystem.downloadAsync to safely download the mp3 straight to disk (bypassing React Native blob limits)
-        const downloadRes = await FileSystem.downloadAsync(
-          `https://api.elevenlabs.io/v1/text-to-speech/${elevenlabsVoice}?output_format=mp3_44100_128`,
-          uri,
-          {
-            httpMethod: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'xi-api-key': elevenlabsKey,
-            },
-            body: JSON.stringify({
-              text: text,
-              model_id: 'eleven_turbo_v2_5',
-            })
-          }
-        )
+        // Fetch binary audio using standard fetch to support POST bodies safely
+        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${elevenlabsVoice}?output_format=mp3_44100_128`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'xi-api-key': elevenlabsKey,
+          },
+          body: JSON.stringify({
+            text: text,
+            model_id: 'eleven_turbo_v2_5',
+          })
+        })
 
-        if (downloadRes.status !== 200) {
-          throw new Error('ElevenLabs API returned non-200 status')
+        if (!res.ok) {
+          throw new Error('ElevenLabs API returned non-200 status: ' + res.status)
         }
+
+        const arrayBuffer = await res.arrayBuffer()
+        const base64Data = base64.fromByteArray(new Uint8Array(arrayBuffer))
+        
+        await FileSystem.writeAsStringAsync(uri, base64Data, { encoding: FileSystem.EncodingType.Base64 })
 
         const { sound } = await Audio.Sound.createAsync({ uri })
         soundRef.current = sound
@@ -153,12 +139,12 @@ export default function useVoice() {
         return // Successfully played ElevenLabs
       } catch (err) {
         console.error('ElevenLabs error:', err)
-        // Fall through to playNative() below
       }
     }
 
-    // Fallback or Native
-    playNative()
+    // No fallback, just finish
+    setSpeaking(false)
+    if (onDoneCallback) onDoneCallback()
   }, [stopSpeaking])
 
   return {

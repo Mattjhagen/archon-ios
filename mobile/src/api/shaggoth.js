@@ -79,14 +79,31 @@ function headers() {
   return h
 }
 
+const AWS_FALLBACK_URL = 'https://aws.relayapp.pro'
+
 async function fetchJson(path, options = {}) {
   const url = `${_apiUrl}${path}`
-  const res = await fetch(url, { ...options, headers: { ...headers(), ...options.headers } })
-  if (!res.ok) {
-    const body = await res.text()
-    throw new Error(body || `HTTP ${res.status}`)
+  try {
+    const res = await fetch(url, { ...options, headers: { ...headers(), ...options.headers } })
+    if (!res.ok) {
+      const body = await res.text()
+      throw new Error(body || `HTTP ${res.status}`)
+    }
+    return await res.json()
+  } catch (err) {
+    // If we're using the default API url and it fails, transparently fallback to AWS
+    if (_apiUrl === defaults.apiUrl) {
+      console.warn(`Primary API failed, trying fallback: ${AWS_FALLBACK_URL}${path}`)
+      const fallbackUrl = `${AWS_FALLBACK_URL}${path}`
+      const res = await fetch(fallbackUrl, { ...options, headers: { ...headers(), ...options.headers } })
+      if (!res.ok) {
+        const body = await res.text()
+        throw new Error(body || `HTTP ${res.status}`)
+      }
+      return await res.json()
+    }
+    throw err
   }
-  return res.json()
 }
 
 export async function health() {
@@ -160,3 +177,34 @@ export async function registerPushToken(token, platform) {
   })
 }
 
+export async function submitFeedback(feedbackData) {
+  return fetchJson('/feedback', {
+    method: 'POST',
+    body: JSON.stringify(feedbackData),
+  })
+}
+
+export async function getUserId() {
+  try {
+    const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default
+    let uid = await AsyncStorage.getItem('shaggoth_user_id')
+    if (!uid) {
+      uid = 'user-' + Math.random().toString(36).slice(2, 12)
+      await AsyncStorage.setItem('shaggoth_user_id', uid)
+    }
+    return uid
+  } catch {
+    return 'user-fallback'
+  }
+}
+
+export async function getCredits(userId) {
+  return fetchJson(`/credits?user_id=${encodeURIComponent(userId)}`)
+}
+
+export async function addCredits(userId, amount) {
+  return fetchJson('/credits/purchase', {
+    method: 'POST',
+    body: JSON.stringify({ user_id: userId, amount: parseInt(amount, 10) }),
+  })
+}
