@@ -1,21 +1,38 @@
 const STORAGE_KEY_API = 'shaggoth_api_url'
 const STORAGE_KEY_TOKEN = 'shaggoth_api_token'
+const STORAGE_KEY_ELEVENLABS_KEY = 'shaggoth_elevenlabs_key'
+const STORAGE_KEY_ELEVENLABS_VOICE = 'shaggoth_elevenlabs_voice'
 
 const defaults = {
-  apiUrl: 'http://100.103.3.35:8420',
+  apiUrl: 'https://ai.relayapp.pro',
   apiKey: '',
+  elevenlabsKey: 'sk_8f3a5da20e4eadd1212fef7aa09bd5dda70410914432865d',
+  elevenlabsVoice: 'EXAVITQu4vr4xnSDxMaL', // Default to Bella
 }
 
 let _apiUrl = defaults.apiUrl
 let _apiKey = defaults.apiKey
+let _elevenlabsKey = defaults.elevenlabsKey
+let _elevenlabsVoice = defaults.elevenlabsVoice
 
 export async function initStorage() {
   try {
     const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default
-    const url = await AsyncStorage.getItem(STORAGE_KEY_API)
+    let url = await AsyncStorage.getItem(STORAGE_KEY_API)
     const key = await AsyncStorage.getItem(STORAGE_KEY_TOKEN)
+    const eKey = await AsyncStorage.getItem(STORAGE_KEY_ELEVENLABS_KEY)
+    const eVoice = await AsyncStorage.getItem(STORAGE_KEY_ELEVENLABS_VOICE)
+    
+    // Migrate old hardcoded HTTP url to HTTPS
+    if (url === 'http://100.103.3.35:8420') {
+      url = 'https://ai.relayapp.pro'
+      await AsyncStorage.setItem(STORAGE_KEY_API, url)
+    }
+    
     if (url) _apiUrl = url
     if (key) _apiKey = key
+    if (eKey) _elevenlabsKey = eKey
+    if (eVoice) _elevenlabsVoice = eVoice
   } catch {}
 }
 
@@ -35,8 +52,26 @@ export async function saveApiKey(key) {
   } catch {}
 }
 
+export async function saveElevenlabsKey(key) {
+  _elevenlabsKey = key
+  try {
+    const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default
+    await AsyncStorage.setItem(STORAGE_KEY_ELEVENLABS_KEY, key)
+  } catch {}
+}
+
+export async function saveElevenlabsVoice(voice) {
+  _elevenlabsVoice = voice
+  try {
+    const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default
+    await AsyncStorage.setItem(STORAGE_KEY_ELEVENLABS_VOICE, voice)
+  } catch {}
+}
+
 export function getApiUrl() { return _apiUrl }
 export function getApiKey() { return _apiKey }
+export function getElevenlabsKey() { return _elevenlabsKey }
+export function getElevenlabsVoice() { return _elevenlabsVoice }
 
 function headers() {
   const h = { 'Content-Type': 'application/json' }
@@ -58,18 +93,18 @@ export async function health() {
   return fetchJson('/health')
 }
 
-export async function chat(message, sessionId) {
+export async function chat(message, sessionId, options = {}) {
   return fetchJson('/chat', {
     method: 'POST',
-    body: JSON.stringify({ message, session_id: sessionId }),
+    body: JSON.stringify({ message, session_id: sessionId, ...options }),
   })
 }
 
-export async function chatStream(message, sessionId, onToken, onDone, onError) {
+export async function chatStream(message, sessionId, onToken, onDone, onError, options = {}) {
   // React Native fetch doesn't support ReadableStream, so use
   // the standard JSON endpoint and deliver the full reply at once.
   try {
-    const data = await chat(message, sessionId)
+    const data = await chat(message, sessionId, options)
     if (data.reply) {
       const words = data.reply.split(/(?<=\s)/)
       for (let i = 0; i < words.length; i++) {

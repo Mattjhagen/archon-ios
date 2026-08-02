@@ -23,9 +23,22 @@ function SectionHeader({ title }) {
   )
 }
 
+const ELEVENLABS_VOICES = [
+  { id: 'EXAVITQu4vr4xnSDxMaL', name: 'Bella' },
+  { id: 'pNInz6obpgDQGcFmaJmB', name: 'Adam' },
+  { id: '21m00Tcm4TlvDq8ikWAM', name: 'Rachel' },
+  { id: 'ErXwobaYiN019PkySvjV', name: 'Antoni' },
+  { id: 'tx3xeVWeJZlXTpeaO3ht', name: 'Josh' },
+  { id: 'VR6AewLTigWG4xSOukaG', name: 'Arnold' },
+  { id: 'MF3mGyEYCl7XYWbV9V6O', name: 'Elli' },
+  { id: 'yoZ06aMxZJJ28mfd3POQ', name: 'Sam' },
+]
+
 export default function SettingsScreen({ connected }) {
   const [apiUrl, setApiUrl] = useState(api.getApiUrl())
   const [apiKey, setApiKey] = useState(api.getApiKey())
+  const [elevenlabsKey, setElevenlabsKey] = useState(api.getElevenlabsKey())
+  const [elevenlabsVoice, setElevenlabsVoice] = useState(api.getElevenlabsVoice())
   const [guardrails, setGuardrails] = useState([])
   const [personality, setPersonality] = useState(null)
   const [saving, setSaving] = useState(false)
@@ -39,7 +52,9 @@ export default function SettingsScreen({ connected }) {
     setSaving(true)
     await api.saveApiUrl(apiUrl)
     await api.saveApiKey(apiKey)
-    Alert.alert('Saved', 'Uplink settings updated. Reconnect to apply.')
+    await api.saveElevenlabsKey(elevenlabsKey)
+    await api.saveElevenlabsVoice(elevenlabsVoice)
+    Alert.alert('Saved', 'Settings updated. Reconnect to apply.')
     setSaving(false)
   }
 
@@ -107,6 +122,80 @@ export default function SettingsScreen({ connected }) {
           onChangeText={setApiKey}
           secureTextEntry
           autoCapitalize="none"
+          style={{
+            backgroundColor: colors.surfaceCard,
+            color: colors.text,
+            borderRadius: radius.lg,
+            padding: spacing.lg,
+            fontSize: fontSize.md,
+            borderWidth: 1,
+            borderColor: colors.border,
+            marginBottom: spacing.lg,
+          }}
+        />
+
+        <SectionHeader title="Voice Integration" />
+
+        <Text style={{ color: colors.textDim, fontSize: fontSize.sm, marginBottom: spacing.xs }}>
+          ElevenLabs API Key
+        </Text>
+        <TextInput
+          value={elevenlabsKey}
+          onChangeText={setElevenlabsKey}
+          secureTextEntry
+          autoCapitalize="none"
+          placeholder="Leave blank to use native voice"
+          placeholderTextColor={colors.textMuted}
+          style={{
+            backgroundColor: colors.surfaceCard,
+            color: colors.text,
+            borderRadius: radius.lg,
+            padding: spacing.lg,
+            fontSize: fontSize.md,
+            borderWidth: 1,
+            borderColor: colors.border,
+            marginBottom: spacing.lg,
+          }}
+        />
+
+        <Text style={{ color: colors.textDim, fontSize: fontSize.sm, marginBottom: spacing.xs }}>
+          Select Voice
+        </Text>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, marginBottom: spacing.sm }}>
+          {ELEVENLABS_VOICES.map(voice => (
+            <TouchableOpacity
+              key={voice.id}
+              onPress={() => setElevenlabsVoice(voice.id)}
+              activeOpacity={0.7}
+              style={{
+                backgroundColor: elevenlabsVoice === voice.id ? colors.primary : colors.surfaceCard,
+                borderRadius: radius.full,
+                paddingHorizontal: spacing.lg,
+                paddingVertical: spacing.md,
+                borderWidth: 1,
+                borderColor: elevenlabsVoice === voice.id ? colors.primary : colors.border,
+              }}
+            >
+              <Text style={{
+                color: elevenlabsVoice === voice.id ? colors.white : colors.text,
+                fontSize: fontSize.sm,
+                fontWeight: elevenlabsVoice === voice.id ? '600' : '400',
+              }}>
+                {voice.name}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <Text style={{ color: colors.textDim, fontSize: fontSize.sm, marginTop: spacing.sm, marginBottom: spacing.xs }}>
+          Custom Voice ID (Optional)
+        </Text>
+        <TextInput
+          value={elevenlabsVoice}
+          onChangeText={setElevenlabsVoice}
+          autoCapitalize="none"
+          placeholder="Paste a cloned Voice ID here"
+          placeholderTextColor={colors.textMuted}
           style={{
             backgroundColor: colors.surfaceCard,
             color: colors.text,

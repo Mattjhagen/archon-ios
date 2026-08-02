@@ -39,16 +39,22 @@ export default function App() {
     })
 
     async function setupPush() {
-      if (!Device.isDevice) return
-      const { status: existing } = await Notifications.getPermissionsAsync()
-      let final = existing
-      if (existing !== 'granted') {
-        const { status } = await Notifications.requestPermissionsAsync()
-        final = status
+      try {
+        if (!Device.isDevice) return
+        const { status: existing } = await Notifications.getPermissionsAsync()
+        let final = existing
+        if (existing !== 'granted') {
+          const { status } = await Notifications.requestPermissionsAsync()
+          final = status
+        }
+        if (final !== 'granted') return
+        const tokenData = await Notifications.getExpoPushTokenAsync({
+          projectId: '128b027f-68c3-432d-b1c9-0605d68816a1'
+        })
+        api.registerPushToken(tokenData.data, Platform.OS).catch(() => {})
+      } catch (err) {
+        console.log('Push notifications failed to initialize', err)
       }
-      if (final !== 'granted') return
-      const tokenData = await Notifications.getExpoPushTokenAsync()
-      api.registerPushToken(tokenData.data, Platform.OS).catch(() => {})
     }
     setupPush()
   }, [])
@@ -59,7 +65,7 @@ export default function App() {
       setTab('settings')
       return
     }
-    if (['chat', 'knowledge', 'learn'].includes(screen)) {
+    if (['chat', 'casual_chat', 'knowledge', 'learn'].includes(screen)) {
       setSubScreen({ screen, params })
     }
   }
@@ -73,7 +79,9 @@ export default function App() {
     if (subScreen) {
       switch (subScreen.screen) {
         case 'chat':
-          return <ChatScreen onBack={goBack} assistMode={assistMode} />
+          return <ChatScreen onBack={goBack} assistMode={assistMode} chatMode="no_drift" research={false} />
+        case 'casual_chat':
+          return <ChatScreen onBack={goBack} assistMode={assistMode} chatMode="drift" research={true} />
         case 'knowledge':
           return <ExploreScreen onNavigate={navigate} onBack={goBack} />
         case 'learn':
@@ -96,7 +104,7 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background, paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}>
       <StatusBar barStyle="light-content" backgroundColor={colors.background} />
       <View style={{ flex: 1 }}>
         {renderContent()}

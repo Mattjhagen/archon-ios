@@ -124,14 +124,25 @@ export default function HomeScreen({ onNavigate, connected }) {
           />
         </View>
 
-        <FeatureCard
-          icon="🧠"
-          title="Self-Learn"
-          subtitle="Autonomous web research & knowledge acquisition"
-          accentColor={colors.blue}
-          onPress={() => onNavigate('learn')}
-          wide
-        />
+        <View style={{
+          flexDirection: 'row',
+          gap: spacing.md,
+        }}>
+          <FeatureCard
+            icon="💬"
+            title="Casual Chat"
+            subtitle="Drift, chat, and help train the AI"
+            accentColor={colors.yellow}
+            onPress={() => onNavigate('casual_chat')}
+          />
+          <FeatureCard
+            icon="🧠"
+            title="Self-Learn"
+            subtitle="Autonomous web research & knowledge"
+            accentColor={colors.blue}
+            onPress={() => onNavigate('learn')}
+          />
+        </View>
       </View>
     </ScrollView>
   )

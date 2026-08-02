@@ -74,7 +74,7 @@ function SpeakerButton({ speaking, onPress }) {
   )
 }
 
-export default function ChatScreen({ onBack, assistMode }) {
+export default function ChatScreen({ onBack, assistMode, chatMode, research }) {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -106,6 +106,10 @@ export default function ChatScreen({ onBack, assistMode }) {
     setLoading(true)
 
     let fullReply = ''
+    const options = {}
+    if (chatMode) options.mode = chatMode
+    if (research !== undefined) options.research = research
+
     api.chatStream(text.trim(), sid,
       token => {
         fullReply += token
@@ -118,40 +122,77 @@ export default function ChatScreen({ onBack, assistMode }) {
           m.id === botId ? { ...m, source: meta.source, flag: meta.flag } : m
         ))
         setLoading(false)
-        if (autoSpeak && fullReply) voice.speak(fullReply)
+        if (autoSpeak && fullReply) {
+          voice.speak(fullReply, () => {
+            if (continuousVoiceRef.current) {
+              startVoiceLoop()
+            }
+          })
+        } else if (continuousVoiceRef.current) {
+          startVoiceLoop()
+        }
       },
       err => {
         setMessages(prev => prev.map(m =>
           m.id === botId ? { ...m, text: 'Error: ' + err, source: 'error' } : m
         ))
         setLoading(false)
-      }
+        if (continuousVoiceRef.current) startVoiceLoop()
+      },
+      options
     )
-  }, [loading, autoSpeak, voice])
+  }, [loading, autoSpeak, voice, chatMode, research])
 
   const send = useCallback(() => sendWithText(input), [input, sendWithText])
 
-  const handleMicPress = useCallback(() => {
-    if (voice.listening) {
-      voice.stopListening()
-    } else {
-      voice.startListening((text) => {
+  const continuousVoiceRef = useRef(false)
+
+  const startVoiceLoop = useCallback(() => {
+    if (!continuousVoiceRef.current) return
+    
+    voice.startListening(
+      (text) => {
         if (text) setInput(text)
-      })
+      },
+      (finalText) => {
+        if (!continuousVoiceRef.current) return
+        if (finalText?.trim()) {
+          setInput(finalText.trim())
+          sendWithText(finalText.trim())
+        } else {
+          // Silence timeout, just loop back to listening
+          startVoiceLoop()
+        }
+      }
+    )
+  }, [voice, sendWithText])
+
+  const handleMicPress = useCallback(() => {
+    if (continuousVoiceRef.current || voice.listening || voice.speaking) {
+      continuousVoiceRef.current = false
+      voice.stopListening()
+      voice.stopSpeaking()
+      setAutoSpeak(false)
+    } else {
+      continuousVoiceRef.current = true
+      setAutoSpeak(true)
+      startVoiceLoop()
     }
-  }, [voice])
+  }, [voice, startVoiceLoop])
 
   const newChat = async () => {
     await AsyncStorage.removeItem('shaggoth_session')
     setMessages([])
+    continuousVoiceRef.current = false
     voice.stopSpeaking()
+    voice.stopListening()
   }
 
   return (
     <KeyboardAvoidingView
       style={{ flex: 1, backgroundColor: colors.background }}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 0}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 90 : 20}
     >
       <Header
         title="Comms"

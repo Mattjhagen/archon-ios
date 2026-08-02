@@ -21,7 +21,8 @@
           "NSAllowsArbitraryLoads": true
         },
         "NSSpeechRecognitionUsageDescription": "Shaggoth uses speech recognition so you can talk to it instead of typing.",
-        "NSMicrophoneUsageDescription": "Shaggoth needs microphone access for voice input."
+        "NSMicrophoneUsageDescription": "Shaggoth needs microphone access for voice input.",
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -31,17 +32,28 @@
         "backgroundColor": "#0D0D12",
         "foregroundImage": "./assets/adaptive-icon.png"
       },
-      "permissions": ["RECORD_AUDIO"],
+      "permissions": [
+        "RECORD_AUDIO"
+      ],
       "intentFilters": [
         {
           "action": "VIEW",
           "autoVerify": true,
-          "data": [{ "scheme": "shaggoth" }],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "data": [
+            {
+              "scheme": "shaggoth"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         },
         {
           "action": "android.intent.action.ASSIST",
-          "category": ["DEFAULT"]
+          "category": [
+            "DEFAULT"
+          ]
         }
       ]
     },
@@ -54,7 +66,15 @@
         }
       ],
       "./plugins/withAndroidAssistant",
-      "./plugins/withSpeechPermissions"
-    ]
+      "./plugins/withSpeechPermissions",
+      "expo-speech-recognition",
+      "expo-asset",
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "128b027f-68c3-432d-b1c9-0605d68816a1"
+      }
+    }
   }
 }
