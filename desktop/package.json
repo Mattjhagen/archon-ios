@@ -1,16 +1,18 @@
 {
   "name": "archon-ide",
   "version": "1.0.0",
-  "description": "Archon IDE — AI-powered coding desktop app for Mac & Windows",
+  "description": "Archon IDE — AI-powered coding desktop app for macOS, Windows, and Linux",
   "main": "main.js",
   "author": "Matt Hagen",
   "license": "MIT",
-  "homepage": "https://docs.relayapp.pro/ide.html",
+  "homepage": "https://ide.relayapp.pro",
   "scripts": {
     "start": "electron .",
     "build:mac": "electron-builder --mac",
+    "build:mac:universal": "electron-builder --mac --universal",
     "build:win": "electron-builder --win",
-    "build:all": "electron-builder --mac --win",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder --mac --win --linux",
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
@@ -20,13 +22,21 @@
     "mac": {
       "category": "public.app-category.developer-tools",
       "icon": "icons/icon.icns",
-      "target": ["dmg", "zip"],
+      "target": ["dmg"],
+      "artifactName": "Archon-IDE.${ext}",
       "hardenedRuntime": true,
       "gatekeeperAssess": false
     },
     "win": {
       "icon": "icons/icon.ico",
-      "target": ["nsis", "portable"]
+      "target": ["nsis"],
+      "artifactName": "Archon-IDE-Setup.${ext}"
+    },
+    "linux": {
+      "category": "Development",
+      "icon": "icons",
+      "target": ["AppImage", "deb"],
+      "artifactName": "Archon-IDE.${ext}"
     },
     "nsis": {
       "oneClick": false,
