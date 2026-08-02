@@ -22,6 +22,7 @@ function withAssistantManifest(config) {
 
     if (!app.service) app.service = [];
 
+    // The main interaction service
     app.service.push({
       $: {
         "android:name": ".ShaggothAssistService",
@@ -39,17 +40,13 @@ function withAssistantManifest(config) {
       "intent-filter": [
         {
           action: [
-            {
-              $: {
-                "android:name":
-                  "android.service.voice.VoiceInteractionService",
-              },
-            },
+            { $: { "android:name": "android.service.voice.VoiceInteractionService" } },
           ],
         },
       ],
     });
 
+    // The session service
     app.service.push({
       $: {
         "android:name": ".ShaggothAssistSessionService",
@@ -58,20 +55,38 @@ function withAssistantManifest(config) {
       },
     });
 
+    // Dummy Recognition service (required for Samsung / modern Android to validate the VoiceInteractionService)
+    app.service.push({
+      $: {
+        "android:name": ".ShaggothRecognitionService",
+        "android:exported": "true",
+      },
+      "intent-filter": [
+        {
+          action: [
+            { $: { "android:name": "android.speech.RecognitionService" } },
+          ],
+        },
+      ],
+    });
+
     const mainActivity = app.activity.find(
       (a) => a.$["android:name"] === ".MainActivity"
     );
     if (mainActivity) {
       if (!mainActivity["intent-filter"]) mainActivity["intent-filter"] = [];
+      
       const hasAssist = mainActivity["intent-filter"].some((f) =>
         (f.action || []).some(
           (a) => a.$["android:name"] === "android.intent.action.ASSIST"
         )
       );
+      
       if (!hasAssist) {
         mainActivity["intent-filter"].push({
           action: [
             { $: { "android:name": "android.intent.action.ASSIST" } },
+            { $: { "android:name": "android.intent.action.VOICE_COMMAND" } }
           ],
           category: [
             { $: { "android:name": "android.intent.category.DEFAULT" } },
@@ -162,11 +177,37 @@ public class ShaggothAssistSession extends VoiceInteractionSession {
 `
       );
 
+      // Dummy RecognitionService
+      fs.writeFileSync(
+        path.join(javaDir, "ShaggothRecognitionService.java"),
+        `package ${PACKAGE};
+
+import android.content.Intent;
+import android.speech.RecognitionService;
+
+public class ShaggothRecognitionService extends RecognitionService {
+    @Override
+    protected void onStartListening(Intent recognizerIntent, Callback listener) {
+    }
+
+    @Override
+    protected void onCancel(Callback listener) {
+    }
+
+    @Override
+    protected void onStopListening(Callback listener) {
+    }
+}
+`
+      );
+
+      // We MUST declare the recognitionService in the metadata for modern Android to accept it!
       fs.writeFileSync(
         path.join(xmlDir, "voice_interaction_service.xml"),
         `<?xml version="1.0" encoding="utf-8"?>
 <voice-interaction-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:sessionService="${PACKAGE}.ShaggothAssistSessionService"
+    android:recognitionService="${PACKAGE}.ShaggothRecognitionService"
     android:supportsAssist="true"
     android:supportsLaunchVoiceAssistFromKeyguard="true"
     android:supportsLocalInteraction="true" />

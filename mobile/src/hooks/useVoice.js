@@ -92,81 +92,73 @@ export default function useVoice() {
   const speak = useCallback(async (text, onDoneCallback) => {
     if (!text) return
     
-    // Stop any current speaking
     await stopSpeaking()
     setSpeaking(true)
 
     const elevenlabsKey = getElevenlabsKey()
     const elevenlabsVoice = getElevenlabsVoice()
 
+    const playNative = () => {
+      Speech.speak(text, {
+        language: 'en-US',
+        pitch: 0.95,
+        rate: Platform.OS === 'ios' ? 0.52 : 0.9,
+        onDone: () => {
+          setSpeaking(false)
+          if (onDoneCallback) onDoneCallback()
+        },
+        onStopped: () => setSpeaking(false),
+        onError: () => setSpeaking(false),
+      })
+    }
+
     if (elevenlabsKey && elevenlabsVoice) {
       try {
-        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${elevenlabsVoice}?output_format=mp3_44100_128`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'xi-api-key': elevenlabsKey,
-          },
-          body: JSON.stringify({
-            text: text,
-            model_id: 'eleven_turbo_v2_5', // Lowest latency model
-          }),
-        })
+        const uri = FileSystem.cacheDirectory + 'speech_temp.mp3'
+        
+        // Use FileSystem.downloadAsync to safely download the mp3 straight to disk (bypassing React Native blob limits)
+        const downloadRes = await FileSystem.downloadAsync(
+          `https://api.elevenlabs.io/v1/text-to-speech/${elevenlabsVoice}?output_format=mp3_44100_128`,
+          uri,
+          {
+            httpMethod: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'xi-api-key': elevenlabsKey,
+            },
+            body: JSON.stringify({
+              text: text,
+              model_id: 'eleven_turbo_v2_5',
+            })
+          }
+        )
 
-        if (!response.ok) {
-          throw new Error('ElevenLabs error')
+        if (downloadRes.status !== 200) {
+          throw new Error('ElevenLabs API returned non-200 status')
         }
 
-        const blob = await response.blob()
-        const reader = new FileReader()
+        const { sound } = await Audio.Sound.createAsync({ uri })
+        soundRef.current = sound
         
-        reader.onload = async () => {
-          try {
-            const base64data = reader.result.split(',')[1]
-            const uri = FileSystem.cacheDirectory + 'speech_temp.mp3'
-            
-            await FileSystem.writeAsStringAsync(uri, base64data, { 
-              encoding: FileSystem.EncodingType.Base64 
-            })
-            
-            const { sound } = await Audio.Sound.createAsync({ uri })
-            soundRef.current = sound
-            
-            sound.setOnPlaybackStatusUpdate((status) => {
-              if (status.didJustFinish) {
-                setSpeaking(false)
-                if (onDoneCallback) onDoneCallback()
-                sound.unloadAsync().catch(() => {})
-                soundRef.current = null
-              }
-            })
-            
-            await sound.playAsync()
-          } catch {
-            // Fallback if audio fails to play
+        sound.setOnPlaybackStatusUpdate((status) => {
+          if (status.didJustFinish) {
             setSpeaking(false)
             if (onDoneCallback) onDoneCallback()
+            sound.unloadAsync().catch(() => {})
+            soundRef.current = null
           }
-        }
-        reader.readAsDataURL(blob)
-        return
+        })
+        
+        await sound.playAsync()
+        return // Successfully played ElevenLabs
       } catch (err) {
-        // Fallback to native on error
+        console.error('ElevenLabs error:', err)
+        // Fall through to playNative() below
       }
     }
 
-    // Native Fallback
-    Speech.speak(text, {
-      language: 'en-US',
-      pitch: 0.95,
-      rate: Platform.OS === 'ios' ? 0.52 : 0.9,
-      onDone: () => {
-        setSpeaking(false)
-        if (onDoneCallback) onDoneCallback()
-      },
-      onStopped: () => setSpeaking(false),
-      onError: () => setSpeaking(false),
-    })
+    // Fallback or Native
+    playNative()
   }, [stopSpeaking])
 
   return {
