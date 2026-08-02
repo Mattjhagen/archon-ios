@@ -13,4 +13,3 @@
 # Legacy / canonical redirects
 /docs/                       /                              301
 /index.html                  /                              200
-/ide.html                    /ide                           301
