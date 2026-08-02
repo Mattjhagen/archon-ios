@@ -1,6 +1,12 @@
 name: Desktop release
 
 on:
+  push:
+    branches:
+      - Docs
+    paths:
+      - desktop/**
+      - .github/workflows/desktop-release.yml
   workflow_dispatch:
     inputs:
       tag:
