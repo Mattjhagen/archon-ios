@@ -4,6 +4,7 @@ import {
   KeyboardAvoidingView, Platform, ActivityIndicator, Animated,
 } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import * as Clipboard from 'expo-clipboard'
 import { colors, spacing, radius, fontSize } from '../theme/colors'
 import Header from '../components/Header'
 import useVoice from '../hooks/useVoice'
@@ -74,11 +75,35 @@ function SpeakerButton({ speaking, onPress }) {
   )
 }
 
+function CopyButton({ text }) {
+  const [copied, setCopied] = useState(false)
+  return (
+    <TouchableOpacity 
+      onPress={async () => {
+        await Clipboard.setStringAsync(text)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      }} 
+      activeOpacity={0.7} 
+      style={{ marginLeft: spacing.xs }}
+    >
+      <View style={{
+        paddingHorizontal: spacing.sm,
+        paddingVertical: spacing.xs,
+        borderRadius: radius.sm,
+      }}>
+        <Text style={{ fontSize: 14, color: copied ? colors.green : colors.textDim }}>
+          {copied ? '✓' : '📋'}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  )
+}
+
 export default function ChatScreen({ onBack, assistMode, chatMode, research }) {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const [autoSpeak, setAutoSpeak] = useState(false)
   const flatRef = useRef(null)
   const voice = useVoice()
 
@@ -87,13 +112,13 @@ export default function ChatScreen({ onBack, assistMode, chatMode, research }) {
       voice.startListening((text) => {
         if (text) {
           setInput(text)
-          setTimeout(() => sendWithText(text), 300)
+          setTimeout(() => sendWithText(text, true), 300)
         }
       })
     }
   }, [assistMode, voice.available])
 
-  const sendWithText = useCallback(async (text) => {
+  const sendWithText = useCallback(async (text, isVoice = false) => {
     if (!text?.trim() || loading) return
     setInput('')
     const sid = await getSessionId()
@@ -122,7 +147,7 @@ export default function ChatScreen({ onBack, assistMode, chatMode, research }) {
           m.id === botId ? { ...m, source: meta.source, flag: meta.flag } : m
         ))
         setLoading(false)
-        if (autoSpeak && fullReply) {
+        if (isVoice && fullReply) {
           voice.speak(fullReply, () => {
             if (continuousVoiceRef.current) {
               startVoiceLoop()
@@ -141,9 +166,9 @@ export default function ChatScreen({ onBack, assistMode, chatMode, research }) {
       },
       options
     )
-  }, [loading, autoSpeak, voice, chatMode, research])
+  }, [loading, voice, chatMode, research])
 
-  const send = useCallback(() => sendWithText(input), [input, sendWithText])
+  const send = useCallback(() => sendWithText(input, false), [input, sendWithText])
 
   const continuousVoiceRef = useRef(false)
 
@@ -158,7 +183,7 @@ export default function ChatScreen({ onBack, assistMode, chatMode, research }) {
         if (!continuousVoiceRef.current) return
         if (finalText?.trim()) {
           setInput(finalText.trim())
-          sendWithText(finalText.trim())
+          sendWithText(finalText.trim(), true)
         } else {
           // Silence timeout, just loop back to listening
           startVoiceLoop()
@@ -172,10 +197,8 @@ export default function ChatScreen({ onBack, assistMode, chatMode, research }) {
       continuousVoiceRef.current = false
       voice.stopListening()
       voice.stopSpeaking()
-      setAutoSpeak(false)
     } else {
       continuousVoiceRef.current = true
-      setAutoSpeak(true)
       startVoiceLoop()
     }
   }, [voice, startVoiceLoop])
@@ -199,27 +222,6 @@ export default function ChatScreen({ onBack, assistMode, chatMode, research }) {
         onBack={onBack}
         rightContent={
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <TouchableOpacity
-              onPress={() => setAutoSpeak(v => !v)}
-              activeOpacity={0.7}
-              style={{
-                paddingHorizontal: spacing.md,
-                paddingVertical: spacing.xs + 2,
-                borderRadius: radius.full,
-                backgroundColor: autoSpeak ? colors.primaryMuted : colors.surfaceCard,
-                borderWidth: 1,
-                borderColor: autoSpeak ? colors.primaryBorder : colors.border,
-                marginRight: spacing.sm,
-              }}
-            >
-              <Text style={{
-                color: autoSpeak ? colors.primary : colors.textDim,
-                fontSize: fontSize.sm,
-                fontWeight: '600',
-              }}>
-                {autoSpeak ? '🔊 Voice' : '🔇 Mute'}
-              </Text>
-            </TouchableOpacity>
             <TouchableOpacity onPress={newChat} activeOpacity={0.7}>
               <View style={{
                 paddingHorizontal: spacing.md,
@@ -332,10 +334,13 @@ export default function ChatScreen({ onBack, assistMode, chatMode, research }) {
                   </Text>
                 )}
                 {!isUser && item.text && item.source !== 'streaming' && (
-                  <SpeakerButton
-                    speaking={voice.speaking}
-                    onPress={() => voice.speaking ? voice.stopSpeaking() : voice.speak(item.text)}
-                  />
+                  <>
+                    <CopyButton text={item.text} />
+                    <SpeakerButton
+                      speaking={voice.speaking}
+                      onPress={() => voice.speaking ? voice.stopSpeaking() : voice.speak(item.text)}
+                    />
+                  </>
                 )}
               </View>
             </View>

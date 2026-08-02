@@ -31,11 +31,12 @@ export default function useVoice() {
   })
   
   useSpeechRecognitionEvent('result', (event) => {
-    const text = event.results.map(r => r.transcript).join(' ')
+    // Just take the highest confidence result (the first one) instead of joining all alternatives
+    const text = event.results[0]?.transcript || ''
     setTranscript(text)
     transcriptRef.current = text
     
-    const isFinal = event.results.some(r => r.isFinal)
+    const isFinal = event.results[0]?.isFinal
     if (isFinal && onResultRef.current) {
       onResultRef.current(text)
     }

@@ -31,12 +31,18 @@ export default function App() {
     api.initStorage()
     api.health().then(() => setConnected(true)).catch(() => {})
 
-    Linking.getInitialURL().then((url) => {
-      if (url && url.includes('assistMode')) {
+    const handleDeepLink = (event) => {
+      if (event.url && event.url.includes('assistMode')) {
         setAssistMode(true)
         setSubScreen({ screen: 'chat', params: {} })
       }
+    }
+
+    Linking.getInitialURL().then((url) => {
+      if (url) handleDeepLink({ url })
     })
+
+    const linkingSubscription = Linking.addEventListener('url', handleDeepLink)
 
     async function setupPush() {
       try {
@@ -57,6 +63,8 @@ export default function App() {
       }
     }
     setupPush()
+    
+    return () => linkingSubscription.remove()
   }, [])
 
   const navigate = (screen, params) => {
