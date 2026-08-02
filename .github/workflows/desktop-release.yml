@@ -36,13 +36,13 @@ jobs:
         include:
           - os: macos-14
             command: npm run build:mac:universal
-            files: desktop/dist/Archon-IDE.dmg
+            files: dist/Archon-IDE.dmg
           - os: windows-latest
             command: npm run build:win
-            files: desktop/dist/Archon-IDE-Setup.exe
+            files: dist/Archon-IDE-Setup.exe
           - os: ubuntu-latest
             command: npm run build:linux
-            files: desktop/dist/Archon-IDE.AppImage desktop/dist/Archon-IDE.deb
+            files: dist/Archon-IDE.AppImage dist/Archon-IDE.deb
     runs-on: ${{ matrix.os }}
     defaults:
       run:
