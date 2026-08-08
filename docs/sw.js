@@ -1,14 +1,14 @@
 /* Archon Docs — Service Worker */
-var CACHE_NAME = 'archon-docs-v1';
+var CACHE_NAME = 'archon-docs-v2';
 var PRECACHE = [
   '/',
   '/index.html',
   '/css/docs.css',
-  '/css/chat-widget.css',
+  '/css/shaggoth-widget.css',
   '/css/status.css',
   '/js/docs.js',
   '/js/sidebar.js',
-  '/js/chat-widget.js',
+  '/js/shaggoth-widget.js',
   '/manifest.json',
   '/favicon.svg',
   '/icon-192.png',

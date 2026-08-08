@@ -5,12 +5,24 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://ai.relayapp.pro; frame-src 'self'
+
+# connect-src is new here. There was none before, so it inherited
+# default-src 'self' and every cross-origin fetch was blocked -- which nothing
+# noticed, because the chat widget this replaces made no network calls at all.
+# The bubble now asks Shaggoth, so that one host is allowed and nothing else:
+# a named host rather than a wildcard, the same shape the /ide policy uses for
+# its Supabase connection.
 
 # The /ide route is served by the Pages Function, which replaces this policy
 # with the authenticated IDE policy that permits its Supabase connection.
 
-# Cache static assets aggressively
+# Cache static assets aggressively.
+#
+# Note for whoever changes the widget next: these are immutable for a year, so
+# editing a file under /js or /css in place does NOT reach anyone who has
+# already loaded it. That is why the Shaggoth widget arrived under a new
+# filename rather than overwriting chat-widget.js. Rename or version the file.
 /css/*
   Cache-Control: public, max-age=31536000, immutable
 
