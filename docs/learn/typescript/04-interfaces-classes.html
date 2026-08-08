@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interfaces & Classes — TypeScript Basics</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">TypeScript Basics</div>
+      <div class="sidebar-group-items"><a href="01-what-is-ts.html" class="sidebar-link lesson-link" data-lesson="ts-01">1. What is TypeScript?</a>
+      <a href="02-variables-types.html" class="sidebar-link lesson-link" data-lesson="ts-02">2. Variables & Types</a>
+      <a href="03-functions.html" class="sidebar-link lesson-link" data-lesson="ts-03">3. Functions</a>
+      <a href="04-interfaces-classes.html" class="sidebar-link lesson-link active" data-lesson="ts-04">4. Interfaces & Classes</a>
+      <a href="05-async-patterns.html" class="sidebar-link lesson-link" data-lesson="ts-05">5. Async Patterns</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+      <a href="../java/01-what-is-java.html" class="sidebar-link">Java Fundamentals →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge ts">TS TypeScript</span>
+      <h1>Interfaces & Classes</h1>
+      <div class="lesson-meta">
+        <span>Lesson 4 of 5</span>
+        <span>~8 min</span>
+      </div>
+    </div>
+
+    <p>As your programs grow, you need ways to describe the <em>shape</em> of your data and organize code into reusable structures. Interfaces and classes are TypeScript's primary tools for this.</p>
+
+    <h2>Interfaces</h2>
+
+    <p>An interface defines the shape of an object — what properties it should have and what types those properties should be:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>interface User {
+  name: string;
+  email: string;
+  age: number;
+}
+
+const alice: User = {
+  name: "Alice",
+  email: "alice@example.com",
+  age: 30,
+};</code></pre>
+    </div>
+
+    <h2>Optional & readonly properties</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>interface User {
+  name: string;          // required
+  email: string;         // required
+  age?: number;          // optional — the ? makes it optional
+  readonly id: number;   // readonly — cannot be changed after creation
+}
+
+const user: User = {
+  name: "Alice",
+  email: "alice@example.com",
+  id: 1,
+};
+
+user.age = 30;       // ✅ Optional — can be set
+user.id = 2;         // ❌ Error: Cannot assign to 'id' because it is read-only</code></pre>
+    </div>
+
+    <h2>Interfaces vs type aliases</h2>
+
+    <p>Both <code>interface</code> and <code>type</code> can define object shapes. The main difference:</p>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> Interfaces can be <strong>extended</strong> and <strong>merged</strong> — great for large, evolving systems.</li>
+      <li><span class="check">→</span> Type aliases are more flexible — they can represent unions, primitives, and tuples.</li>
+      <li><span class="check">→</span> In practice, use <strong>interfaces</strong> for object shapes and <strong>types</strong> for everything else.</li>
+    </ul>
+
+    <h2>Classes</h2>
+
+    <p>Classes combine data (properties) and behavior (methods) into a single structure. TypeScript adds access modifiers and interface implementation:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>class Student implements User {
+  name: string;
+  email: string;
+  private gpa: number;
+
+  constructor(name: string, email: string, gpa: number) {
+    this.name = name;
+    this.email = email;
+    this.gpa = gpa;
+  }
+
+  // Method
+  getSummary(): string {
+    return `${this.name} (${this.email}) — GPA: ${this.gpa}`;
+  }
+}
+
+const s = new Student("Alice", "alice@school.edu", 3.8);
+console.log(s.getSummary());</code></pre>
+    </div>
+
+    <h2>Access modifiers</h2>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>public</strong> — accessible from anywhere (default).</li>
+      <li><span class="check">→</span> <strong>private</strong> — accessible only within the class.</li>
+      <li><span class="check">→</span> <strong>protected</strong> — accessible within the class and its subclasses.</li>
+    </ul>
+
+    <div class="live-editor" data-lang="js">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">TypeScript</div>
+          <textarea class="code-input" spellcheck="false">interface User {
+  name: string;
+  email: string;
+  age?: number;
+}
+
+class UserImpl implements User {
+  name: string;
+  email: string;
+  age?: number;
+
+  constructor(name: string, email: string, age?: number) {
+    this.name = name;
+    this.email = email;
+    this.age = age;
+  }
+
+  greet(): string {
+    return `Hi, I'm ${this.name}`;
+  }
+}
+
+const alice = new UserImpl("Alice", "alice@example.com", 30);
+const bob = new UserImpl("Bob", "bob@example.com");
+
+console.log(alice.greet());
+console.log(`${bob.name} is ${bob.age ?? "unknown"} years old`);</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Console</div>
+          <pre class="output-frame"></pre>
+        </div>
+      </div>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-lesson="ts-04" data-answer="interface">
+      <div class="quiz-question">What keyword defines an interface in TypeScript?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="class">class</button>
+        <button class="quiz-option" data-value="interface">interface</button>
+        <button class="quiz-option" data-value="struct">struct</button>
+        <button class="quiz-option" data-value="object">object</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Create an interface called <code>User</code> with <code>name</code> and <code>email</code> properties. Then create a class that implements this interface and adds a <code>greet()</code> method that returns a string.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="03-functions.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Functions</div>
+      </a>
+      <a href="05-async-patterns.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Async Patterns</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "name": "Archon — Build Apps with AI",
+  "short_name": "Archon",
+  "description": "AI-powered iOS app builder. Describe your app in chat, watch AI build it.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06060a",
+  "theme_color": "#7c5cfc",
+  "orientation": "any",
+  "categories": ["developer", "productivity", "education"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "apple_mobile_web_app": {
+    "capable": true,
+    "status_bar_style": "black-translucent",
+    "title": "Archon"
+  },
+  "apple-touch-icons": [
+    { "src": "icon-180.png", "sizes": "180x180" },
+    { "src": "icon-167.png", "sizes": "167x167" },
+    { "src": "icon-152.png", "sizes": "152x152" },
+    { "src": "icon-120.png", "sizes": "120x120" }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Learn to Code",
+      "url": "/learn/",
+      "description": "Interactive coding lessons with live editors"
+    },
+    {
+      "name": "AI Assistant",
+      "url": "/ai",
+      "description": "Chat with Archon AI"
+    },
+    {
+      "name": "System Status",
+      "url": "/status",
+      "description": "Real-time system health"
+    }
+  ]
+}

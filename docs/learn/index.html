@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn — Archon Docs</title>
+  <meta name="description" content="Learn HTML, CSS, TypeScript, Python, Swift, and Java with interactive lessons, quizzes, and rewards.">
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/docs.css">
+  <link rel="stylesheet" href="../css/learn-gamification.css">
+  <link rel="stylesheet" href="../css/shaggoth-widget.css">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+
+  <link rel="manifest" href="../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../icon-512.png">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../index.html">User Guide</a>
+    <a href="../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Getting Started</div>
+      <div class="sidebar-group-items"><a href="../getting-started/install.html" class="sidebar-link">Install Archon</a>
+      <a href="../getting-started/create-account.html" class="sidebar-link">Create Your Account</a>
+      <a href="../getting-started/first-project.html" class="sidebar-link">Build Your First App</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Features</div>
+      <div class="sidebar-group-items"><a href="../features/ai-builder.html" class="sidebar-link">AI Builder</a>
+      <a href="../features/code-browser.html" class="sidebar-link">Code Browser</a>
+      <a href="../features/live-preview.html" class="sidebar-link">Live Preview</a>
+      <a href="../features/projects.html" class="sidebar-link">Projects</a>
+      <a href="../features/settings.html" class="sidebar-link">Settings</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Learn</div>
+      <div class="sidebar-group-items"><a href="../index.html" class="sidebar-link active">Overview</a>
+      <a href="html/01-what-is-html.html" class="sidebar-link lesson-link" data-lesson="html-01">HTML Fundamentals</a>
+      <a href="css/01-what-is-css.html" class="sidebar-link lesson-link" data-lesson="css-01">CSS Fundamentals</a>
+      <a href="typescript/01-what-is-ts.html" class="sidebar-link lesson-link" data-lesson="ts-01">TypeScript Basics</a>
+      <a href="python/01-what-is-python.html" class="sidebar-link lesson-link" data-lesson="py-01">Python Basics</a>
+      <a href="swift/01-what-is-swift.html" class="sidebar-link lesson-link" data-lesson="swift-01">Swift for iOS</a>
+      <a href="java/01-what-is-java.html" class="sidebar-link lesson-link" data-lesson="java-01">Java Fundamentals</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Help</div>
+      <div class="sidebar-group-items"><a href="../faq.html" class="sidebar-link">FAQ</a>
+      <a href="../privacy.html" class="sidebar-link">Privacy Policy</a>
+      <a href="../changelog.html" class="sidebar-link">Changelog</a>
+      <a href="../support.html" class="sidebar-link">Support</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="learn-hero-bg"></div>
+
+    <div id="learn-stats"></div>
+
+    <div class="hero">
+      <h1>Learn to code</h1>
+      <p class="subtitle">Interactive lessons with live code editors, quizzes, and rewards. Write code, see results instantly, and build real skills.</p>
+    </div>
+
+    <h2>Choose a language</h2>
+
+    <a href="html/01-what-is-html.html" class="path-card">
+      <div class="path-icon" style="background:var(--orange-muted);color:var(--orange);">🌐</div>
+      <div class="path-info">
+        <div class="path-title">HTML</div>
+        <div class="path-desc">The structure of every web page. Learn tags, elements, forms, and semantic markup.</div>
+      </div>
+      <div class="path-count">5 lessons</div>
+    </a>
+
+    <a href="css/01-what-is-css.html" class="path-card">
+      <div class="path-icon" style="background:var(--cyan-muted);color:var(--cyan);">🎨</div>
+      <div class="path-info">
+        <div class="path-title">CSS</div>
+        <div class="path-desc">The visual style of the web. Layouts, colors, typography, flexbox, grid, and responsive design.</div>
+      </div>
+      <div class="path-count">5 lessons</div>
+    </a>
+
+    <a href="typescript/01-what-is-ts.html" class="path-card">
+      <div class="path-icon" style="background:var(--accent-muted);color:var(--accent);">📘</div>
+      <div class="path-info">
+        <div class="path-title">TypeScript</div>
+        <div class="path-desc">JavaScript with types. Variables, functions, interfaces, classes, and async patterns.</div>
+      </div>
+      <div class="path-count">5 lessons</div>
+    </a>
+
+    <a href="python/01-what-is-python.html" class="path-card">
+      <div class="path-icon" style="background:var(--green-muted);color:var(--green);">🐍</div>
+      <div class="path-info">
+        <div class="path-title">Python</div>
+        <div class="path-desc">Readable, versatile, and powerful. Data types, control flow, functions, and data structures.</div>
+      </div>
+      <div class="path-count">5 lessons</div>
+    </a>
+
+    <a href="swift/01-what-is-swift.html" class="path-card">
+      <div class="path-icon" style="background:var(--red-muted);color:var(--red);">🐦</div>
+      <div class="path-info">
+        <div class="path-title">Swift</div>
+        <div class="path-desc">Apple's language for iOS. The same language Archon uses to build apps. Optionals, structs, SwiftUI, and more.</div>
+      </div>
+      <div class="path-count">5 lessons</div>
+    </a>
+
+    <a href="java/01-what-is-java.html" class="path-card">
+      <div class="path-icon" style="background:var(--orange-muted);color:var(--orange);">☕</div>
+      <div class="path-info">
+        <div class="path-title">Java</div>
+        <div class="path-desc">Enterprise-grade and Android's language. OOP, collections, streams, lambdas, and the JVM ecosystem.</div>
+      </div>
+      <div class="path-count">5 lessons</div>
+    </a>
+
+    <hr>
+
+    <h2>How it works</h2>
+    <div class="concept-box">
+      <h4>Interactive code editors</h4>
+      <p>Every lesson includes a live code editor with a real-time output preview. Edit the code on the left, see the result on the right instantly. No setup required.</p>
+    </div>
+    <div class="concept-box">
+      <h4>Quizzes & rewards</h4>
+      <p>Test your understanding with multiple-choice quizzes. Earn XP for correct answers, build streaks for bonus points, and unlock achievement badges as you progress.</p>
+    </div>
+    <div class="concept-box">
+      <h4>Progress tracking</h4>
+      <p>Your completed lessons, XP, and achievements are saved locally. Pick up exactly where you left off and watch your skills grow.</p>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../js/docs.js"></script>
+<script src="../js/learn.js"></script>
+<script src="../js/learn-gamification.js"></script>
+<div id="chat-bubble-mount"></div>
+<script src="../js/shaggoth-widget.js"></script>
+  <script src="../js/sidebar.js"></script>
+
+<script src="../js/pwa.js"></script>
+</body>
+</html>

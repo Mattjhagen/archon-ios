@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox & Grid — CSS Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">CSS Fundamentals</div>
+      <div class="sidebar-group-items"><a href="01-what-is-css.html" class="sidebar-link" data-lesson="css-01">1. What is CSS?</a>
+      <a href="02-selectors.html" class="sidebar-link" data-lesson="css-02">2. Selectors</a>
+      <a href="03-box-model.html" class="sidebar-link" data-lesson="css-03">3. The Box Model</a>
+      <a href="04-flexbox-grid.html" class="sidebar-link lesson-link active" data-lesson="css-04">4. Flexbox & Grid</a>
+      <a href="05-responsive-design.html" class="sidebar-link lesson-link" data-lesson="css-05">5. Responsive Design</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../html/01-what-is-html.html" class="sidebar-link">← HTML Fundamentals</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+      <a href="../java/01-what-is-java.html" class="sidebar-link">Java Fundamentals →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge css">🎨 CSS</span>
+      <h1>Flexbox & Grid</h1>
+      <div class="lesson-meta">
+        <span>Lesson 4 of 5</span>
+        <span>~8 min</span>
+      </div>
+    </div>
+
+    <p>Modern CSS layout systems make it easy to arrange elements in one dimension (Flexbox) or two dimensions (Grid). Both replace the old float-based hacks with clean, powerful syntax.</p>
+
+    <h2>Flexbox</h2>
+
+    <p>Flexbox is designed for laying out items in a single row or column. Set <code>display: flex</code> on a container to activate it.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>.container {
+  display: flex;
+  justify-content: space-between; /* horizontal alignment */
+  align-items: center;            /* vertical alignment */
+  gap: 16px;                      /* space between items */
+}
+
+/* Common properties */
+flex-direction: row | column;
+flex-wrap: wrap;
+flex: 1; /* grow to fill space */</code></pre>
+    </div>
+
+    <h2>CSS Grid</h2>
+
+    <p>Grid lets you define rows and columns explicitly — ideal for page layouts and card grids.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
+  gap: 16px;
+}
+
+/* Responsive columns */
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));</code></pre>
+    </div>
+
+    <h2>Try it yourself</h2>
+
+    <div class="live-editor" data-lang="css">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">CSS</div>
+          <textarea class="code-input" spellcheck="false">.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #1a1a2e;
+  border-radius: 8px;
+}
+
+.item {
+  background: #7c5cfc;
+  color: white;
+  padding: 20px 32px;
+  border-radius: 8px;
+  text-align: center;
+}</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Switch from <code>display: flex</code> to <code>display: grid</code> with <code>grid-template-columns: 1fr 1fr 1fr</code>. See how the layout changes from a row to a grid.</p>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="display: flex">
+      <div class="quiz-question">Which property creates a flex container?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="flex-direction: row">flex-direction: row</button>
+        <button class="quiz-option" data-value="display: flex">display: flex</button>
+        <button class="quiz-option" data-value="justify-content: center">justify-content: center</button>
+        <button class="quiz-option" data-value="flex-wrap: wrap">flex-wrap: wrap</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>In the editor above, create a 3-column grid layout using <code>display: grid</code> with <code>grid-template-columns: 1fr 1fr 1fr</code> and a gap of 16px.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="03-box-model.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">The Box Model</div>
+      </a>
+      <a href="05-responsive-design.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Responsive Design</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

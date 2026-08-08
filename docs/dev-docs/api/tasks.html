@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tasks API — Archon Developer Docs</title>
+  <meta name="description" content="Task lifecycle, events, polling, and cancellation for AI-generated tasks.">
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/ascii-header.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="overview.html" class="active">Developer</a>
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Architecture</div>
+      <div class="sidebar-group-items"><a href="../architecture/overview.html" class="sidebar-link">Overview</a>
+      <a href="../architecture/navigation.html" class="sidebar-link">Navigation</a>
+      <a href="../architecture/design-system.html" class="sidebar-link">Design System</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">API Reference</div>
+      <div class="sidebar-group-items"><a href="overview.html" class="sidebar-link">Overview</a>
+      <a href="projects.html" class="sidebar-link">Projects</a>
+      <a href="ai-chat.html" class="sidebar-link">AI Chat</a>
+      <a href="tasks.html" class="sidebar-link active">Tasks</a>
+      <a href="models.html" class="sidebar-link">Models</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Guides</div>
+      <div class="sidebar-group-items"><a href="../guides/setup.html" class="sidebar-link">Setup</a>
+      <a href="../guides/testing.html" class="sidebar-link">Testing</a>
+      <a href="../guides/adding-features.html" class="sidebar-link">Adding Features</a>
+      <a href="../guides/testflight.html" class="sidebar-link">TestFlight</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Reference</div>
+      <div class="sidebar-group-items"><a href="../../faq.html" class="sidebar-link">FAQ</a>
+      <a href="../contributing.html" class="sidebar-link">Contributing</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="ascii-header-wrapper">
+      <div class="ascii-stars"></div>
+      <div class="ascii-scanline"></div>
+      <span class="ascii-satellite">✦</span>
+      <div class="ascii-scene">
+        <div class="ascii-title-row">
+          <div class="ascii-art-left">  ┌──────────┐
+  │ created  │
+  └────┬─────┘
+       │
+  ┌────▼─────┐
+  │ running  │
+  └────┬─────┘
+       │
+  ┌────▼──────────────┐
+  │ completed │ failed │
+  └───────────┘────────┘</div>
+          <div class="ascii-center-title">
+            <h1>Tasks API</h1>
+            <p class="subtitle">Task lifecycle, events, polling, and cancellation.</p>
+          </div>
+          <div class="ascii-art-right">  ┌────────────┐
+  │ ArchonTask │
+  ├────────────┤
+  │ id: UUID   │
+  │ status:    │
+  │  enum      │
+  │ events: [] │
+  │ steps: []  │
+  └────────────┘</div>
+        </div>
+        <div class="ascii-status-bar">
+          <span><span class="status-dot green"></span>Developer Docs</span>
+          <span>Archon iOS · Swift · SwiftUI</span>
+          <span><span class="status-dot purple"></span>API v1</span>
+        </div>
+      </div>
+      <div class="ascii-arc"></div>
+    </div>
+
+    <div class="mobile-hero">
+      <div class="hero">
+        <h1>Tasks API</h1>
+        <p class="subtitle">Task lifecycle, events, polling, and cancellation.</p>
+      </div>
+    </div>
+
+    <h2>Task Lifecycle</h2>
+    <p>Each AI-generated action creates a task that progresses through a defined state machine:</p>
+
+    <pre style="background: var(--code-bg, #1a1a2e); color: #e0e0e0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6;">
+┌──────────┐
+│ created  │  ← Task instantiated, waiting to start
+└────┬─────┘
+     │ start()
+┌────▼─────┐
+│ running  │  ← AI is actively processing
+└────┬─────┘
+     │
+     ├── complete() ──▶ ┌───────────┐
+     │                  │ completed │  ← All steps finished
+     │                  └───────────┘
+     │
+     ├── fail() ───────▶ ┌────────┐
+     │                   │ failed │  ← Error occurred
+     │                   └────────┘
+     │
+     └── cancel() ─────▶ ┌──────────┐
+                         │ cancelled │  ← User cancelled
+                         └──────────┘</pre>
+
+    <h2>Task States</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon purple">📋</div>
+        <div class="card-title">created</div>
+        <div class="card-desc">Task has been created and queued. The AI hasn't started processing yet. Duration: typically &lt;100ms.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon green">⚡</div>
+        <div class="card-title">running</div>
+        <div class="card-desc">AI is actively working. The task has a list of steps that progress as work is done. Events stream in real time.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">✅</div>
+        <div class="card-title">completed</div>
+        <div class="card-desc">All steps finished successfully. The task's result is stored and accessible via the project's file tree.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon cyan">❌</div>
+        <div class="card-title">failed</div>
+        <div class="card-desc">An error occurred during processing. The <code>errorMessage</code> field contains details. Partial results may still be available.</div>
+      </div>
+    </div>
+
+    <h2>Endpoints</h2>
+    <h3>Base Path: <code>/rest/v1/tasks</code></h3>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">GET /tasks?project_id=eq.{id}</div>
+        <div class="step-content">List all tasks for a project. Returns an array of <code>ArchonTask</code> with nested events. Order by <code>created_at.desc</code>.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">GET /tasks/:id</div>
+        <div class="step-content">Fetch a single task with all events. Used to check status after reconnection.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">POST /tasks/:id/cancel</div>
+        <div class="step-content">Cancel a running task. The AI stops processing and the task moves to <code>cancelled</code> state. Partial results are preserved.</div>
+      </div>
+    </div>
+
+    <h2>Task Events</h2>
+    <p>Each task produces a stream of events that describe its progress:</p>
+
+    <pre style="background: var(--code-bg, #1a1a2e); color: #e0e0e0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6;">
+struct TaskEvent: Codable, Identifiable {
+    let id: UUID
+    let taskId: UUID
+    let type: EventType
+    let message: String
+    let metadata: [String: String]?
+    let createdAt: Date
+}
+
+enum EventType: String, Codable {
+    case stepStarted
+    case stepCompleted
+    case fileCreated
+    case fileModified
+    case error
+    case info
+}</pre>
+
+    <h3>Event Types</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">stepStarted</div>
+        <div class="step-content">A new step in the task has begun. Includes step name in the message field (e.g., "Creating project structure").</div>
+      </div>
+      <div class="step">
+        <div class="step-title">stepCompleted</div>
+        <div class="step-content">A step has finished. The task's progress counter increments.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">fileCreated / fileModified</div>
+        <div class="step-content">A file was created or modified. Metadata includes the file path and language.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">error</div>
+        <div class="step-content">An error occurred during this step. The task may continue or fail depending on severity.</div>
+      </div>
+    </div>
+
+    <h2>Polling &amp; Realtime</h2>
+    <p>The app uses two strategies to track task progress:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">SSE Streaming (Primary)</div>
+        <div class="step-content">During active chat, task events arrive via the SSE stream from the chat endpoint. No polling needed.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">Polling (Fallback)</div>
+        <div class="step-content">If the SSE connection drops, the app polls <code>GET /tasks/:id</code> every 2 seconds until the task reaches a terminal state.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">Supabase Realtime (Future)</div>
+        <div class="step-content">WebSocket subscriptions on the tasks table for push-based updates without polling.</div>
+      </div>
+    </div>
+
+    <h2>Cancellation</h2>
+    <p>Users can cancel a running task from the UI. The cancel flow:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">1. User taps Cancel</div>
+        <div class="step-content">The app sends <code>POST /tasks/:id/cancel</code>.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">2. Server signals AI</div>
+        <div class="step-content">The Edge Function sends an interrupt to the AI model and stops processing.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">3. Task moves to cancelled</div>
+        <div class="step-content">The task status updates to <code>cancelled</code>. Any files already created are preserved in the project.</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/ascii-header.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

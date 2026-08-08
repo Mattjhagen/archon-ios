@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Flow — Python Basics</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Python Basics</div>
+      <div class="sidebar-group-items"><a href="01-what-is-python.html" class="sidebar-link lesson-link" data-lesson="py-01">1. What is Python?</a>
+      <a href="02-variables-datatypes.html" class="sidebar-link lesson-link" data-lesson="py-02">2. Variables & Data Types</a>
+      <a href="03-control-flow.html" class="sidebar-link lesson-link active" data-lesson="py-03">3. Control Flow</a>
+      <a href="04-functions.html" class="sidebar-link lesson-link" data-lesson="py-04">4. Functions</a>
+      <a href="05-data-structures.html" class="sidebar-link lesson-link" data-lesson="py-05">5. Data Structures</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+      <a href="../java/01-what-is-java.html" class="sidebar-link">Java Fundamentals →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge py">🐍 Python</span>
+      <h1>Control Flow</h1>
+      <div class="lesson-meta">
+        <span>Lesson 3 of 5</span>
+        <span>~7 min</span>
+      </div>
+    </div>
+
+    <p>Control flow lets your programs make decisions and repeat actions. Python provides <code>if/elif/else</code> for conditionals, and <code>for</code> and <code>while</code> for loops.</p>
+
+    <h2>Conditionals</h2>
+
+    <div class="live-editor" data-lang="python">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">Python</div>
+          <textarea class="code-input" spellcheck="false"># if / elif / else
+temperature = 72
+
+if temperature > 85:
+    print("It's hot outside!")
+elif temperature > 65:
+    print("It's nice outside!")
+else:
+    print("It's cold outside!")
+
+# for loop
+print("\nCounting:")
+for i in range(1, 6):
+    print(f"  Number: {i}")</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Change the <code>temperature</code> value and see which branch executes. Then try modifying the <code>range()</code> values in the loop.</p>
+    </div>
+
+    <h2>Comparison operators</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>==      # Equal to
+!=      # Not equal to
+>       # Greater than
+<       # Less than
+>=      # Greater than or equal to
+<=      # Less than or equal to</code></pre>
+    </div>
+
+    <h2>Logical operators</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>and     # Both conditions must be true
+or      # At least one condition must be true
+not     # Reverses the boolean value</code></pre>
+    </div>
+
+    <h2>For loops</h2>
+
+    <p>Use <code>for</code> to iterate over a sequence — a range, a list, a string, or anything iterable:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code># Loop with range
+for i in range(5):      # 0, 1, 2, 3, 4
+    print(i)
+
+# Loop over a list
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+
+# Loop with enumerate (index + value)
+for index, fruit in enumerate(fruits):
+    print(f"{index}: {fruit}")</code></pre>
+    </div>
+
+    <h2>While loops</h2>
+
+    <p>Use <code>while</code> to repeat code as long as a condition is true:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>count = 0
+while count < 5:
+    print(count)
+    count += 1
+
+# break and continue
+for i in range(10):
+    if i == 3:
+        continue    # Skip 3
+    if i == 7:
+        break       # Stop at 7
+    print(i)</code></pre>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="elif">
+      <div class="quiz-question">What keyword starts an else-if chain in Python?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="else if">else if</button>
+        <button class="quiz-option" data-value="elif">elif</button>
+        <button class="quiz-option" data-value="elseif">elseif</button>
+        <button class="quiz-option" data-value="or else">or else</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Write a <code>for</code> loop that prints only the even numbers from 1 to 10. Hint: use the modulo operator <code>%</code>.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="02-variables-datatypes.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Variables & Data Types</div>
+      </a>
+      <a href="04-functions.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Functions</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

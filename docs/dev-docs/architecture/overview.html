@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture Overview — Archon Developer Docs</title>
+  <meta name="description" content="MVVM architecture, SwiftUI + async/await, Supabase backend, and the data flow behind every screen.">
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/ascii-header.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="overview.html" class="active">Developer</a>
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Architecture</div>
+      <div class="sidebar-group-items"><a href="overview.html" class="sidebar-link active">Overview</a>
+      <a href="navigation.html" class="sidebar-link">Navigation</a>
+      <a href="design-system.html" class="sidebar-link">Design System</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">API Reference</div>
+      <div class="sidebar-group-items"><a href="../api/overview.html" class="sidebar-link">Overview</a>
+      <a href="../api/projects.html" class="sidebar-link">Projects</a>
+      <a href="../api/ai-chat.html" class="sidebar-link">AI Chat</a>
+      <a href="../api/tasks.html" class="sidebar-link">Tasks</a>
+      <a href="../api/models.html" class="sidebar-link">Models</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Guides</div>
+      <div class="sidebar-group-items"><a href="../guides/setup.html" class="sidebar-link">Setup</a>
+      <a href="../guides/testing.html" class="sidebar-link">Testing</a>
+      <a href="../guides/adding-features.html" class="sidebar-link">Adding Features</a>
+      <a href="../guides/testflight.html" class="sidebar-link">TestFlight</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Reference</div>
+      <div class="sidebar-group-items"><a href="../../faq.html" class="sidebar-link">FAQ</a>
+      <a href="../contributing.html" class="sidebar-link">Contributing</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="ascii-header-wrapper">
+      <div class="ascii-stars"></div>
+      <div class="ascii-scanline"></div>
+      <span class="ascii-satellite">✦</span>
+      <div class="ascii-scene">
+        <div class="ascii-title-row">
+          <div class="ascii-art-left">    ┌─────────┐
+    │  View   │
+    └────┬────┘
+         │
+    ┌────▼────┐
+    │ViewModel│
+    └────┬────┘
+         │
+    ┌────▼────┐
+    │ Service │
+    └─────────┘</div>
+          <div class="ascii-center-title">
+            <h1>Architecture Overview</h1>
+            <p class="subtitle">MVVM pattern with SwiftUI, async/await, and Supabase.</p>
+          </div>
+          <div class="ascii-art-right">  ╔═══════════╗
+  ║  ARCHON   ║
+  ╠═══════════╣
+  ║ SwiftUI   ║
+  ║ MVVM      ║
+  ║ Async     ║
+  ╚═══════════╝</div>
+        </div>
+        <div class="ascii-status-bar">
+          <span><span class="status-dot green"></span>Developer Docs</span>
+          <span>Archon iOS · Swift · SwiftUI</span>
+          <span><span class="status-dot purple"></span>API v1</span>
+        </div>
+      </div>
+      <div class="ascii-arc"></div>
+    </div>
+
+    <div class="mobile-hero">
+      <div class="hero">
+        <h1>Architecture Overview</h1>
+        <p class="subtitle">MVVM pattern with SwiftUI, async/await, and Supabase.</p>
+      </div>
+    </div>
+
+    <h2>MVVM Architecture</h2>
+    <p>Archon uses a clean MVVM (Model-View-ViewModel) architecture with SwiftUI for the view layer and <code>async/await</code> for all asynchronous operations.</p>
+
+    <pre style="background: var(--code-bg, #1a1a2e); color: #e0e0e0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6;">
+┌──────────────────────────────────────────────────────────┐
+│                      ARCHON MVVM                         │
+├──────────────────────────────────────────────────────────┤
+│                                                          │
+│  ┌─────────────────────────────────────────────────┐     │
+│  │                   SwiftUI Views                 │     │
+│  │  (Pure, declarative — no business logic)        │     │
+│  └────────────────────┬────────────────────────────┘     │
+│                       │ @StateObject / @ObservedObject    │
+│  ┌────────────────────▼────────────────────────────┐     │
+│  │                  ViewModels                     │     │
+│  │  (ObservableObject, drives UI state)            │     │
+│  │  - @Published properties for bindings           │     │
+│  │  - async methods for actions                    │     │
+│  └────────────────────┬────────────────────────────┘     │
+│                       │ Protocol injection                │
+│  ┌────────────────────▼────────────────────────────┐     │
+│  │              Service Layer (API)                │     │
+│  │  (APIClientProtocol — real or mock)             │     │
+│  └────────────────────┬────────────────────────────┘     │
+│                       │ HTTP / Supabase                   │
+│  ┌────────────────────▼────────────────────────────┐     │
+│  │               Supabase Backend                  │     │
+│  │  (PostgreSQL, Auth, Realtime, Edge Functions)   │     │
+│  └─────────────────────────────────────────────────┘     │
+│                                                          │
+└──────────────────────────────────────────────────────────┘</pre>
+
+    <h2>Data Flow</h2>
+    <p>Data flows unidirectionally through the architecture:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">1. User Action</div>
+        <div class="step-content">A button tap or gesture in the SwiftUI View triggers a method on the ViewModel.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">2. ViewModel Processes</div>
+        <div class="step-content">The ViewModel calls the API service via <code>APIClientProtocol</code>, awaits the response, and updates <code>@Published</code> properties.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">3. View Reacts</div>
+        <div class="step-content">SwiftUI observes the <code>@Published</code> changes and re-renders the affected views automatically.</div>
+      </div>
+    </div>
+
+    <h2>App Lifecycle</h2>
+    <p>Archon follows the standard SwiftUI <code>App</code> lifecycle:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">Launch</div>
+        <div class="step-content"><code>ArchonApp.swift</code> creates the root <code>ContentView</code> and injects the API client and authentication state.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">Authentication Check</div>
+        <div class="step-content">On launch, the app checks for a stored session in the iOS Keychain. If valid, it proceeds to the main tab interface. If not, it presents the onboarding/auth flow.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">Main Interface</div>
+        <div class="step-content">The main <code>TabView</code> loads with the Builder, Projects, and Settings tabs. Each tab has its own ViewModel.</div>
+      </div>
+    </div>
+
+    <h2>Supabase Integration</h2>
+    <p>Archon uses Supabase as its backend, providing:</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon purple">🔐</div>
+        <div class="card-title">Authentication</div>
+        <div class="card-desc">Email/password and Apple Sign In via Supabase Auth. Sessions stored in iOS Keychain.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon green">🗄</div>
+        <div class="card-title">Database</div>
+        <div class="card-desc">PostgreSQL for projects, tasks, chat messages, and user profiles. Row-level security enforced.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">⚡</div>
+        <div class="card-title">Edge Functions</div>
+        <div class="card-desc">Server-side AI processing, model routing, and credit management via Deno Edge Functions.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon cyan">🔄</div>
+        <div class="card-title">Realtime</div>
+        <div class="card-desc">WebSocket subscriptions for live task progress updates and chat streaming.</div>
+      </div>
+    </div>
+
+    <h2>Key Patterns</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">Protocol-Oriented API</div>
+        <div class="step-content">All API communication goes through <code>APIClientProtocol</code>, enabling mock injection for tests and previews.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">Async/Await Everywhere</div>
+        <div class="step-content">No completion handlers. All network calls, database operations, and auth flows use structured concurrency.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">Codable Models</div>
+        <div class="step-content">All data models conform to <code>Codable</code> with consistent <code>snake_case</code> ↔ <code>camelCase</code> key mapping.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">Dependency Injection</div>
+        <div class="step-content">ViewModels receive their dependencies (API client, auth manager) via init parameters, not singletons.</div>
+      </div>
+    </div>
+
+    <h2>Project Structure</h2>
+    <pre style="background: var(--code-bg, #1a1a2e); color: #e0e0e0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6;">
+Archon/
+├── App/
+│   └── ArchonApp.swift
+├── Models/
+│   ├── ArchonProject.swift
+│   ├── ArchonTask.swift
+│   ├── ChatMessage.swift
+│   ├── TaskEvent.swift
+│   └── APIError.swift
+├── ViewModels/
+│   ├── BuilderViewModel.swift
+│   ├── ProjectsViewModel.swift
+│   └── SettingsViewModel.swift
+├── Views/
+│   ├── MainTabView.swift
+│   ├── Builder/
+│   ├── Projects/
+│   └── Settings/
+├── Services/
+│   ├── APIClientProtocol.swift
+│   ├── APIClient.swift
+│   ├── MockAPIClient.swift
+│   └── AuthManager.swift
+├── Utilities/
+│   ├── KeychainHelper.swift
+│   └── DateFormatter+.swift
+└── Resources/
+    └── Assets.xcassets</pre>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/ascii-header.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

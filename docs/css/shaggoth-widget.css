@@ -1,0 +1,301 @@
+/* Relay chat bubble.
+ *
+ * Two copies of this file exist and are meant to stay byte-identical:
+ * Relay/assets/chat-widget.css (relayapp.pro) and
+ * archon-ios/docs/css/shaggoth-widget.css (docs.relayapp.pro). Change one,
+ * copy it to the other -- the widget this replaced rotted precisely because
+ * each site kept its own fork of it.
+ *
+ * Both sites use the same palette under different variable names:
+ * relayapp.pro sets --bg2/--text/--text-dim, the docs site sets
+ * --bg-secondary/--text-primary/--text-secondary. Each lookup tries the Relay
+ * name, then the docs name, then a literal -- so the widget tracks whichever
+ * site it lands on, and still looks like itself on a page that defines
+ * neither.
+ */
+.relay-chat {
+    --rc-bg: var(--bg2, var(--bg-secondary, #0c0c14));
+    --rc-bg-raised: var(--bg3, var(--bg-tertiary, #12121e));
+    --rc-border: var(--border, #1a1a2e);
+    --rc-border-light: var(--border-light, #252540);
+    --rc-text: var(--text, var(--text-primary, #e8e8f0));
+    --rc-text-dim: var(--text-dim, var(--text-secondary, #9898b0));
+    --rc-text-muted: var(--text-muted, #686880);
+    --rc-accent: var(--accent, #7c5cfc);
+    --rc-accent-hover: var(--accent-hover, #9078ff);
+    --rc-green: var(--green, #34d399);
+    --rc-red: var(--red, #f87171);
+    --rc-font: var(--font, var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif));
+
+    position: fixed;
+    /* Padded for the iPhone home indicator. Without the inset the launcher
+       sits under the browser chrome on iOS and is hard to hit. */
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+    font-family: var(--rc-font);
+    line-height: 1.5;
+}
+
+.relay-chat *,
+.relay-chat *::before,
+.relay-chat *::after { box-sizing: border-box; }
+
+/* ---------------------------------------------------------------- launcher */
+
+.relay-chat-launcher {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: var(--rc-accent);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 28px rgba(124, 92, 252, 0.35);
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    /* The launcher is last in the DOM but visually anchors the widget, so it
+       keeps its own stacking context above the panel's shadow. */
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.relay-chat-launcher:hover { background: var(--rc-accent-hover); transform: translateY(-2px); }
+.relay-chat-launcher:focus-visible { outline: 2px solid var(--rc-accent-hover); outline-offset: 3px; }
+.relay-chat-launcher svg { width: 24px; height: 24px; display: block; }
+.relay-chat-launcher .relay-chat-icon-close { display: none; }
+.relay-chat.is-open .relay-chat-launcher .relay-chat-icon-open { display: none; }
+.relay-chat.is-open .relay-chat-launcher .relay-chat-icon-close { display: block; }
+
+/* Unread marker for a proactive opener the visitor has not looked at yet. */
+.relay-chat-launcher .relay-chat-dot {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--rc-green);
+    border: 2px solid var(--rc-bg);
+    display: none;
+}
+.relay-chat.has-unread .relay-chat-launcher .relay-chat-dot { display: block; }
+
+/* ------------------------------------------------------------------- panel */
+
+.relay-chat-panel {
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    height: 520px;
+    max-height: min(70vh, 620px);
+    background: var(--rc-bg);
+    border: 1px solid var(--rc-border);
+    border-radius: 16px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* display:none rather than visibility so the panel is out of the tab order
+       entirely while closed. */
+    display: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.relay-chat.is-open .relay-chat-panel { display: flex; }
+.relay-chat.is-visible .relay-chat-panel { opacity: 1; transform: translateY(0); }
+
+.relay-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--rc-border);
+    background: var(--rc-bg-raised);
+    flex-shrink: 0;
+}
+
+.relay-chat-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--rc-accent), #22d3ee);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.relay-chat-titles { min-width: 0; flex: 1; }
+.relay-chat-title { font-size: 14px; font-weight: 700; color: var(--rc-text); letter-spacing: -0.01em; }
+.relay-chat-status { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--rc-text-muted); }
+.relay-chat-status .relay-chat-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rc-text-muted);
+    flex-shrink: 0;
+}
+.relay-chat[data-state="online"] .relay-chat-status-dot { background: var(--rc-green); }
+.relay-chat[data-state="offline"] .relay-chat-status-dot { background: var(--rc-red); }
+
+.relay-chat-action {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--rc-text-muted);
+    font-family: inherit;
+    font-size: 11px;
+    padding: 5px 9px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.relay-chat-action:hover { color: var(--rc-text); background: var(--rc-bg); border-color: var(--rc-border-light); }
+.relay-chat-action:focus-visible { outline: 2px solid var(--rc-accent); outline-offset: 1px; }
+
+/* ---------------------------------------------------------------- messages */
+
+.relay-chat-log {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rc-border-light) transparent;
+}
+.relay-chat-log::-webkit-scrollbar { width: 8px; }
+.relay-chat-log::-webkit-scrollbar-thumb { background: var(--rc-border-light); border-radius: 4px; }
+
+.relay-chat-msg { max-width: 85%; display: flex; flex-direction: column; gap: 4px; }
+.relay-chat-msg-user { align-self: flex-end; align-items: flex-end; }
+.relay-chat-msg-bot { align-self: flex-start; }
+
+.relay-chat-bubble {
+    padding: 10px 13px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    color: var(--rc-text);
+    /* Replies arrive as plain text with real newlines and are inserted as
+       text nodes, never as HTML. pre-wrap is what keeps their line breaks. */
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+.relay-chat-msg-user .relay-chat-bubble { background: var(--rc-accent); color: #fff; border-bottom-right-radius: 5px; }
+.relay-chat-msg-bot .relay-chat-bubble { background: var(--rc-bg-raised); border: 1px solid var(--rc-border); border-bottom-left-radius: 5px; }
+.relay-chat-msg-error .relay-chat-bubble { border-color: rgba(248, 113, 113, 0.4); color: var(--rc-text-dim); }
+
+.relay-chat-meta { font-size: 10px; color: var(--rc-text-muted); letter-spacing: 0.04em; text-transform: uppercase; padding: 0 4px; }
+
+.relay-chat-typing { display: flex; gap: 4px; padding: 4px 2px; }
+.relay-chat-typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rc-text-muted);
+    animation: relay-chat-blink 1.3s infinite ease-in-out;
+}
+.relay-chat-typing span:nth-child(2) { animation-delay: 0.18s; }
+.relay-chat-typing span:nth-child(3) { animation-delay: 0.36s; }
+@keyframes relay-chat-blink { 0%, 60%, 100% { opacity: 0.25; } 30% { opacity: 1; } }
+
+/* ------------------------------------------------------------------- input */
+
+.relay-chat-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 12px; }
+.relay-chat-suggestion {
+    background: var(--rc-bg-raised);
+    border: 1px solid var(--rc-border);
+    color: var(--rc-text-dim);
+    font-family: inherit;
+    font-size: 11.5px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+.relay-chat-suggestion:hover { color: var(--rc-text); border-color: var(--rc-accent); }
+.relay-chat-suggestion:focus-visible { outline: 2px solid var(--rc-accent); outline-offset: 1px; }
+
+.relay-chat-form {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--rc-border);
+    background: var(--rc-bg-raised);
+    flex-shrink: 0;
+}
+
+.relay-chat-input {
+    flex: 1;
+    min-width: 0;
+    background: var(--rc-bg);
+    border: 1px solid var(--rc-border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--rc-text);
+    font-family: inherit;
+    /* 16px stops iOS Safari from zooming the page on focus. */
+    font-size: 16px;
+    transition: border-color 0.15s;
+}
+.relay-chat-input::placeholder { color: var(--rc-text-muted); }
+.relay-chat-input:focus { outline: none; border-color: var(--rc-accent); }
+
+.relay-chat-send {
+    background: var(--rc-accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, opacity 0.15s;
+    flex-shrink: 0;
+}
+.relay-chat-send:hover:not(:disabled) { background: var(--rc-accent-hover); }
+.relay-chat-send:disabled { opacity: 0.45; cursor: default; }
+.relay-chat-send:focus-visible { outline: 2px solid var(--rc-accent-hover); outline-offset: 2px; }
+.relay-chat-send svg { width: 17px; height: 17px; display: block; }
+
+.relay-chat-footnote {
+    padding: 0 16px 10px;
+    font-size: 10.5px;
+    color: var(--rc-text-muted);
+    text-align: center;
+    background: var(--rc-bg-raised);
+}
+.relay-chat-footnote a { color: var(--rc-text-dim); text-decoration: none; }
+.relay-chat-footnote a:hover { color: var(--rc-accent); }
+
+/* ------------------------------------------------------------------ mobile */
+
+@media (max-width: 480px) {
+    .relay-chat { right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); left: 12px; align-items: flex-end; }
+    .relay-chat-panel { width: 100%; max-width: none; height: min(72vh, 560px); }
+}
+
+/* A widget that slides and pulses is exactly the kind of motion people turn
+   off. Honour the preference rather than making it their problem. */
+@media (prefers-reduced-motion: reduce) {
+    .relay-chat-panel,
+    .relay-chat-launcher,
+    .relay-chat-send,
+    .relay-chat-suggestion { transition: none; }
+    .relay-chat-panel { transform: none; }
+    .relay-chat-typing span { animation: none; opacity: 0.6; }
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects API — Archon Developer Docs</title>
+  <meta name="description" content="CRUD endpoints, request/response models, HTTP methods, and query patterns for projects.">
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/ascii-header.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="overview.html" class="active">Developer</a>
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Architecture</div>
+      <div class="sidebar-group-items"><a href="../architecture/overview.html" class="sidebar-link">Overview</a>
+      <a href="../architecture/navigation.html" class="sidebar-link">Navigation</a>
+      <a href="../architecture/design-system.html" class="sidebar-link">Design System</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">API Reference</div>
+      <div class="sidebar-group-items"><a href="overview.html" class="sidebar-link">Overview</a>
+      <a href="projects.html" class="sidebar-link active">Projects</a>
+      <a href="ai-chat.html" class="sidebar-link">AI Chat</a>
+      <a href="tasks.html" class="sidebar-link">Tasks</a>
+      <a href="models.html" class="sidebar-link">Models</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Guides</div>
+      <div class="sidebar-group-items"><a href="../guides/setup.html" class="sidebar-link">Setup</a>
+      <a href="../guides/testing.html" class="sidebar-link">Testing</a>
+      <a href="../guides/adding-features.html" class="sidebar-link">Adding Features</a>
+      <a href="../guides/testflight.html" class="sidebar-link">TestFlight</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Reference</div>
+      <div class="sidebar-group-items"><a href="../../faq.html" class="sidebar-link">FAQ</a>
+      <a href="../contributing.html" class="sidebar-link">Contributing</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="ascii-header-wrapper">
+      <div class="ascii-stars"></div>
+      <div class="ascii-scanline"></div>
+      <span class="ascii-satellite">✦</span>
+      <div class="ascii-scene">
+        <div class="ascii-title-row">
+          <div class="ascii-art-left">  ┌─────────────┐
+  │  📁 Project  │
+  ├─────────────┤
+  │ id: UUID    │
+  │ name: Str   │
+  │ desc: Str   │
+  │ created: DT │
+  │ updated: DT │
+  └─────────────┘</div>
+          <div class="ascii-center-title">
+            <h1>Projects API</h1>
+            <p class="subtitle">CRUD endpoints, request/response models, and query patterns.</p>
+          </div>
+          <div class="ascii-art-right">  GET    /projects
+  POST   /projects
+  GET    /projects/:id
+  PUT    /projects/:id
+  DELETE /projects/:id</div>
+        </div>
+        <div class="ascii-status-bar">
+          <span><span class="status-dot green"></span>Developer Docs</span>
+          <span>Archon iOS · Swift · SwiftUI</span>
+          <span><span class="status-dot purple"></span>API v1</span>
+        </div>
+      </div>
+      <div class="ascii-arc"></div>
+    </div>
+
+    <div class="mobile-hero">
+      <div class="hero">
+        <h1>Projects API</h1>
+        <p class="subtitle">CRUD endpoints, request/response models, and query patterns.</p>
+      </div>
+    </div>
+
+    <h2>Endpoints</h2>
+    <p>All project endpoints are scoped to the authenticated user via Row-Level Security in Supabase.</p>
+
+    <h3>Base Path: <code>/rest/v1/projects</code></h3>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">GET /projects</div>
+        <div class="step-content">List all projects for the current user. Returns an array of <code>ArchonProject</code>. Supports <code>?order=updated_at.desc</code>, <code>?limit=</code>, and <code>?offset=</code> for pagination.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">POST /projects</div>
+        <div class="step-content">Create a new project. Body: <code>CreateProjectRequest</code>. Returns the created <code>ArchonProject</code> with server-generated <code>id</code> and timestamps.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">GET /projects/:id</div>
+        <div class="step-content">Fetch a single project by UUID. Returns the full <code>ArchonProject</code> or 404 if not found or not owned by the user.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">PUT /projects/:id</div>
+        <div class="step-content">Update a project. Body: <code>UpdateProjectRequest</code> (all fields optional — partial update). Returns the updated <code>ArchonProject</code>.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">DELETE /projects/:id</div>
+        <div class="step-content">Delete a project and all associated tasks, messages, and files. Returns 204 No Content on success. This is irreversible.</div>
+      </div>
+    </div>
+
+    <h2>Models</h2>
+
+    <h3>ArchonProject</h3>
+    <pre style="background: var(--code-bg, #1a1a2e); color: #e0e0e0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6;">
+struct ArchonProject: Codable, Identifiable, Hashable {
+    let id: UUID
+    var name: String
+    var description: String?
+    var createdAt: Date
+    var updatedAt: Date
+    var taskCount: Int?
+    var lastTaskAt: Date?
+}</pre>
+
+    <h3>CreateProjectRequest</h3>
+    <pre style="background: var(--code-bg, #1a1a2e); color: #e0e0e0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6;">
+struct CreateProjectRequest: Encodable {
+    let name: String
+    let description: String?
+}</pre>
+
+    <h3>UpdateProjectRequest</h3>
+    <pre style="background: var(--code-bg, #1a1a2e); color: #e0e0e0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6;">
+struct UpdateProjectRequest: Encodable {
+    let name: String?
+    let description: String?
+}</pre>
+
+    <h2>Query Patterns</h2>
+
+    <h3>Search &amp; Filter</h3>
+    <pre style="background: var(--code-bg, #1a1a2e); color: #e0e0e0; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.6;">
+// Search by name (partial match)
+GET /rest/v1/projects?name=ilike.*calculator*&order=updated_at.desc
+
+// Filter by date range
+GET /rest/v1/projects?created_at=gte.2026-01-01&created_at=lte.2026-12-31
+
+// Pagination
+GET /rest/v1/projects?order=updated_at.desc&limit=20&offset=40</pre>
+
+    <h3>Sorting</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-title">By Last Updated (Default)</div>
+        <div class="step-content"><code>?order=updated_at.desc</code> — Most recently modified projects first.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">By Name</div>
+        <div class="step-content"><code>?order=name.asc</code> — Alphabetical order.</div>
+      </div>
+      <div class="step">
+        <div class="step-title">By Creation Date</div>
+        <div class="step-content"><code>?order=created_at.desc</code> — Newest projects first.</div>
+      </div>
+    </div>
+
+    <h2>Error Responses</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon purple">400</div>
+        <div class="card-title">Bad Request</div>
+        <div class="card-desc">Missing required fields (<code>name</code> is required for create). Returns validation error details.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon green">404</div>
+        <div class="card-title">Not Found</div>
+        <div class="card-desc">Project doesn't exist or doesn't belong to the authenticated user.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon orange">409</div>
+        <div class="card-title">Conflict</div>
+        <div class="card-desc">Duplicate project name (if unique constraint is enforced). Currently not enforced.</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/ascii-header.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms & Inputs — HTML Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">HTML Fundamentals</div>
+      <div class="sidebar-group-items"><a href="01-what-is-html.html" class="sidebar-link" data-lesson="html-01">1. What is HTML?</a>
+      <a href="02-tags-elements.html" class="sidebar-link" data-lesson="html-02">2. Tags & Elements</a>
+      <a href="03-text-links-images.html" class="sidebar-link" data-lesson="html-03">3. Text, Links & Images</a>
+      <a href="04-forms-inputs.html" class="sidebar-link lesson-link active" data-lesson="html-04">4. Forms & Inputs</a>
+      <a href="05-semantic-html.html" class="sidebar-link lesson-link" data-lesson="html-05">5. Semantic HTML</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+      <a href="../java/01-what-is-java.html" class="sidebar-link">Java Fundamentals →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge html">🌐 HTML</span>
+      <h1>Forms & Inputs</h1>
+      <div class="lesson-meta">
+        <span>Lesson 4 of 5</span>
+        <span>~8 min</span>
+      </div>
+    </div>
+
+    <p>Forms are how users send data to a website — signing up, logging in, searching, submitting feedback. HTML provides a rich set of form elements for every type of input.</p>
+
+    <h2>The form element</h2>
+
+    <p>Everything lives inside a <code>&lt;form&gt;</code> tag. It groups related inputs and can have an <code>action</code> attribute pointing to where the data should be sent:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;form action="/submit" method="POST"&gt;
+  &lt;!-- inputs go here --&gt;
+&lt;/form&gt;</code></pre>
+    </div>
+
+    <h2>Input types</h2>
+
+    <p>The <code>&lt;input&gt;</code> element is the workhorse of forms. Its <code>type</code> attribute changes how it behaves:</p>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <code>text</code> — single-line text field (default)</li>
+      <li><span class="check">→</span> <code>email</code> — validates email format automatically</li>
+      <li><span class="check">→</span> <code>password</code> — masks the typed characters</li>
+      <li><span class="check">→</span> <code>number</code> — only accepts numeric input</li>
+      <li><span class="check">→</span> <code>checkbox</code> — toggleable on/off box</li>
+      <li><span class="check">→</span> <code>radio</code> — select one option from a group</li>
+    </ul>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;input type="text" placeholder="Your name"&gt;
+&lt;input type="email" placeholder="you@example.com"&gt;
+&lt;input type="password" placeholder="Password"&gt;
+&lt;input type="number" min="1" max="100"&gt;
+&lt;input type="checkbox"&gt; I agree
+&lt;input type="radio" name="color" value="red"&gt; Red</code></pre>
+    </div>
+
+    <h2>Labels</h2>
+
+    <p>Always wrap input labels with the <code>&lt;label&gt;</code> tag. This improves accessibility — screen readers can announce what each field is for, and clicking the label focuses the input:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" name="email"&gt;</code></pre>
+    </div>
+
+    <h2>Textarea, Select, and Button</h2>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <code>&lt;textarea&gt;</code> — a multi-line text input for longer content</li>
+      <li><span class="check">→</span> <code>&lt;select&gt;</code> + <code>&lt;option&gt;</code> — a dropdown menu</li>
+      <li><span class="check">→</span> <code>&lt;button&gt;</code> — a clickable button (type: submit, reset, or button)</li>
+    </ul>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;textarea rows="4" placeholder="Your message"&gt;&lt;/textarea&gt;
+
+&lt;select name="country"&gt;
+  &lt;option value="us"&gt;United States&lt;/option&gt;
+  &lt;option value="uk"&gt;United Kingdom&lt;/option&gt;
+  &lt;option value="jp"&gt;Japan&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;button type="submit"&gt;Send&lt;/button&gt;</code></pre>
+    </div>
+
+    <h2>Build a contact form</h2>
+
+    <div class="live-editor" data-lang="html">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">HTML</div>
+          <textarea class="code-input" spellcheck="false">&lt;form action="#" method="POST"&gt;
+  &lt;label for="name"&gt;Name:&lt;/label&gt;&lt;br&gt;
+  &lt;input type="text" id="name" placeholder="Your name"&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;label for="email"&gt;Email:&lt;/label&gt;&lt;br&gt;
+  &lt;input type="email" id="email" placeholder="you@example.com"&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;label for="msg"&gt;Message:&lt;/label&gt;&lt;br&gt;
+  &lt;textarea id="msg" rows="4" placeholder="Write something..."&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;button type="submit"&gt;Send Message&lt;/button&gt;
+&lt;/form&gt;</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="email">
+      <div class="quiz-question">Which input type is best for an email address?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="text">text</button>
+        <button class="quiz-option" data-value="email">email</button>
+        <button class="quiz-option" data-value="password">password</button>
+        <button class="quiz-option" data-value="number">number</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Add a <code>&lt;select&gt;</code> dropdown with 3 options and a <code>&lt;input type="checkbox"&gt;</code> to the form above. Give the checkbox a <code>&lt;label&gt;</code> that says "Subscribe to newsletter".</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="03-text-links-images.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Text, Links & Images</div>
+      </a>
+      <a href="05-semantic-html.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Semantic HTML</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

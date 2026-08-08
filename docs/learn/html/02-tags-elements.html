@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tags & Elements — HTML Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">HTML Fundamentals</div>
+      <div class="sidebar-group-items"><a href="01-what-is-html.html" class="sidebar-link" data-lesson="html-01">1. What is HTML?</a>
+      <a href="02-tags-elements.html" class="sidebar-link lesson-link active" data-lesson="html-02">2. Tags & Elements</a>
+      <a href="03-text-links-images.html" class="sidebar-link lesson-link" data-lesson="html-03">3. Text, Links & Images</a>
+      <a href="04-forms-inputs.html" class="sidebar-link lesson-link" data-lesson="html-04">4. Forms & Inputs</a>
+      <a href="05-semantic-html.html" class="sidebar-link lesson-link" data-lesson="html-05">5. Semantic HTML</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+      <a href="../java/01-what-is-java.html" class="sidebar-link">Java Fundamentals →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge html">🌐 HTML</span>
+      <h1>Tags & Elements</h1>
+      <div class="lesson-meta">
+        <span>Lesson 2 of 5</span>
+        <span>~7 min</span>
+      </div>
+    </div>
+
+    <p>HTML is built from <strong>tags</strong> — special keywords wrapped in angle brackets. A tag tells the browser what type of content to display. Most tags come in pairs: an opening tag and a closing tag.</p>
+
+    <h2>Opening and closing tags</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+ ↑                        ↑
+ opening tag          closing tag</code></pre>
+    </div>
+
+    <p>Closing tags always start with a forward slash <code>/</code> before the tag name. Everything between the opening and closing tag is the element's <strong>content</strong>.</p>
+
+    <h2>Self-closing tags</h2>
+
+    <p>Some tags don't wrap any content — they stand alone. These are called <strong>self-closing</strong> or <strong>void</strong> elements:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;img src="photo.jpg" alt="A photo"&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;input type="text"&gt;</code></pre>
+    </div>
+
+    <p>You don't need a closing tag for these elements because they don't contain inner content.</p>
+
+    <h2>Nested elements</h2>
+
+    <p>Elements can be placed <em>inside</em> other elements. This creates a parent-child relationship and is how you build complex page structures:</p>
+
+    <div class="live-editor" data-lang="html">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">HTML</div>
+          <textarea class="code-input" spellcheck="false">&lt;div&gt;
+  &lt;h1&gt;Welcome&lt;/h1&gt;
+  &lt;p&gt;This is &lt;strong&gt;nested&lt;/strong&gt; content.&lt;/p&gt;
+  &lt;p&gt;And &lt;em&gt;this&lt;/em&gt; has nested italics.&lt;/p&gt;
+&lt;/div&gt;</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <h2>Block vs inline elements</h2>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>Block elements</strong> take up the full width available and start on a new line. Examples: <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;section&gt;</code>.</li>
+      <li><span class="check">→</span> <strong>Inline elements</strong> only take up as much width as they need and do not start on a new line. Examples: <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;img&gt;</code>.</li>
+    </ul>
+
+    <h2>Attributes</h2>
+
+    <p>Tags can have <strong>attributes</strong> — extra information that modifies the element's behavior or provides metadata:</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;a href="https://example.com"&gt;Click me&lt;/a&gt;
+&lt;img src="photo.jpg" alt="A landscape"&gt;
+&lt;div class="container"&gt;...&lt;/div&gt;
+&lt;p id="intro"&gt;...&lt;/p&gt;</code></pre>
+    </div>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <code>href</code> — the URL a link points to</li>
+      <li><span class="check">→</span> <code>src</code> — the source path for images, scripts, etc.</li>
+      <li><span class="check">→</span> <code>alt</code> — alternative text for images (for accessibility)</li>
+      <li><span class="check">→</span> <code>class</code> — a class name used for CSS styling or JavaScript</li>
+      <li><span class="check">→</span> <code>id</code> — a unique identifier for the element</li>
+    </ul>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="img">
+      <div class="quiz-question">Which of these is a self-closing tag?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="img">img</button>
+        <button class="quiz-option" data-value="div">div</button>
+        <button class="quiz-option" data-value="p">p</button>
+        <button class="quiz-option" data-value="section">section</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Create a <code>&lt;div&gt;</code> that contains an <code>&lt;h2&gt;</code> heading and two <code>&lt;p&gt;</code> paragraphs. Add a <code>class</code> attribute to the div set to <code>"card"</code>.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="01-what-is-html.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">What is HTML?</div>
+      </a>
+      <a href="03-text-links-images.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Text, Links & Images</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

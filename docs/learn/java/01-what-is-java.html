@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What is Java? — Java Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Java Fundamentals</div>
+      <div class="sidebar-group-items"><a href="01-what-is-java.html" class="sidebar-link lesson-link active" data-lesson="java-01">1. What is Java?</a>
+      <a href="02-variables-types.html" class="sidebar-link lesson-link" data-lesson="java-02">2. Variables & Types</a>
+      <a href="03-oop-basics.html" class="sidebar-link lesson-link" data-lesson="java-03">3. OOP Basics</a>
+      <a href="04-collections.html" class="sidebar-link lesson-link" data-lesson="java-04">4. Collections</a>
+      <a href="05-streams-lambdas.html" class="sidebar-link lesson-link" data-lesson="java-05">5. Streams & Lambdas</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge java">☕ Java</span>
+      <h1>What is Java?</h1>
+      <div class="lesson-meta">
+        <span>Lesson 1 of 5</span>
+        <span>~5 min</span>
+      </div>
+    </div>
+
+    <p><strong>Java</strong> is a compiled, object-oriented, platform-independent programming language created by James Gosling at Sun Microsystems in 1995. It was designed to be simple, robust, and portable across platforms — following the famous philosophy of <em>"Write once, run anywhere."</em></p>
+
+    <p>Java source code is compiled into <strong>bytecode</strong>, which runs on the <strong>Java Virtual Machine (JVM)</strong>. This means the same Java program can run on Windows, macOS, Linux, or any system with a JVM installed — without recompilation.</p>
+
+    <h2>Why Java?</h2>
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>Platform-independent:</strong> Compiled bytecode runs on any system with a JVM.</li>
+      <li><span class="check">→</span> <strong>Enterprise-grade:</strong> Widely used in banking, government, and large-scale backend systems.</li>
+      <li><span class="check">→</span> <strong>Android development:</strong> Java (along with Kotlin) powers the majority of Android apps.</li>
+      <li><span class="check">→</span> <strong>Massive ecosystem:</strong> Mature libraries, frameworks, and tooling for virtually every domain.</li>
+      <li><span class="check">→</span> <strong>Strongly typed:</strong> Catches many errors at compile time rather than runtime.</li>
+    </ul>
+
+    <h2>Your first Java program</h2>
+
+    <p>Every Java program starts with a <strong>class</strong> and a <strong>main method</strong>. Here's the classic "Hello, World!" example:</p>
+
+    <div class="live-editor" data-lang="java">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">Java</div>
+          <textarea class="code-input" spellcheck="false">public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+        System.out.println("Welcome to Java!");
+    }
+}</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Edit the strings inside <code>System.out.println()</code> on the left. The output on the right updates as you type.</p>
+    </div>
+
+    <h2>Anatomy of a Java program</h2>
+
+    <p>A Java program is organized into <strong>classes</strong>. Every class can contain methods (functions), and the program's entry point is always <code>public static void main(String[] args)</code>. Let's break down what each part means.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>public class Main {
+    // Every Java program needs a class
+    // The class name must match the filename
+
+    public static void main(String[] args) {
+        // This is the entry point of the program
+        // Java starts executing from here
+
+        String name = "Alice";
+        int age = 25;
+        boolean isStudent = true;
+
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Student: " + isStudent);
+    }
+}</code></pre>
+    </div>
+
+    <h2>Key concepts</h2>
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>class</strong> — A blueprint for objects. Every Java file contains at least one class.</li>
+      <li><span class="check">→</span> <strong>main method</strong> — The entry point: <code>public static void main(String[] args)</code>.</li>
+      <li><span class="check">→</span> <strong>System.out.println()</strong> — Prints a line of text to the console.</li>
+      <li><span class="check">→</span> <strong>Semicolons</strong> — Every statement in Java ends with a <code>;</code>.</li>
+      <li><span class="check">→</span> <strong>Case-sensitive</strong> — <code>main</code> is different from <code>Main</code>.</li>
+    </ul>
+
+    <h2>Java's role in the real world</h2>
+
+    <p>Java is everywhere. It powers large enterprise backend systems at banks and insurance companies. It's the primary language for native Android development. Big data frameworks like Hadoop and Spark are written in Java. Microservices built with Spring Boot are a staple of modern cloud architectures. Learning Java opens doors to a vast professional landscape.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// Java's write-once-run-anywhere model:
+// 1. You write .java source code
+// 2. The compiler (javac) produces .class bytecode
+// 3. The JVM executes the bytecode on any platform
+
+// This means the SAME compiled code runs on:
+// - Windows
+// - macOS
+// - Linux
+// - Any device with a JVM</code></pre>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="Java Virtual Machine">
+      <div class="quiz-question">What does JVM stand for?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="Java Variable Manager">Java Variable Manager</button>
+        <button class="quiz-option" data-value="Java Virtual Machine">Java Virtual Machine</button>
+        <button class="quiz-option" data-value="Java Verification Module">Java Verification Module</button>
+        <button class="quiz-option" data-value="Java Version Manager">Java Version Manager</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Write a Java program that prints your name, your favorite programming language, and the year you started coding. Use three separate <code>System.out.println()</code> calls.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="../../index.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Learn Overview</div>
+      </a>
+      <a href="02-variables-types.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Variables & Types</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

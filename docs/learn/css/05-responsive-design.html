@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Design — CSS Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">CSS Fundamentals</div>
+      <div class="sidebar-group-items"><a href="01-what-is-css.html" class="sidebar-link" data-lesson="css-01">1. What is CSS?</a>
+      <a href="02-selectors.html" class="sidebar-link" data-lesson="css-02">2. Selectors</a>
+      <a href="03-box-model.html" class="sidebar-link" data-lesson="css-03">3. The Box Model</a>
+      <a href="04-flexbox-grid.html" class="sidebar-link" data-lesson="css-04">4. Flexbox & Grid</a>
+      <a href="05-responsive-design.html" class="sidebar-link lesson-link active" data-lesson="css-05">5. Responsive Design</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../html/01-what-is-html.html" class="sidebar-link">← HTML Fundamentals</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+      <a href="../java/01-what-is-java.html" class="sidebar-link">Java Fundamentals →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge css">🎨 CSS</span>
+      <h1>Responsive Design</h1>
+      <div class="lesson-meta">
+        <span>Lesson 5 of 5</span>
+        <span>~7 min</span>
+      </div>
+    </div>
+
+    <p>Responsive design ensures your website looks great on every device — phones, tablets, and desktops. CSS gives you the tools to adapt layouts and typography to any screen size.</p>
+
+    <h2>Media queries</h2>
+
+    <p>Media queries let you apply CSS rules only when specific conditions are met, such as a viewport width breakpoint.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>/* Mobile first: base styles for small screens */
+body {
+  font-size: 16px;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+}</code></pre>
+    </div>
+
+    <h2>Mobile-first approach</h2>
+
+    <p>Write styles for mobile devices first, then use <code>min-width</code> media queries to add complexity for larger screens. This keeps your CSS lean and ensures a good experience on all devices.</p>
+
+    <h2>Viewport units</h2>
+
+    <p>Viewport units (<code>vw</code>, <code>vh</code>, <code>vmin</code>, <code>vmax</code>) let you size elements relative to the browser window instead of the parent element.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>.hero {
+  height: 100vh;        /* Full viewport height */
+  font-size: 5vw;       /* Scales with viewport width */
+  padding: 2vmin;       /* Smaller of vw or vh */
+}</code></pre>
+    </div>
+
+    <h2>Responsive images</h2>
+
+    <p>Use <code>max-width: 100%</code> so images never overflow their container, and <code>object-fit</code> to control how they fill their space.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>img {
+  max-width: 100%;
+  height: auto;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+}</code></pre>
+    </div>
+
+    <h2>Try it yourself</h2>
+
+    <div class="live-editor" data-lang="css">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">CSS</div>
+          <textarea class="code-input" spellcheck="false">.responsive-box {
+  padding: 20px;
+  background: #7c5cfc;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .responsive-box {
+    font-size: 24px;
+    padding: 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-box {
+    font-size: 32px;
+    padding: 60px;
+  }
+}</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Resize the output pane to see the font size and padding change at different breakpoints. Adjust the media query values to change when the styles apply.</p>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="Applies styles only when the viewport is 768px or narrower">
+      <div class="quiz-question">What does @media (max-width: 768px) do?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="Applies styles only when the viewport is 768px or narrower">Applies styles only when the viewport is 768px or narrower</button>
+        <button class="quiz-option" data-value="Applies styles only when the viewport is wider than 768px">Applies styles only when the viewport is wider than 768px</button>
+        <button class="quiz-option" data-value="Sets the viewport width to 768px">Sets the viewport width to 768px</button>
+        <button class="quiz-option" data-value="Hides the element on screens wider than 768px">Hides the element on screens wider than 768px</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>In the editor above, add a media query that changes the font size on small screens (below 480px). Use <code>max-width</code> to target narrow viewports.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="04-flexbox-grid.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Flexbox & Grid</div>
+      </a>
+      <a href="../typescript/01-what-is-ts.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">What is TypeScript?</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

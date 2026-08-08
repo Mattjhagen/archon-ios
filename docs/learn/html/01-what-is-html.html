@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What is HTML? — HTML Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">HTML Fundamentals</div>
+      <div class="sidebar-group-items"><a href="01-what-is-html.html" class="sidebar-link lesson-link active" data-lesson="html-01">1. What is HTML?</a>
+      <a href="02-tags-elements.html" class="sidebar-link lesson-link" data-lesson="html-02">2. Tags & Elements</a>
+      <a href="03-text-links-images.html" class="sidebar-link lesson-link" data-lesson="html-03">3. Text, Links & Images</a>
+      <a href="04-forms-inputs.html" class="sidebar-link lesson-link" data-lesson="html-04">4. Forms & Inputs</a>
+      <a href="05-semantic-html.html" class="sidebar-link lesson-link" data-lesson="html-05">5. Semantic HTML</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+      <a href="../java/01-what-is-java.html" class="sidebar-link">Java Fundamentals →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge html">🌐 HTML</span>
+      <h1>What is HTML?</h1>
+      <div class="lesson-meta">
+        <span>Lesson 1 of 5</span>
+        <span>~5 min</span>
+      </div>
+    </div>
+
+    <p><strong>HTML</strong> stands for <strong>HyperText Markup Language</strong>. It is the standard language for creating web pages. Every website you visit is built with HTML at its core.</p>
+
+    <p>HTML tells the browser <em>what</em> content to display — headings, paragraphs, images, links, buttons — but it doesn't control how that content looks. That's what CSS is for.</p>
+
+    <h2>Your first HTML page</h2>
+
+    <p>Every HTML page follows the same basic structure. Here's the simplest possible page:</p>
+
+    <div class="live-editor" data-lang="html">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">HTML</div>
+          <textarea class="code-input" spellcheck="false">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My First Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;p&gt;This is my first web page.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Edit the text inside the <code>&lt;h1&gt;</code> and <code>&lt;p&gt;</code> tags on the left. The output on the right updates as you type.</p>
+    </div>
+
+    <h2>How HTML works</h2>
+    <ul class="feature-list">
+      <li><span class="check">→</span> HTML uses <strong>tags</strong> to wrap content. Tags come in pairs: an opening tag and a closing tag.</li>
+      <li><span class="check">→</span> The browser reads the HTML file and renders it visually as a web page.</li>
+      <li><span class="check">→</span> HTML is not a programming language — it's a <em>markup</em> language that structures content.</li>
+    </ul>
+
+    <h2>The basic structure</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;!DOCTYPE html&gt;    &lt;!-- Tells the browser this is HTML5 --&gt;
+&lt;html&gt;              &lt;!-- Root element of the page --&gt;
+&lt;head&gt;              &lt;!-- Metadata (not visible on page) --&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;              &lt;!-- Visible content goes here --&gt;
+  &lt;h1&gt;Main Heading&lt;/h1&gt;
+  &lt;p&gt;A paragraph of text.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="A language for structuring web content">
+      <div class="quiz-question">What does HTML stand for?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="A programming language for databases">A programming language for databases</button>
+        <button class="quiz-option" data-value="A language for structuring web content">A language for structuring web content</button>
+        <button class="quiz-option" data-value="A styling language for web pages">A styling language for web pages</button>
+        <button class="quiz-option" data-value="A framework for building apps">A framework for building apps</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>In the editor above, add a second <code>&lt;h2&gt;</code> heading and a second <code>&lt;p&gt;</code> paragraph. See how the page changes.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="../../index.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Learn Overview</div>
+      </a>
+      <a href="02-tags-elements.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">Tags & Elements</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables & Types — Java Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Java Fundamentals</div>
+      <div class="sidebar-group-items"><a href="01-what-is-java.html" class="sidebar-link lesson-link" data-lesson="java-01">1. What is Java?</a>
+      <a href="02-variables-types.html" class="sidebar-link lesson-link active" data-lesson="java-02">2. Variables & Types</a>
+      <a href="03-oop-basics.html" class="sidebar-link lesson-link" data-lesson="java-03">3. OOP Basics</a>
+      <a href="04-collections.html" class="sidebar-link lesson-link" data-lesson="java-04">4. Collections</a>
+      <a href="05-streams-lambdas.html" class="sidebar-link lesson-link" data-lesson="java-05">5. Streams & Lambdas</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../html/01-what-is-html.html" class="sidebar-link">HTML Fundamentals →</a>
+      <a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge java">☕ Java</span>
+      <h1>Variables & Types</h1>
+      <div class="lesson-meta">
+        <span>Lesson 2 of 5</span>
+        <span>~5 min</span>
+      </div>
+    </div>
+
+    <p><strong>Variables</strong> are named containers that store data values. In Java, every variable has a <strong>type</strong> that determines what kind of data it can hold. Because Java is <em>statically typed</em>, you must declare the type of a variable before using it.</p>
+
+    <p>Understanding variables and types is fundamental to writing Java programs. Every piece of data — numbers, text, true/false values — needs to be stored in a properly typed variable.</p>
+
+    <h2>Primitive types</h2>
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>int</strong> — Whole numbers: <code>int age = 25;</code></li>
+      <li><span class="check">→</span> <strong>double</strong> — Decimal numbers: <code>double price = 9.99;</code></li>
+      <li><span class="check">→</span> <strong>boolean</strong> — True or false: <code>boolean isActive = true;</code></li>
+      <li><span class="check">→</span> <strong>char</strong> — Single characters: <code>char grade = 'A';</code></li>
+      <li><span class="check">→</span> <strong>String</strong> — Text (not a primitive, but used like one): <code>String name = "Alice";</code></li>
+    </ul>
+
+    <h2>Declaring and initializing variables</h2>
+
+    <p>Java requires you to declare a variable's type before assigning a value. You can declare and initialize in one step, or do them separately. Once a variable is declared, you can reassign it — but only with a value of the same type.</p>
+
+    <div class="live-editor" data-lang="java">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">Java</div>
+          <textarea class="code-input" spellcheck="false">public class Main {
+    public static void main(String[] args) {
+        int age = 25;
+        double price = 19.99;
+        boolean isStudent = true;
+        char grade = 'A';
+        String name = "Alice";
+
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Price: $" + price);
+        System.out.println("Student: " + isStudent);
+        System.out.println("Grade: " + grade);
+    }
+}</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Change the variable values on the left and watch the output update. Try assigning a decimal to <code>int</code> and see what happens.</p>
+    </div>
+
+    <h2>Type casting</h2>
+
+    <p>When you need to convert a value from one type to another, Java supports <strong>type casting</strong>. There are two kinds: <em>widening</em> (automatic, safe) and <em>narrowing</em> (manual, may lose data).</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>// Widening cast (automatic) — no data lost
+int myInt = 9;
+double myDouble = myInt;    // int → double: 9.0
+
+// Narrowing cast (manual) — may lose precision
+double myDouble2 = 9.78;
+int myInt2 = (int) myDouble2; // double → int: 9
+
+System.out.println("Widened: " + myDouble);   // 9.0
+System.out.println("Narrowed: " + myInt2);     // 9</code></pre>
+    </div>
+
+    <h2>The <code>final</code> keyword</h2>
+
+    <p>Use the <code>final</code> keyword to declare a <strong>constant</strong> — a variable whose value cannot be changed after assignment. This is a best practice for values that shouldn't be modified.</p>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>final double PI = 3.14159;
+final String APP_NAME = "Archon";
+
+// This would cause a compile error:
+// PI = 3.0;  // ❌ Cannot assign to final variable
+
+System.out.println("PI = " + PI);           // 3.14159
+System.out.println("App: " + APP_NAME);     // Archon</code></pre>
+    </div>
+
+    <h2>Key concepts</h2>
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>Declaration</strong> — <code>int count;</code> creates a variable with type and name.</li>
+      <li><span class="check">→</span> <strong>Initialization</strong> — <code>count = 0;</code> assigns an initial value.</li>
+      <li><span class="check">→</span> <strong>Combined</strong> — <code>int count = 0;</code> does both at once.</li>
+      <li><span class="check">→</span> <strong>final</strong> — Marks a variable as a constant that cannot be reassigned.</li>
+      <li><span class="check">→</span> <strong>Naming convention</strong> — Variables use <code>camelCase</code>, constants use <code>UPPER_SNAKE_CASE</code>.</li>
+    </ul>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="final">
+      <div class="quiz-question">Which keyword declares a constant in Java?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="const">const</button>
+        <button class="quiz-option" data-value="constant">constant</button>
+        <button class="quiz-option" data-value="final">final</button>
+        <button class="quiz-option" data-value="static">static</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Create one variable of each primitive type (<code>int</code>, <code>double</code>, <code>boolean</code>, <code>char</code>, <code>String</code>) and print all of them with descriptive labels using <code>System.out.println()</code>.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="01-what-is-java.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">What is Java?</div>
+      </a>
+      <a href="03-oop-basics.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">OOP Basics</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic HTML — HTML Fundamentals</title>
+  <meta name="theme-color" content="#06060a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/docs.css">
+  <link rel="stylesheet" href="../../css/learn-gamification.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+
+  <link rel="manifest" href="../../manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Archon">
+  <link rel="apple-touch-icon" href="../../icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../../icon-512.png">
+  <link rel="stylesheet" href="../../css/shaggoth-widget.css">
+</head>
+<body>
+
+<header class="header">
+  <button class="mobile-toggle" aria-label="Menu">☰</button>
+  <a href="../../index.html" class="header-logo">
+    <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#7c5cfc"/><path d="M8 20V8h4l4 6 4-6h4v12h-3.5v-7.5L16 16.5l-3-4v7.5H8z" fill="#fff"/></svg>
+    Archon Docs
+  </a>
+  
+
+  <nav class="header-nav">
+<a href="../../index.html">User Guide</a>
+    <a href="../../dev-docs/architecture/overview.html">Developer</a>
+    <a href="../index.html" class="active">Learn</a>
+    
+    <a href="https://relayapp.pro" target="_blank">Docs ↗</a>
+    <a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub ↗</a>
+  </nav>
+
+  
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">HTML Fundamentals</div>
+      <div class="sidebar-group-items"><a href="01-what-is-html.html" class="sidebar-link" data-lesson="html-01">1. What is HTML?</a>
+      <a href="02-tags-elements.html" class="sidebar-link" data-lesson="html-02">2. Tags & Elements</a>
+      <a href="03-text-links-images.html" class="sidebar-link" data-lesson="html-03">3. Text, Links & Images</a>
+      <a href="04-forms-inputs.html" class="sidebar-link" data-lesson="html-04">4. Forms & Inputs</a>
+      <a href="05-semantic-html.html" class="sidebar-link lesson-link active" data-lesson="html-05">5. Semantic HTML</a>
+    </div>
+  </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-title">Other Languages</div>
+      <div class="sidebar-group-items"><a href="../css/01-what-is-css.html" class="sidebar-link">CSS Fundamentals →</a>
+      <a href="../typescript/01-what-is-ts.html" class="sidebar-link">TypeScript Basics →</a>
+      <a href="../python/01-what-is-python.html" class="sidebar-link">Python Basics →</a>
+      <a href="../swift/01-what-is-swift.html" class="sidebar-link">Swift for iOS →</a>
+      <a href="../java/01-what-is-java.html" class="sidebar-link">Java Fundamentals →</a>
+    </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="lesson-hero">
+      <span class="lang-badge html">🌐 HTML</span>
+      <h1>Semantic HTML</h1>
+      <div class="lesson-meta">
+        <span>Lesson 5 of 5</span>
+        <span>~6 min</span>
+      </div>
+    </div>
+
+    <p>You could build an entire page with just <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> tags — and the browser would render it fine. But that would be bad HTML. <strong>Semantic HTML</strong> means using tags that describe the <em>meaning</em> of your content, not just its container shape.</p>
+
+    <h2>Why semantics matter</h2>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> <strong>Accessibility</strong> — Screen readers and assistive technologies use semantic tags to navigate the page. A <code>&lt;nav&gt;</code> tag tells screen readers "this is the navigation", while a <code>&lt;div&gt;</code> doesn't.</li>
+      <li><span class="check">→</span> <strong>SEO</strong> — Search engines give more weight to content inside <code>&lt;h1&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;main&gt;</code> tags. Semantic structure helps Google understand your page hierarchy.</li>
+      <li><span class="check">→</span> <strong>Readability</strong> — Other developers (and your future self) can instantly understand the page structure when semantic tags are used.</li>
+    </ul>
+
+    <h2>The semantic tags</h2>
+
+    <div class="code-block">
+      <button class="copy-btn">Copy</button>
+      <pre><code>&lt;header&gt;    Site or section header (logo, title, nav)&lt;/header&gt;
+&lt;nav&gt;       Navigation links&lt;/nav&gt;
+&lt;main&gt;      The primary content of the page&lt;/main&gt;
+&lt;article&gt;   Self-contained content (blog post, news story)&lt;/article&gt;
+&lt;section&gt;   Thematic grouping of content&lt;/section&gt;
+&lt;aside&gt;     Sidebar or tangentially related content&lt;/aside&gt;
+&lt;footer&gt;    Site or section footer (links, copyright)&lt;/footer&gt;</code></pre>
+    </div>
+
+    <h2>Div vs semantic tags</h2>
+
+    <p>Here's the same page structure written two ways — the non-semantic version and the semantic version:</p>
+
+    <div class="live-editor" data-lang="html">
+      <div class="editor-header">
+        <span>Editor</span>
+        <div class="editor-header-actions">
+          <button class="editor-btn reset editor-reset">Reset</button>
+        </div>
+      </div>
+      <div class="editor-body">
+        <div>
+          <div class="editor-pane-label">HTML</div>
+          <textarea class="code-input" spellcheck="false">&lt;header&gt;
+  &lt;h1&gt;My Blog&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;Posts&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;My First Post&lt;/h2&gt;
+    &lt;p&gt;Welcome to my blog. This is the start of something great.&lt;/p&gt;
+  &lt;/article&gt;
+
+  &lt;aside&gt;
+    &lt;h3&gt;Related Links&lt;/h3&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;More Posts&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;Contact Me&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;© 2026 My Blog&lt;/p&gt;
+&lt;/footer&gt;</textarea>
+        </div>
+        <div>
+          <div class="editor-pane-label">Output</div>
+          <iframe class="output-frame"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-box">
+      <h4>Try it</h4>
+      <p>Replace the <code>&lt;header&gt;</code> with <code>&lt;div&gt;</code>, the <code>&lt;nav&gt;</code> with <code>&lt;div&gt;</code>, and so on. The visual output won't change — but you lose all the meaning that makes your page accessible and SEO-friendly.</p>
+    </div>
+
+    <h2>When to use what</h2>
+
+    <ul class="feature-list">
+      <li><span class="check">→</span> Use <code>&lt;header&gt;</code> for the top of the page or the top of each <code>&lt;section&gt;</code>.</li>
+      <li><span class="check">→</span> Use <code>&lt;nav&gt;</code> for the main navigation block — not every group of links.</li>
+      <li><span class="check">→</span> Use <code>&lt;main&gt;</code> once per page for the primary content.</li>
+      <li><span class="check">→</span> Use <code>&lt;article&gt;</code> for content that makes sense on its own (blog posts, comments, cards).</li>
+      <li><span class="check">→</span> Use <code>&lt;section&gt;</code> to group related content under a shared heading.</li>
+      <li><span class="check">→</span> Use <code>&lt;aside&gt;</code> for sidebars, callout boxes, or tangential content.</li>
+      <li><span class="check">→</span> Use <code>&lt;footer&gt;</code> for the bottom of the page or section.</li>
+      <li><span class="check">→</span> Use <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> only when no semantic tag fits — for styling or scripting hooks.</li>
+    </ul>
+
+    <h2>Quiz</h2>
+
+    <div class="quiz" data-answer="nav">
+      <div class="quiz-question">Which tag should wrap the main navigation links?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-value="div">div</button>
+        <button class="quiz-option" data-value="nav">nav</button>
+        <button class="quiz-option" data-value="header">header</button>
+        <button class="quiz-option" data-value="section">section</button>
+      </div>
+      <div class="quiz-feedback"></div>
+    </div>
+
+    <div class="challenge-box">
+      <div class="challenge-title">Challenge</div>
+      <p>Take the page layout from the editor above and rewrite it using <strong>only</strong> semantic tags — replace every <code>&lt;div&gt;</code> with the most appropriate semantic element. Add a <code>&lt;section&gt;</code> inside the <code>&lt;main&gt;</code> that groups the article and sidebar together under an <code>&lt;h2&gt;</code>.</p>
+    </div>
+
+    <div class="lesson-nav">
+      <a href="04-forms-inputs.html" class="lesson-nav-link prev">
+        <div class="label">← Previous</div>
+        <div class="title">Forms & Inputs</div>
+      </a>
+      <a href="../css/01-what-is-css.html" class="lesson-nav-link next">
+        <div class="label">Next →</div>
+        <div class="title">CSS Fundamentals</div>
+      </a>
+    </div>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <span>© 2026 Matt Hagen · MIT License</span>
+    <div class="footer-downloads">
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE.dmg" class="footer-dl" data-tooltip="Download for macOS"> macOS .dmg</a>
+      <a href="https://github.com/Mattjhagen/archon-ios/releases/download/desktop/Archon-IDE-Setup.exe" class="footer-dl" data-tooltip="Download for Windows"> Windows .exe</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span><a href="https://github.com/Mattjhagen/archon-ios" target="_blank">GitHub</a> · <a href="support.html">Support</a> · <a href="https://relayapp.pro" target="_blank">Relay</a></span>
+  </div>
+</footer>
+
+<script src="../../js/docs.js"></script>
+<script src="../../js/learn.js"></script>
+<script src="../../js/learn-gamification.js"></script>
+  <script src="../../js/sidebar.js"></script>
+
+<script src="../../js/pwa.js"></script>
+<script src="../../js/shaggoth-widget.js"></script>
+<div id="chat-bubble-mount"></div>
+</body>
+</html>
